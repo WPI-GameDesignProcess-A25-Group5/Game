@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6y27c2mvqg2g"
-path="res://.godot/imported/Slime tower slime intro.png-f2f08be0ffbbb85ce2adf8126745e586.ctex"
+uid="uid://bgolk5v2ir68j"
+path="res://.godot/imported/CreditsSlimetower.png-b00ab8a6f0ba03748c67ee18e8434ac6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Slime tower slime intro.png"
-dest_files=["res://.godot/imported/Slime tower slime intro.png-f2f08be0ffbbb85ce2adf8126745e586.ctex"]
+source_file="res://Sprites/Buttons/CreditsSlimetower.png"
+dest_files=["res://.godot/imported/CreditsSlimetower.png-b00ab8a6f0ba03748c67ee18e8434ac6.ctex"]
 
 [params]
 

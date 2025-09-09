@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="IMGD-GameDevelopmentProcess-Project"
+run/main_scene="uid://bx50sn6ikapfx"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 
