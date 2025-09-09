@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="IMGD-GameDevelopmentProcess-Project"
-run/main_scene="uid://bx50sn6ikapfx"
+
+run/main_scene="uid://ys5ynyxrgr45"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [display]
@@ -23,6 +24,10 @@ window/size/viewport_height=480
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [rendering]
 

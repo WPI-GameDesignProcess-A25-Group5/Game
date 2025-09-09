@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ys5ynyxrgr45"]
+
+[ext_resource type="Texture2D" uid="uid://da33r58nq1uk7" path="res://Splash Screen/pixil-frame-0.png" id="1_11r2i"]
+
+[node name="WPI Splash" type="Node"]
+
+[node name="Current Splash Screen" type="Sprite2D" parent="."]
+position = Vector2(8, 3.8147e-06)
+scale = Vector2(1.28176, 0.963874)
+texture = ExtResource("1_11r2i")
+
+[node name="Camera2D" type="Camera2D" parent="Current Splash Screen"]
