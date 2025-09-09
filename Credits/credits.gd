@@ -3,6 +3,8 @@ extends Control
 
 signal ExitCreditsScene
 
+@onready var mainMenuScene = preload("res://Scenes/start_screen.tscn")
+
 enum Sections {
 	Developers,
 	Attributions,
@@ -67,4 +69,5 @@ func onExitCreditScene():
 	
 func leaveCreditScene(_what):
 	print("Exiting Credit Scene")
+	get_tree().change_scene_to_file("res://Scenes/start_screen.tscn")
 	pass
