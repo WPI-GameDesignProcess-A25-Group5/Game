@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfpv470epp7wq"]
+
+[ext_resource type="Script" uid="uid://v1cc1x5rcyec" path="res://Credits/Sections/Developers/person_credit.gd" id="1_81v3i"]
+
+[node name="PersonCredit" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 228.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_81v3i")
+Roles = ["role12", "role2", "Adifferent Role", "LLLLLLOOOOOOOOOONNNNNNNGGG RRRRRROOOOOLLLLLLLEEEEE", null, null]
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+text = "NAME:"
+
+[node name="Roles" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2

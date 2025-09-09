@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://20ifm4fqwqdm"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8x468"]
+color = Color(0.60331, 0.778223, 0.364624, 1)
+thickness = 8
+
+[resource]
+HSeparator/constants/separation = 16
+HSeparator/styles/separator = SubResource("StyleBoxLine_8x468")

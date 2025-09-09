@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bffe8hb8p4jfd"]
+
+[ext_resource type="Script" uid="uid://bgwdkun3c84x6" path="res://Credits/Sections/Attributions/section_attributions.gd" id="1_uas6j"]
+
+[node name="SectionAttributions" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 152.0
+grow_horizontal = 2
+script = ExtResource("1_uas6j")
+
+[node name="Tile" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Attributions"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ColumnCredits" type="VBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+
+[node name="ColumnCredits2" type="VBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0

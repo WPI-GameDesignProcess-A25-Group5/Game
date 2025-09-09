@@ -1,0 +1,7 @@
+[gd_scene load_steps=0 format=3 uid="uid://dhyx1imkq6ff0"]
+
+[node name="CreditRole" type="Label"]
+custom_minimum_size = Vector2(200, 0)
+size_flags_horizontal = 0
+text = "Role1fjkdf;flkjdslfkmvsdlfkvmds;kflmvs;dflkvnldskfjnvldskjfnvlsdjfnvldkjfnv"
+autowrap_mode = 3

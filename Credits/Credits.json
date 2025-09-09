@@ -1,0 +1,43 @@
+{
+	"Developers": [
+		{
+			"Name": "Zimraan",
+			"Jobs": [
+				"Scripting",
+				"Credits"
+			]
+		},
+		{
+			"Name": "Jack",
+			"Jobs": [
+				"Scripting",
+				"animation",
+				"Splash screen"
+			]
+		},
+		{
+			"Name": "Theo",
+			"Jobs": [
+				"Audio"
+			]
+		},
+		{
+			"Name": "Finn",
+			"Jobs": [
+				"Art",
+				"Animation"
+			]
+		}
+	],
+	"Attributions": [
+		{
+			"name": "godot-git-plugin",
+			"parts": [
+				{
+					"copyright": ["2016-2023, The Godot Engine community"],
+					"license": "MIT"
+				}
+			]
+		}
+	]
+}
