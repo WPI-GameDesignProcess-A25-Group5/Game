@@ -1,12 +1,15 @@
-[gd_scene load_steps=39 format=3 uid="uid://bx50sn6ikapfx"]
+[gd_scene load_steps=42 format=3 uid="uid://bx50sn6ikapfx"]
 
 [ext_resource type="Script" uid="uid://dmharch1gfqkk" path="res://Scripts/button.gd" id="1_5a7ho"]
+[ext_resource type="AudioStream" uid="uid://dq6auged6r37y" path="res://audio/arcade-blitz-neon-rhythms-by-sascha-ende-from-filmmusic-io.mp3" id="2_akot6"]
 [ext_resource type="Texture2D" uid="uid://b8r7gnk01bysi" path="res://Sprites/Visuals/Slime Tower intro card.png" id="2_ssogg"]
 [ext_resource type="Texture2D" uid="uid://6y27c2mvqg2g" path="res://Sprites/Visuals/Slime tower slime intro.png" id="3_akot6"]
 [ext_resource type="Texture2D" uid="uid://bmbjtvjxhartl" path="res://Sprites/Visuals/Slime tower logo.png" id="4_rjuq2"]
 [ext_resource type="Texture2D" uid="uid://b1solis8j580j" path="res://Sprites/Buttons/StartSlimetower.png" id="5_c1457"]
 [ext_resource type="Texture2D" uid="uid://bgolk5v2ir68j" path="res://Sprites/Buttons/CreditsSlimetower.png" id="6_64bn7"]
+[ext_resource type="AudioStream" uid="uid://dksy27878me50" path="res://audio/Buttonclick.wav" id="6_rjuq2"]
 [ext_resource type="Texture2D" uid="uid://5kih18n6sh04" path="res://Sprites/Buttons/ExitSlimetower.png" id="7_357se"]
+[ext_resource type="Script" uid="uid://btdtao3johahi" path="res://Scenes/start_button.gd" id="8_c1457"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtxnb"]
 atlas = ExtResource("2_ssogg")
@@ -235,6 +238,11 @@ animations = [{
 [node name="Start Screen" type="Node2D"]
 script = ExtResource("1_5a7ho")
 
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_akot6")
+volume_db = -14.055
+autoplay = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(10, 10)
 
@@ -261,6 +269,10 @@ texture = ExtResource("4_rjuq2")
 
 [node name="Buttons" type="Node" parent="."]
 
+[node name="Click" type="AudioStreamPlayer" parent="Buttons"]
+stream = ExtResource("6_rjuq2")
+volume_db = 12.115
+
 [node name="Start" type="Sprite2D" parent="Buttons"]
 position = Vector2(19, -17.75)
 scale = Vector2(0.4375, 0.4375)
@@ -272,6 +284,7 @@ offset_left = -13.0
 offset_top = -7.0
 offset_right = 13.0
 offset_bottom = 7.0
+script = ExtResource("8_c1457")
 
 [node name="Credits" type="Sprite2D" parent="Buttons"]
 position = Vector2(19, -10)
