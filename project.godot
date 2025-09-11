@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="IMGD-GameDevelopmentProcess-Project"
+config/name="IMGD_GDP-SlimeTower"
 run/main_scene="uid://bx50sn6ikapfx"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="uid://da33r58nq1uk7"
