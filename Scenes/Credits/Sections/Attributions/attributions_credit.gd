@@ -4,7 +4,7 @@ extends VBoxContainer
 @export var attribName:String="NAME"
 @export var copyright:String="BLANK"
 @export var license:String= "BLANK"
-var RoleNode = preload("res://Credits/Sections/Attributions/attributions_license.tscn")
+var RoleNode = preload("res://Scenes/Credits/Sections/Attributions/attributions_license.tscn")
 func	 _ready() -> void:
 	%Name.text=attribName
 	var role = RoleNode.instantiate()

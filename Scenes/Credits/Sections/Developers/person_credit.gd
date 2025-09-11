@@ -3,7 +3,7 @@ extends HBoxContainer
 
 @export var personName:String="NAME"
 @export var Roles:Array=["role1","role2","Adifferent Role","LLLLLLOOOOOOOOOONNNNNNNGGG RRRRRROOOOOLLLLLLLEEEEE"]
-var RoleNode = preload("res://Credits/Sections/Developers/credit_role.tscn")
+var RoleNode = preload("res://Scenes/Credits/Sections/Developers/credit_role.tscn")
 func	 _ready() -> void:
 	%Name.text=personName +':'
 	for a in Roles:

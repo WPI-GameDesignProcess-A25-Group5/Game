@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dph5bqdmodcms"]
 
-[ext_resource type="Theme" uid="uid://bnjlbw5twyf6f" path="res://Credits/Sections/Seperators/CR_Seperator.tres" id="1_gce6i"]
+[ext_resource type="Theme" uid="uid://bnjlbw5twyf6f" path="res://Scenes/Credits/Sections/Seperators/CR_Seperator.tres" id="1_gce6i"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

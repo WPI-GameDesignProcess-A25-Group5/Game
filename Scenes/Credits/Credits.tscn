@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://civx6at644deh"]
 
-[ext_resource type="Script" uid="uid://cbso3bthy6naw" path="res://Credits/credits.gd" id="1_pqpwq"]
+[ext_resource type="Script" uid="uid://cbso3bthy6naw" path="res://Scenes/Credits/credits.gd" id="1_pqpwq"]
 [ext_resource type="AudioStream" uid="uid://dqgw1tx8k8e5c" path="res://audio/office-lounge-music-318121.mp3" id="2_ga4ak"]
 
 [sub_resource type="Gradient" id="Gradient_pqpwq"]
@@ -80,6 +80,7 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("2_ga4ak")
 volume_db = -9.369
 autoplay = true
+parameters/looping = true
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
 
@@ -149,3 +150,4 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
+bus = &"Music"

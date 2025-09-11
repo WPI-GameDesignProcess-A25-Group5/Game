@@ -3,8 +3,8 @@ extends VBoxContainer
 
 var data = []
 
-var attributionsNode := preload("res://Credits/Sections/Attributions/attributions_credit.tscn")
-var CRSep := preload("res://Credits/Sections/Seperators/CR_Seperator.tscn")
+var attributionsNode := preload("res://Scenes/Credits/Sections/Attributions/attributions_credit.tscn")
+var CRSep := preload("res://Scenes/Credits/Sections/Seperators/CR_Seperator.tscn")
 
 var containerQueue :=[]
 
