@@ -37,3 +37,9 @@ func _on_click_sound_finished() -> void:
 		"exit":
 			get_tree().quit(0)
 	pass # Replace with function body.
+
+
+
+func _on_version_notes_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/VersionNotes/version_notes.tscn")
+	pass # Replace with function body.

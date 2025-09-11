@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg111u4do554d"]
+
+[ext_resource type="Script" uid="uid://no18ruvmajp4" path="res://Scenes/VersionNotes/version_notes.gd" id="1_vv32y"]
+[ext_resource type="PackedScene" uid="uid://bx50sn6ikapfx" path="res://Scenes/MainMenu/start_screen.tscn" id="2_m1xer"]
+
+[node name="VersionNotes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vv32y")
+backButtonGoesTo = ExtResource("2_m1xer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.372549, 0.176471, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 26.0
+offset_right = -30.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Verison 0.1
+- Music and Sound Effects
+- WPI Splash Screen
+- Credits
+- Main Menu
+- Version Notes Page"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -67.0
+offset_top = -49.0
+offset_right = -22.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
