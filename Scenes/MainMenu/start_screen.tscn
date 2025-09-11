@@ -242,6 +242,7 @@ stream = ExtResource("2_akot6")
 volume_db = -14.055
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(10, 10)

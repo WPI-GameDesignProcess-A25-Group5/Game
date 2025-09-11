@@ -80,6 +80,7 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("2_ga4ak")
 volume_db = -9.369
 autoplay = true
+parameters/looping = true
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
 
