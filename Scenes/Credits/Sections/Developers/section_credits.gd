@@ -3,7 +3,7 @@ extends VBoxContainer
 
 var data = []
 
-var personCreditNode := preload("res://Credits/Sections/Developers/person_credit.tscn")
+var personCreditNode := preload("res://Scenes/Credits/Sections/Developers/person_credit.tscn")
 
 func _ready() -> void:
 	$Tile.text = "Credits"

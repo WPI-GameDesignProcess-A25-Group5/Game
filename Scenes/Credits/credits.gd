@@ -3,22 +3,22 @@ extends Control
 
 signal ExitCreditsScene
 
-@onready var mainMenuScene = preload("res://Scenes/start_screen.tscn")
+var mainMenuScene = load("res://Scenes/MainMenu/start_screen.tscn")
 
 enum Sections {
 	Developers,
 	Attributions,
 }
-var developersSection = preload("res://Credits/Sections/Developers/section_credits.tscn")
-var attributionsSection = preload("res://Credits/Sections/Attributions/section_attributions.tscn")
+var developersSection = preload("res://Scenes/Credits/Sections/Developers/section_credits.tscn")
+var attributionsSection = preload("res://Scenes/Credits/Sections/Attributions/section_attributions.tscn")
 
-var sectionSeperator = preload("res://Credits/Sections/Seperators/Section_Seperator.tscn")
+var sectionSeperator = preload("res://Scenes/Credits/Sections/Seperators/Section_Seperator.tscn")
 var hasNotLeftYet = true
 func _ready():
 	hasNotLeftYet=true
 	ExitCreditsScene.connect(onExitCreditScene)
 	# read in credits file
-	var creditsFile := FileAccess.open("res://Credits/Credits.json",FileAccess.READ).get_as_text()
+	var creditsFile := FileAccess.open("res://Scenes/Credits/Credits.json",FileAccess.READ).get_as_text()
 	var credits:=JSON.new()
 	var result = credits.parse(creditsFile)
 	var data = []
@@ -69,5 +69,5 @@ func onExitCreditScene():
 	
 func leaveCreditScene(_what):
 	print("Exiting Credit Scene")
-	get_tree().change_scene_to_file("res://Scenes/start_screen.tscn")
+	get_tree().change_scene_to_packed(mainMenuScene)
 	pass

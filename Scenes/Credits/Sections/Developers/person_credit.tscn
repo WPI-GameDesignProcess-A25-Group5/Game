@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cfpv470epp7wq"]
 
-[ext_resource type="Script" uid="uid://v1cc1x5rcyec" path="res://Credits/Sections/Developers/person_credit.gd" id="1_81v3i"]
+[ext_resource type="Script" uid="uid://v1cc1x5rcyec" path="res://Scenes/Credits/Sections/Developers/person_credit.gd" id="1_81v3i"]
 
 [node name="PersonCredit" type="HBoxContainer"]
 anchors_preset = 10
