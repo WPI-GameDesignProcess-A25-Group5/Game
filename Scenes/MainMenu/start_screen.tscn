@@ -311,7 +311,17 @@ offset_top = -6.0
 offset_right = 13.0
 offset_bottom = 8.0
 
+[node name="versionNotesButton" type="LinkButton" parent="Buttons"]
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 133.0
+offset_bottom = 45.0
+scale = Vector2(0.055, 0.055)
+text = "Version Notes"
+underline = 1
+
 [connection signal="finished" from="Buttons/Click" to="." method="_on_click_sound_finished"]
 [connection signal="pressed" from="Buttons/Start/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Buttons/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Buttons/Exit/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Buttons/versionNotesButton" to="." method="_on_version_notes_button_pressed"]

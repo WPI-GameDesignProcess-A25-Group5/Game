@@ -151,3 +151,8 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 bus = &"Music"
+
+[node name="Scroll Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Scroll Timer" to="." method="_on_scroll_timer_timeout"]
