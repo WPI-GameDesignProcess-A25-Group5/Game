@@ -37,14 +37,25 @@ func _ready():
 			
 	%AnimationPlayer.play("fade in")
 
+var autoscroll = true
+
 func _process(delta: float) -> void:
 	if(!Engine.is_editor_hint()):
-		if(Input.is_action_pressed("ui_accept")):
-			%CreditsBox.position.y -=50*10*delta
-			$AudioStreamPlayer.pitch_scale = 10;
-		else:
-			%CreditsBox.position.y -=50*delta
-			$AudioStreamPlayer.pitch_scale = 1
+		if(autoscroll):
+			if(Input.is_action_pressed("ui_accept")):
+				%CreditsBox.position.y -=50*10*delta
+				$AudioStreamPlayer.pitch_scale = 10;
+			else:
+				%CreditsBox.position.y -=50*delta
+				$AudioStreamPlayer.pitch_scale = 1
+		var scrolling = Input.get_axis("ui_up","ui_down")
+		if(abs(scrolling)>0.1):
+			autoscroll = false
+			$"Scroll Timer".stop()
+			%CreditsBox.position.y +=scrolling*50*10*delta
+		elif(autoscroll==false and $"Scroll Timer".is_stopped()):
+			$"Scroll Timer".start()
+			pass
 		if((Input.is_action_just_pressed("ui_cancel")|| (-%VBoxContainer.global_position.y)>%VBoxContainer.size.y)and hasNotLeftYet):
 			ExitCreditsScene.emit()
 		pass
@@ -71,3 +82,8 @@ func leaveCreditScene(_what):
 	print("Exiting Credit Scene")
 	get_tree().change_scene_to_packed(mainMenuScene)
 	pass
+
+
+func _on_scroll_timer_timeout() -> void:
+	autoscroll=true
+	pass # Replace with function body.
