@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://civx6at644deh"]
 
 [ext_resource type="Script" uid="uid://cbso3bthy6naw" path="res://Scenes/Credits/credits.gd" id="1_pqpwq"]
-[ext_resource type="AudioStream" uid="uid://dqgw1tx8k8e5c" path="res://audio/office-lounge-music-318121.mp3" id="2_ga4ak"]
+[ext_resource type="AudioStream" uid="uid://dqgw1tx8k8e5c" path="res://Assets/audio/office-lounge-music-318121.mp3" id="2_ga4ak"]
 
 [sub_resource type="Gradient" id="Gradient_pqpwq"]
 interpolation_mode = 2

@@ -1,14 +1,14 @@
 [gd_scene load_steps=41 format=3 uid="uid://bx50sn6ikapfx"]
 
 [ext_resource type="Script" uid="uid://dmharch1gfqkk" path="res://Scenes/MainMenu/MainScene.gd" id="1_5a7ho"]
-[ext_resource type="AudioStream" uid="uid://dq6auged6r37y" path="res://audio/arcade-blitz-neon-rhythms-by-sascha-ende-from-filmmusic-io.mp3" id="2_akot6"]
-[ext_resource type="Texture2D" uid="uid://b8r7gnk01bysi" path="res://Sprites/Visuals/Slime Tower intro card.png" id="2_ssogg"]
-[ext_resource type="Texture2D" uid="uid://6y27c2mvqg2g" path="res://Sprites/Visuals/Slime tower slime intro.png" id="3_akot6"]
-[ext_resource type="Texture2D" uid="uid://bmbjtvjxhartl" path="res://Sprites/Visuals/Slime tower logo.png" id="4_rjuq2"]
-[ext_resource type="Texture2D" uid="uid://b1solis8j580j" path="res://Sprites/Buttons/StartSlimetower.png" id="5_c1457"]
-[ext_resource type="Texture2D" uid="uid://bgolk5v2ir68j" path="res://Sprites/Buttons/CreditsSlimetower.png" id="6_64bn7"]
-[ext_resource type="AudioStream" uid="uid://dksy27878me50" path="res://audio/Buttonclick.wav" id="6_rjuq2"]
-[ext_resource type="Texture2D" uid="uid://5kih18n6sh04" path="res://Sprites/Buttons/ExitSlimetower.png" id="7_357se"]
+[ext_resource type="AudioStream" uid="uid://dq6auged6r37y" path="res://Assets/audio/arcade-blitz-neon-rhythms-by-sascha-ende-from-filmmusic-io.mp3" id="2_akot6"]
+[ext_resource type="Texture2D" uid="uid://b8r7gnk01bysi" path="res://Assets/Sprites/Visuals/Slime Tower intro card.png" id="2_ssogg"]
+[ext_resource type="Texture2D" uid="uid://6y27c2mvqg2g" path="res://Assets/Sprites/Visuals/Slime tower slime intro.png" id="3_akot6"]
+[ext_resource type="Texture2D" uid="uid://bmbjtvjxhartl" path="res://Assets/Sprites/Visuals/Slime tower logo.png" id="4_rjuq2"]
+[ext_resource type="Texture2D" uid="uid://b1solis8j580j" path="res://Assets/Sprites/Buttons/StartSlimetower.png" id="5_c1457"]
+[ext_resource type="Texture2D" uid="uid://bgolk5v2ir68j" path="res://Assets/Sprites/Buttons/CreditsSlimetower.png" id="6_64bn7"]
+[ext_resource type="AudioStream" uid="uid://dksy27878me50" path="res://Assets/audio/Buttonclick.wav" id="6_rjuq2"]
+[ext_resource type="Texture2D" uid="uid://5kih18n6sh04" path="res://Assets/Sprites/Buttons/ExitSlimetower.png" id="7_357se"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtxnb"]
 atlas = ExtResource("2_ssogg")

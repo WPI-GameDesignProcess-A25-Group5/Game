@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://i02inxxcubyg"
-path="res://.godot/imported/Heartbeat.wav-2610ef574c0cc47f36a571bac7eefdda.sample"
+uid="uid://depr06035sq"
+path="res://.godot/imported/damage.wav-8f083bbd2e5db87f2849f8d9d19636f4.sample"
 
 [deps]
 
-source_file="res://audio/Heartbeat.wav"
-dest_files=["res://.godot/imported/Heartbeat.wav-2610ef574c0cc47f36a571bac7eefdda.sample"]
+source_file="res://Assets/audio/damage.wav"
+dest_files=["res://.godot/imported/damage.wav-8f083bbd2e5db87f2849f8d9d19636f4.sample"]
 
 [params]
 

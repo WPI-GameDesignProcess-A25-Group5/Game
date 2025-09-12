@@ -1,5 +1,6 @@
 extends Node2D
 var creditsScene = preload("res://Scenes/Credits/Credits.tscn")
+var testSence = preload("res://Scenes/TestScene/test_scene.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,6 +32,7 @@ func _on_exit_button_pressed() -> void:
 func _on_click_sound_finished() -> void:
 	match buttonPressed:
 		"start":
+			get_tree().change_scene_to_packed(testSence)
 			pass
 		"credits":
 			get_tree().change_scene_to_packed(creditsScene)

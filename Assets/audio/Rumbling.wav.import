@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c5qvt1japbp8e"
-path="res://.godot/imported/Weirdsound.wav-108ceaf5f28a44f9e4f4158b7fbf926b.sample"
+uid="uid://csj6vs88raguw"
+path="res://.godot/imported/Rumbling.wav-80bfc8e423a07a1691c6b4b6f424dc33.sample"
 
 [deps]
 
-source_file="res://audio/Weirdsound.wav"
-dest_files=["res://.godot/imported/Weirdsound.wav-108ceaf5f28a44f9e4f4158b7fbf926b.sample"]
+source_file="res://Assets/audio/Rumbling.wav"
+dest_files=["res://.godot/imported/Rumbling.wav-80bfc8e423a07a1691c6b4b6f424dc33.sample"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgolk5v2ir68j"
-path="res://.godot/imported/CreditsSlimetower.png-b00ab8a6f0ba03748c67ee18e8434ac6.ctex"
+uid="uid://5kih18n6sh04"
+path="res://.godot/imported/ExitSlimetower.png-1183bc130b90956062f199e4af92a3d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/CreditsSlimetower.png"
-dest_files=["res://.godot/imported/CreditsSlimetower.png-b00ab8a6f0ba03748c67ee18e8434ac6.ctex"]
+source_file="res://Assets/Sprites/Buttons/ExitSlimetower.png"
+dest_files=["res://.godot/imported/ExitSlimetower.png-1183bc130b90956062f199e4af92a3d0.ctex"]
 
 [params]
 

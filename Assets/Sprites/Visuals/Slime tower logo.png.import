@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1solis8j580j"
-path="res://.godot/imported/StartSlimetower.png-9075517eb91705ecad8ddde695a18e22.ctex"
+uid="uid://bmbjtvjxhartl"
+path="res://.godot/imported/Slime tower logo.png-66e2d3172a9c81c073bfbae87b82218a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/StartSlimetower.png"
-dest_files=["res://.godot/imported/StartSlimetower.png-9075517eb91705ecad8ddde695a18e22.ctex"]
+source_file="res://Assets/Sprites/Visuals/Slime tower logo.png"
+dest_files=["res://.godot/imported/Slime tower logo.png-66e2d3172a9c81c073bfbae87b82218a.ctex"]
 
 [params]
 
