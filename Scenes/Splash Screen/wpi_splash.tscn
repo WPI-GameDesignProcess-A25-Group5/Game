@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ys5ynyxrgr45"]
 
-[ext_resource type="Texture2D" uid="uid://da33r58nq1uk7" path="res://Splash Screen/pixil-frame-0.png" id="1_11r2i"]
+[ext_resource type="Texture2D" uid="uid://da33r58nq1uk7" path="res://Scenes/Splash Screen/pixil-frame-0.png" id="1_11r2i"]
 
 [node name="WPI Splash" type="Node"]
 

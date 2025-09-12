@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ce5lk712bx2v3"
-path="res://.godot/imported/PowerUp.wav-f8189bdb20429bdd31673b9e36631d78.sample"
+uid="uid://c5qvt1japbp8e"
+path="res://.godot/imported/Weirdsound.wav-4861a52826e1df733bb8616d64e3723b.sample"
 
 [deps]
 
-source_file="res://audio/PowerUp.wav"
-dest_files=["res://.godot/imported/PowerUp.wav-f8189bdb20429bdd31673b9e36631d78.sample"]
+source_file="res://Assets/audio/Weirdsound.wav"
+dest_files=["res://.godot/imported/Weirdsound.wav-4861a52826e1df733bb8616d64e3723b.sample"]
 
 [params]
 

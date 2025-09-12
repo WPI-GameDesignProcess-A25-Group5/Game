@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da33r58nq1uk7"
-path="res://.godot/imported/pixil-frame-0.png-72dac1bd594a42271c52509b028439f6.ctex"
+uid="uid://6y27c2mvqg2g"
+path="res://.godot/imported/Slime tower slime intro.png-8d18c7af7bea976970c99b49a0be150e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Splash Screen/pixil-frame-0.png"
-dest_files=["res://.godot/imported/pixil-frame-0.png-72dac1bd594a42271c52509b028439f6.ctex"]
+source_file="res://Assets/Sprites/Visuals/Slime tower slime intro.png"
+dest_files=["res://.godot/imported/Slime tower slime intro.png-8d18c7af7bea976970c99b49a0be150e.ctex"]
 
 [params]
 

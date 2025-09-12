@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://nkqsm63rittt"
-path="res://.godot/imported/Pickup1.wav-5eab2909996eeb4340325736d83df8dd.sample"
+uid="uid://i02inxxcubyg"
+path="res://.godot/imported/Heartbeat.wav-4b319e80287dbb7045c0962512103e80.sample"
 
 [deps]
 
-source_file="res://audio/Pickup1.wav"
-dest_files=["res://.godot/imported/Pickup1.wav-5eab2909996eeb4340325736d83df8dd.sample"]
+source_file="res://Assets/audio/Heartbeat.wav"
+dest_files=["res://.godot/imported/Heartbeat.wav-4b319e80287dbb7045c0962512103e80.sample"]
 
 [params]
 
