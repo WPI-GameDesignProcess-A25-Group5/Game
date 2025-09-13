@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
@@ -9,25 +9,41 @@ var walldirections := {}
 
 var launched := false;
 var stuck := false
+
 var lastUpDir  := up_direction
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
-
 	if not stuck:
 		velocity += get_gravity() * delta 
 		if (velocity.y>MAX_FALL_SPEED):
 			velocity.y=MAX_FALL_SPEED
-		
+		 
 		
 	if stuck:
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 		var direction := Input.get_axis("MoveLeft", "MoveRight")
+		var directionCorrection := up_direction.rotated(PI/2)
+		
 		if direction:
-			velocity = direction * SPEED *up_direction.rotated(PI/2)
+			velocity = direction * SPEED *directionCorrection
+		if(checkUnstick):
+			#var movementTest = velocity-up_direction*velocity.length() -velocity
+			var movementTest = -up_direction*velocity.length() +  get_gravity().rotated(get_gravity().angle_to(-up_direction))
+			if(launched):
+				stuck = false
 				
-		#print(up_direction)
+			elif(!test_move(self.transform,movementTest*delta)): # try rotating around block, if can,Do it
+				#print("untsick")
+				stuck = false
+			else:
+				velocity = movementTest
+				#velocity +=
+				#pass
+			checkUnstick = false
+			pass
+				
 		launched = false;
 	
 	var collisions := move_and_collide(velocity*delta)
@@ -35,10 +51,9 @@ func _physics_process(delta: float) -> void:
 		lastUpDir = up_direction
 		up_direction = collisions.get_normal()
 		$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
-		#print(collisions.get_angle(velocity.normalized()))
 		if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
-			#print("U")
 			stuck = true
+			
 		else:
 			var componentInUpDir = up_direction.dot(velocity)*up_direction.normalized()
 			if(componentInUpDir.length()>20):
@@ -46,62 +61,33 @@ func _physics_process(delta: float) -> void:
 			else:
 				stuck = true
 				velocity = velocity-componentInUpDir
-	#else:
-		#stuck = false
-		
-	print("stuck: ",stuck," launced: ",launched)
-	#else:
-		#up_direction = Vector2.UP
-		#$AnimatedSprite2D.rotation = up_direction.angle_to(Vector2.UP)
 	#
 
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
+	if(dir.is_equal_approx(Vector2.ZERO)):
+		return
 	if(stuck):
-		#print(dir)
 		velocity += JUMP_VELOCITY*dir
-		stuck = false
-	
+		#stuck = false
+		checkUnstick = true
 		launched = true
 	%SlingShotParticles.emitting = false
 	pass # Replace with function body.
 
 
 func _on_mouse_vector_sling_shot_update(dir:Vector2) -> void:
-	if(stuck):
+	if(stuck): # set particle params to show jump
 		%SlingShotParticles.emitting = true
 		%SlingShotParticles.process_material.set("direction",dir)
 		%SlingShotParticles.process_material.set("gravity",get_gravity())
 		var speed = JUMP_VELOCITY*dir.length()
 		%SlingShotParticles.process_material.set("initial_velocity_max",speed)
 		%SlingShotParticles.process_material.set("initial_velocity_min",speed)
-	pass # Replace with function body.
+	pass 
 
 
+var checkUnstick = false
+func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:
+	checkUnstick= !dirs
 
-func _on_block_interaction_grid_changed_most_occupied(dirs: Dictionary) -> void:
-	#if(dirs):
-	#print("VOTE: ",dirs)
-	#walldirections = {}
-	#for i in dirs:
-		#if(dirs[i]!=0):
-			#walldirections[i]=$BlockInteractionGrid.strToDir[i]
-			#
-	#if(walldirections.keys().size()==0):
-		#up_direction = Vector2.UP
-		#stuck = false
-	#elif(walldirections.keys().size()==1):
-		#lastUpDir=up_direction
-		#up_direction = walldirections[walldirections.keys()[0]].rotated(PI)
-		#stuck=true
-	#else:
-		#for key in walldirections:
-			#if walldirections[key] == up_direction.rotated(PI):
-				#pass
-
-	
-		#up_direction = up_direction.rotated(up_direction.angle_to(dirs[0])+PI)
-		#up_direction = dirs[0].rotated(PI)
-		#launched=false
-		#$AnimatedSprite2D.rotation = dirs[0].angle_to(Vector2.DOWN)
-	pass # Replace with function body.

@@ -17,7 +17,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tekja"]
-radius = 15.0
+radius = 14.5
 
 [sub_resource type="Curve" id="Curve_tekja"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.46698), 0.0, 0.0, 0, 0]
@@ -47,6 +47,9 @@ self_modulate = Color(3.17663e-06, 0.774254, 0.206436, 1)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_3uyv8")
 
+[node name="BlockInteractionGrid" parent="AnimatedSprite2D" instance=ExtResource("4_tekja")]
+scale = Vector2(4, 4)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tekja")
 
@@ -67,8 +70,6 @@ texture = ExtResource("1_mv1ah")
 scale = Vector2(0.0625, 0.234375)
 texture = ExtResource("1_mv1ah")
 
-[node name="BlockInteractionGrid" parent="." instance=ExtResource("4_tekja")]
-
 [node name="SlingShotParticles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 emitting = false
@@ -76,6 +77,6 @@ amount = 4
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_tekja")
 
+[connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
 [connection signal="slingShotUpdate" from="MouseVector" to="." method="_on_mouse_vector_sling_shot_update"]
-[connection signal="changedMostOccupied" from="BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
