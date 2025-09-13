@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgafglulk3bou"]
+
+[ext_resource type="Script" uid="uid://c0t8spdltqum7" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.gd" id="1_1pr3e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o6i5"]
+size = Vector2(1, 1)
+
+[node name="BlockInteractionGrid" type="Node2D"]
+script = ExtResource("1_1pr3e")
+
+[node name="TopLeft" type="Area2D" parent="."]
+position = Vector2(-16, -16)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeft"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="Top" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="TopRight" type="Area2D" parent="."]
+position = Vector2(16, -16)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopRight"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(16, 0)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="BottomLeft" type="Area2D" parent="."]
+position = Vector2(-16, 16)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLeft"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2(0, 16)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+shape = SubResource("RectangleShape2D_5o6i5")
+
+[node name="BottomRight" type="Area2D" parent="."]
+position = Vector2(16, 16)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomRight"]
+shape = SubResource("RectangleShape2D_5o6i5")
