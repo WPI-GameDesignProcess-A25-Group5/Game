@@ -8,11 +8,11 @@ class BlockNode:
 	func canStick()->bool:
 		return true
 		
-signal changedMostOccupied(dirs:Array[Vector2])
+signal changedMostOccupied(dirs:Dictionary)
 
 var blockNodes :Array[BlockNode]= []
 
-var dirs:Array[Vector2]
+var dirs:= {"up":0,"down":0,"left":0,"right":0}
 
 const strToDir :={
 	'up':Vector2.UP,
@@ -31,11 +31,13 @@ func _ready() -> void:
 		var ind_bodyEnter= func (body:Node2D):
 			#print(blockNodes)
 			#if blockNodes[index]==null:
+			i.modulate = Color.PURPLE
 			blockNodes[index] = get_block_type(body)
 			pass
 		var ind_bodyexit = func (body:Node2D):
 			#print(blockNodes)
 			#if(blockNodes[index] and blockNodes[index].body==body):
+			i.modulate = Color.WHITE
 			blockNodes[index] = null
 			pass
 		index+=1
@@ -81,11 +83,11 @@ func _process(_delta: float) -> void:
 	for i in votes:
 		if(votes[i]>maxnum):
 			maxnum=votes[i]
-	var now	:Array[Vector2]=[]
+	var now	:={"up":0,"down":0,"left":0,"right":0}
 	if(maxnum!=0):
 		for alias in votes:
 			if(votes[alias]==maxnum):
-				now.push_back(strToDir[alias])
+				now[alias]=1
 	if(!equivArrs(dirs,now))	:
 		dirs = now
 		changedMostOccupied.emit(dirs)
@@ -94,11 +96,9 @@ func _process(_delta: float) -> void:
 	#print(dirs)
 	pass
 	
-func equivArrs(ar1:Array,ar2: Array)->bool:
-	if(ar1.size() != ar2.size()):
-		return false
-	for i in range(ar1.size()):
-		if(ar1[i]!=ar2[i]):
+func equivArrs(ar1:Dictionary,ar2:Dictionary)->bool:
+	for l in ar1:
+		if(ar2[l]==null || ar1[l]!=ar2[l]):
 			return false
 	return true;
 	
