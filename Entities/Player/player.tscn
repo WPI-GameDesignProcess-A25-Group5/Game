@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=10 format=3 uid="uid://dq0xkdl80qp3j"]
 
+[ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://cxcv77nyc8m3j" path="res://Entities/Player/mouse_vector.gd" id="3_lu8i8"]
+[ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.tscn" id="4_tekja"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uyv8"]
 animations = [{
@@ -16,7 +19,28 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lu8i8"]
 size = Vector2(30, 30)
 
+[sub_resource type="Curve" id="Curve_tekja"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.46698), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5c2io"]
+curve = SubResource("Curve_tekja")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tekja"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 98, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_5c2io")
+color = Color(0.72128, 0.98, 0.5488, 1)
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_3uyv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(3.17663e-06, 0.774254, 0.206436, 1)
@@ -25,3 +49,31 @@ sprite_frames = SubResource("SpriteFrames_3uyv8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lu8i8")
+
+[node name="MouseVector" type="Node2D" parent="."]
+top_level = true
+script = ExtResource("3_lu8i8")
+
+[node name="MousePosition2" type="Marker2D" parent="MouseVector"]
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseVector/MousePosition2"]
+scale = Vector2(0.328125, 0.046875)
+texture = ExtResource("1_mv1ah")
+
+[node name="MousePosition1" type="Marker2D" parent="MouseVector"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="MouseVector/MousePosition1"]
+scale = Vector2(0.0625, 0.234375)
+texture = ExtResource("1_mv1ah")
+
+[node name="BlockInteractionGrid" parent="." instance=ExtResource("4_tekja")]
+
+[node name="SlingShotParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 4
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_tekja")
+
+[connection signal="slingShotFire" from="MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
+[connection signal="slingShotUpdate" from="MouseVector" to="." method="_on_mouse_vector_sling_shot_update"]
