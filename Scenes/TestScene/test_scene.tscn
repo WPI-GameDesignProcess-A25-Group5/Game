@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://bj5s6yc12mtlf"]
+[gd_scene load_steps=6 format=4 uid="uid://bj5s6yc12mtlf"]
 
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
 [ext_resource type="PackedScene" uid="uid://c46lwckrjxj05" path="res://Blocks/baseBlock.tscn" id="2_boajs"]
@@ -11,6 +11,9 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 6
 sources/1 = SubResource("TileSetScenesCollectionSource_w5fok")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4a7y3"]
+radius = 21.95
 
 [node name="TestScene" type="Node2D"]
 
@@ -30,3 +33,9 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(96, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_4a7y3")
