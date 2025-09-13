@@ -9,8 +9,8 @@ var mouseDown = false
 func _ready() -> void:
 	pass # Replace with function body.
 
-signal slingShotFire
-signal slingShotUpdate
+signal slingShotFire(dir:Vector2)
+signal slingShotUpdate(dir:Vector2)
 
 
 func _unhandled_input(event: InputEvent) -> void:

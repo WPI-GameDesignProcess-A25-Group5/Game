@@ -5,9 +5,10 @@ class BlockNode:
 	var body
 	var floorType
 	#stub until we have not sticakble blocks
-	func canStick():
+	func canStick()->bool:
 		return true
-		pass
+		
+signal changedMostOccupied(dirs:Array[Vector2])
 
 var blockNodes :Array[BlockNode]= []
 
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var votes := {"left":0,"right":0,"up":0,"down":0} 
 	
 	# TL
@@ -79,17 +80,27 @@ func _process(delta: float) -> void:
 	var maxnum = 0
 	for i in votes:
 		if(votes[i]>maxnum):
-			maxnum=0
-		
-	dirs.clear()
-	for alias in votes:
-		if(votes[alias]==maxnum):
-			dirs.push_back(strToDir[alias])
-			
+			maxnum=votes[i]
+	var now	:Array[Vector2]=[]
+	if(maxnum!=0):
+		for alias in votes:
+			if(votes[alias]==maxnum):
+				now.push_back(strToDir[alias])
+	if(!equivArrs(dirs,now))	:
+		dirs = now
+		changedMostOccupied.emit(dirs)
 	
 	
 	#print(dirs)
 	pass
+	
+func equivArrs(ar1:Array,ar2: Array)->bool:
+	if(ar1.size() != ar2.size()):
+		return false
+	for i in range(ar1.size()):
+		if(ar1[i]!=ar2[i]):
+			return false
+	return true;
 	
 func get_block_type(body:Node2D)->BlockNode:
 	var b := BlockNode.new()
