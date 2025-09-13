@@ -7,9 +7,13 @@ const MAX_FALL_SPEED=1200
 
 var walldirections := {}
 
+var keepMoveDir = false
+var sign = 1
+
 var launched := false;
 var stuck := false
 
+var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
@@ -24,8 +28,21 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 		var direction := Input.get_axis("MoveLeft", "MoveRight")
-		var directionCorrection := up_direction.rotated(PI/2)
-		
+		var directionCorrection :Vector2
+		if(!direction or launched):
+			keepMoveDir = false
+		else:
+			keepMoveDir = true
+			
+		if(!keepMoveDir)	:
+			if(lastUpDir.y<=0):
+				sign = 1
+			else:
+				sign = -1
+				
+		#print(sign, "l ", lastUpDir)
+		directionCorrection = up_direction.rotated(sign* PI/2)
+			
 		if direction:
 			velocity = direction * SPEED *directionCorrection
 		if(checkUnstick):
@@ -43,7 +60,8 @@ func _physics_process(delta: float) -> void:
 				#pass
 			checkUnstick = false
 			pass
-				
+		velocity += launchVel
+		launchVel = Vector2.ZERO		
 		launched = false;
 	
 	var collisions := move_and_collide(velocity*delta)
@@ -68,7 +86,7 @@ func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 	if(dir.is_equal_approx(Vector2.ZERO)):
 		return
 	if(stuck):
-		velocity += JUMP_VELOCITY*dir
+		launchVel = JUMP_VELOCITY*dir
 		#stuck = false
 		checkUnstick = true
 		launched = true
