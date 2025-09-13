@@ -90,4 +90,3 @@ func _on_mouse_vector_sling_shot_update(dir:Vector2) -> void:
 var checkUnstick = false
 func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:
 	checkUnstick= !dirs
-
