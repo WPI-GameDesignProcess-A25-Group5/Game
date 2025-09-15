@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0tixnlhjernm"]
+
+[ext_resource type="Script" uid="uid://c0upn5r7ju3w2" path="res://Entities/wallRider/wall_rider.gd" id="1_7qjl3"]
+[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_oiho2"]
+[ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.tscn" id="3_i3jki"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xg41l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oiho2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qw76i"]
+radius = 14.5
+
+[node name="WallRider" type="CharacterBody2D"]
+script = ExtResource("1_7qjl3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(3.17663e-06, 0.774254, 0.206436, 1)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_xg41l")
+
+[node name="BlockInteractionGrid" parent="AnimatedSprite2D" instance=ExtResource("3_i3jki")]
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qw76i")
+
+[connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]

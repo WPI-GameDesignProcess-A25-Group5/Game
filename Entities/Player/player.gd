@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		directionCorrection = up_direction.rotated(chirality* PI/2)
 			
 		if direction:
-			velocity = direction * SPEED *directionCorrection
+			velocity = direction * SPEED *directionCorrection 
 		if(checkUnstick):
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
 			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
@@ -75,12 +75,12 @@ func _physics_process(delta: float) -> void:
 		velocity += launchVel
 		launchVel = Vector2.ZERO		
 		launched = false;
-	
 	var collisions := move_and_collide(velocity*delta)
+	$RayCast2D.target_position = velocity
 	if(collisions):
 		var collider = collisions.get_collider()
 		#print(collider)
-		if(collider is BaseBlock):
+		if(collider is BaseBlock or collider is StaticBody2D):
 			#print("popo")
 			lastUpDir = up_direction
 			up_direction = collisions.get_normal()

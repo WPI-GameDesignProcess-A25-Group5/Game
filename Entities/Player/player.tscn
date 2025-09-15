@@ -80,6 +80,8 @@ amount = 4
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_tekja")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
 [connection signal="slingShotUpdate" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_update"]
