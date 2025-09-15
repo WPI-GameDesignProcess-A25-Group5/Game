@@ -3,22 +3,24 @@
 		{
 			"Name": "Zimraan",
 			"Jobs": [
-				"Scripting",
+				"Programming",
 				"Credits"
 			]
 		},
 		{
 			"Name": "Jack",
 			"Jobs": [
-				"Scripting",
-				"animation",
+				"Programming",
+				"Animation",
 				"Splash screen"
 			]
 		},
 		{
 			"Name": "Theo",
 			"Jobs": [
-				"Audio"
+				"Audio",
+				"Art",
+				"Animation"
 			]
 		},
 		{
@@ -29,7 +31,23 @@
 			]
 		}
 	],
-	"Attributions": [
+	"Attributions": [{
+			"name": "Music",
+			"parts": [
+				{
+					"copyright": ["2023, Arcade Blitz - Neon Rhythms | Ende"],
+					"license": "CC BY 4.0"
+				},
+				{
+					"copyright": ["2025, Ultimate Comedy Music Vol. 4 | Ende"],
+					"license": "CC BY 4.0"
+				},
+				{
+					"copyright": ["2025, Office Lounge Music | Luis_Humanoide"],
+					"license": "Pixabay Content Lisence"
+				}
+			]
+		},
 		{
 			"name": "godot-git-plugin",
 			"parts": [
