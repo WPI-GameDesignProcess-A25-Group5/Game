@@ -5,6 +5,11 @@ const SPEED = 200.0
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
+@export var MAX_HEALTH := 3
+var health:int
+
+
+
 var walldirections := {}
 
 var keepMoveDir = false
@@ -15,6 +20,13 @@ var stuck := false
 
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
+
+signal damaged (amount:int)
+signal dies (position:Vector2)
+
+func _ready() -> void:
+	health = MAX_HEALTH
+
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
 	if not stuck:
@@ -47,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			velocity = direction * SPEED *directionCorrection
 		if(checkUnstick):
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
-			var movementTest = -up_direction*velocity.length() +  get_gravity().rotated(get_gravity().angle_to(-up_direction))
+			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
 			if(launched):
 				stuck = false
 				
@@ -66,19 +78,23 @@ func _physics_process(delta: float) -> void:
 	
 	var collisions := move_and_collide(velocity*delta)
 	if(collisions):
-		lastUpDir = up_direction
-		up_direction = collisions.get_normal()
-		$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
-		if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
-			stuck = true
-			
-		else:
-			var componentInUpDir = up_direction.dot(velocity)*up_direction.normalized()
-			if(componentInUpDir.length()>20):
-				velocity = velocity-componentInUpDir*(1+.5) #bounce 1+coef of restitution
-			else:
+		var collider = collisions.get_collider()
+		#print(collider)
+		if(collider is BaseBlock):
+			#print("popo")
+			lastUpDir = up_direction
+			up_direction = collisions.get_normal()
+			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
+			if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
 				stuck = true
-				velocity = velocity-componentInUpDir
+				
+			else:
+				var componentInUpDir = up_direction.dot(velocity)*up_direction.normalized()
+				if(componentInUpDir.length()>20):
+					velocity = velocity-componentInUpDir*(1+.5) #bounce 1+coef of restitution
+				else:
+					stuck = true
+					velocity = velocity-componentInUpDir
 	#
 
 
