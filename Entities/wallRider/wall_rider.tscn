@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0tixnlhjernm"]
+[gd_scene load_steps=2 format=3 uid="uid://cab2ycw2q1u52"]
 
-[ext_resource type="Script" uid="uid://c0upn5r7ju3w2" path="res://Entities/wallRider/wall_rider.gd" id="1_7qjl3"]
+[ext_resource type="Script" path="res://Entities/wallRider/wall_rider.gd" id="1_7qjl3"]
 
 [node name="WallRider" type="StaticBody2D"]
 collision_layer = 0

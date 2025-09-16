@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://bj5s6yc12mtlf"]
 
-[ext_resource type="PackedScene" uid="uid://bfctyuyi7igke" path="res://Entities/wallRider/guy.tscn" id="2_4a7y3"]
+[ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
 [ext_resource type="PackedScene" uid="uid://c46lwckrjxj05" path="res://Blocks/baseBlock.tscn" id="2_boajs"]
 [ext_resource type="PackedScene" uid="uid://ckajxxohgwtiv" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
 [ext_resource type="PackedScene" uid="uid://dhwaqfaj7vl72" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
@@ -27,8 +27,7 @@ tile_set = SubResource("TileSet_boajs")
 position = Vector2(94, 48)
 scale = Vector2(2.305, 2.305)
 
-[node name="Guy" parent="." instance=ExtResource("2_4a7y3")]
-position = Vector2(1, -46)
+[node name="Player" parent="." instance=ExtResource("2_4a7y3")]
+position = Vector2(-14, 138)
 
-[node name="Camera2D" type="Camera2D" parent="Guy"]
-position = Vector2(0, -40)
+[node name="Camera2D" type="Camera2D" parent="Player"]
