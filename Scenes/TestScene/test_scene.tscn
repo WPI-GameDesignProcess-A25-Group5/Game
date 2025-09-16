@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://bj5s6yc12mtlf"]
+[gd_scene load_steps=6 format=4 uid="uid://bj5s6yc12mtlf"]
 
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_fyvjo"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
+[ext_resource type="Script" uid="uid://cu6jvoi3icsgj" path="res://Entities/Player/player.gd" id="3_boajs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4a7y3"]
 texture = ExtResource("1_fyvjo")
@@ -26,3 +27,4 @@ tile_set = SubResource("TileSet_boajs")
 
 [node name="Player" parent="." instance=ExtResource("2_4a7y3")]
 position = Vector2(16, 144)
+script = ExtResource("3_boajs")

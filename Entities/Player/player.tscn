@@ -25,3 +25,18 @@ sprite_frames = SubResource("SpriteFrames_3uyv8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lu8i8")
+
+[node name="StickDetectDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 21)
+
+[node name="StickDetectUp" type="RayCast2D" parent="."]
+scale = Vector2(6, 1)
+target_position = Vector2(0, -22)
+
+[node name="StickDetectLeft" type="RayCast2D" parent="."]
+scale = Vector2(1, 6)
+target_position = Vector2(-22, 0)
+
+[node name="StickDetectRight" type="RayCast2D" parent="."]
+scale = Vector2(1, 6)
+target_position = Vector2(22, 0.2)
