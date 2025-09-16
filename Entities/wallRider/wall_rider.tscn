@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://duk2j4uwqyhpn" path="res://Entities/wallRider/check_marker.tscn" id="2_pix1p"]
 
 [node name="WallRider" type="Node2D"]
+z_index = 4
 script = ExtResource("1_7qjl3")
 
 [node name="Right" parent="." instance=ExtResource("2_pix1p")]
