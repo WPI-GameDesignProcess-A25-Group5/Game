@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfctyuyi7igke"]
+
+[ext_resource type="Script" uid="uid://rg8ltovv772c" path="res://Entities/wallRider/guy.gd" id="1_melhb"]
+[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_1dt1s"]
+[ext_resource type="PackedScene" uid="uid://b0tixnlhjernm" path="res://Entities/wallRider/wall_rider.tscn" id="3_v74e4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_na2y5"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0xrm"]
+radius = 16.0
+
+[node name="Guy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_melhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_1dt1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_na2y5")
+
+[node name="WallRider" parent="." instance=ExtResource("3_v74e4")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallRider"]
+shape = SubResource("CircleShape2D_a0xrm")
+
+[connection signal="stickTo" from="WallRider" to="." method="_on_wall_rider_stick_to"]
+[connection signal="unstickFrom" from="WallRider" to="." method="_on_wall_rider_unstick_from"]

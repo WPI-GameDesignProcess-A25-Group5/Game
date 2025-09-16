@@ -1,95 +1,50 @@
-extends CharacterBody2D
+extends StaticBody2D
 
 
-const SPEED = 200.0
-const JUMP_VELOCITY = 600
-const MAX_FALL_SPEED=1200
-
-@export var MAX_HEALTH := 3
-var health:int
+signal stickTo(dir:Vector2, body:BaseBlock)
+signal unstickFrom(body:BaseBlock)
 
 
 
-var walldirections := {}
+func _on_body_entered(body: Node2D) -> void:
+	if(body is BaseBlock):
+		if(body.stickable):
+			var dir = global_position - body.global_position
+			stickTo.emit(dir,body)
+	pass # Replace with function body.
+	
+	
 
-var keepMoveDir = false
-var chirality = 1
 
-var stuck := false
+func _on_body_exited(body: Node2D) -> void:
+	unstickFrom.emit(body)
+	pass # Replace with function body.
 
-var lastUpDir  := up_direction
+var velCheck:Vector2=Vector2.ZERO
 
-var movingDir = 0
-
-signal damaged (amount:int)
-signal dies (position:Vector2)
-
-func _ready() -> void:
-	health = MAX_HEALTH
+func set_CheckVel(vel:Vector2):
+	velCheck = vel
+	
+var current:BaseBlock=null
+var colliding = false
 
 func _physics_process(delta: float) -> void:
-	#var beforeVel = velocity
-	if not stuck:
-		velocity += get_gravity() * delta 
-		if (velocity.y>MAX_FALL_SPEED):
-			velocity.y=MAX_FALL_SPEED
-		 
-		#
-	if stuck:
-		var direction := Input.get_axis("MoveLeft", "MoveRight")
-		movingDir = direction
-		var directionCorrection :Vector2
-		if(!direction):
-			keepMoveDir = false
-		else:
-			keepMoveDir = true
-		if(!keepMoveDir)	:
-			if(lastUpDir.y<=0):
-				chirality = 1
-			else:
-				chirality = -1		
-		directionCorrection = up_direction.rotated(chirality* PI/2)
-			#
-		if direction:
-			velocity = direction * SPEED *directionCorrection
-		else:
-			velocity.x = move_toward(velocity.x,0,SPEED)
-			velocity.y = move_toward(velocity.y,0,SPEED)
-			
-		if(checkUnstick):
-			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
-			if(!test_move(self.transform,movementTest*delta)): # try rotating around block, if can,Do it
-				stuck = false
-			else:
-				velocity = movementTest
-			checkUnstick = false
-			pass
-	#
-	var collisions := move_and_collide(velocity*delta)
-	if(collisions):
-		var collider = collisions.get_collider()
-		if(collider is BaseBlock):
-			lastUpDir = up_direction
-			up_direction = collisions.get_normal()
-			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
-			if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
-				stuck = true
-				#
-			#else:
-				#var componentInUpDir = up_direction.dot(velocity)*up_direction.normalized()
-				#if(componentInUpDir.length()>20):
-					#velocity = velocity-componentInUpDir*(1+.5) #bounce 1+coef of restitution
-				#else:
-					#stuck = true
-					#velocity = velocity-componentInUpDir
-
+	var collisions = move_and_collide(velCheck*delta,true)
+	#print(collisions)
+	if(collisions and collisions.get_collider() is BaseBlock):
+		var body = collisions.get_collider()
+		if(body.stickable):
+			current = body
+			#collisions.get_
+			var dir = collisions.get_normal()
+			stickTo.emit(dir,body)
+			colliding = true
+	else:
+		colliding = false
+		print("nah")
+			#print(dir)
+	if(current):
+		$RayCast2D.target_position =current.global_position - $RayCast2D.global_position
+		var normal = $RayCast2D.get_collision_normal()
+		var tangent = Vector2(-normal.y, normal.x) # perpendicular
 		
-		
-	#move_and_collide(velocity*delta)
-	
-	#
-
-
-var checkUnstick = false
-func _on_block_interaction_grid_changed_most_occupied(dirs: bool,body:Node2D) -> void:
-	checkUnstick= !dirs
