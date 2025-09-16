@@ -22,6 +22,7 @@ func _on_wall_rider_unstick_from(body: BaseBlock) -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
+	$Sprite2D.rotation = -up_direction.angle_to(Vector2.UP)
 	
 	if(not is_on_floor()):
 		velocity += get_gravity().rotated(get_gravity().angle_to(-up_direction))*delta

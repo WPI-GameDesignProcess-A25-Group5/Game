@@ -27,6 +27,7 @@ func set_CheckVel(vel:Vector2):
 	
 var current:BaseBlock=null
 var colliding = false
+var posi
 
 func _physics_process(delta: float) -> void:
 	var collisions = move_and_collide(velCheck*delta,true)
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	if(collisions and collisions.get_collider() is BaseBlock):
 		var body = collisions.get_collider()
 		if(body.stickable):
+			posi = collisions.get_position()
 			current = body
 			#collisions.get_
 			var dir = collisions.get_normal()
@@ -41,10 +43,10 @@ func _physics_process(delta: float) -> void:
 			colliding = true
 	else:
 		colliding = false
-		print("nah")
 			#print(dir)
 	if(current):
-		$RayCast2D.target_position =current.global_position - $RayCast2D.global_position
+		$RayCast2D.target_position =posi - $RayCast2D.global_position
 		var normal = $RayCast2D.get_collision_normal()
-		var tangent = Vector2(-normal.y, normal.x) # perpendicular
+		#var tangent = Vector2(-normal.y, normal.x) # perpendicular
+		stickTo.emit(normal,current)
 		
