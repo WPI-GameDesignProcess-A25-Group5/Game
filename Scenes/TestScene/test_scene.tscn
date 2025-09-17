@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=4 uid="uid://bj5s6yc12mtlf"]
 
-[ext_resource type="PackedScene" uid="uid://ckajxxohgwtiv" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
-[ext_resource type="PackedScene" uid="uid://bx8quscnv1jjv" path="res://Entities/wallRider/guy.tscn" id="4_egy0e"]
-[ext_resource type="PackedScene" uid="uid://dhwaqfaj7vl72" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
+[ext_resource type="PackedScene" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
+[ext_resource type="PackedScene" uid="uid://b8to3rbjw2s21" path="res://Entities/wallRider/guy.tscn" id="4_egy0e"]
+[ext_resource type="PackedScene" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_w5fok"]
 scenes/2/scene = ExtResource("2_w5fok")
