@@ -8,7 +8,7 @@ const MAX_FALL_SPEED=1200
 var walldirections := {}
 
 var keepMoveDir = false
-var sign = 1
+var chirality = 1
 var direction =-1
 var launched := false;
 var stuck := false
@@ -41,12 +41,12 @@ func _physics_process(delta: float) -> void:
 			
 		if(!keepMoveDir)	:
 			if(lastUpDir.y<=0):
-				sign = 1
+				chirality = 1
 			else:
-				sign = -1
+				chirality = -1
 				
-		#print(sign, "l ", lastUpDir)
-		directionCorrection = up_direction.rotated(sign* PI/2)
+		#print(chirality, "l ", lastUpDir)
+		directionCorrection = up_direction.rotated(chirality* PI/2)
 			
 		if direction:
 			velocity = direction * SPEED *directionCorrection
