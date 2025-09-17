@@ -1,7 +1,7 @@
 extends CharacterBody2D
+const PLAYER = preload("res://Entities/Player/player.tscn")
 
-
-const SPEED = 200.0
+const SPEED = 100
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
@@ -9,7 +9,7 @@ var walldirections := {}
 
 var keepMoveDir = false
 var sign = 1
-
+var direction =-1
 var launched := false;
 var stuck := false
 
@@ -27,8 +27,8 @@ func _physics_process(delta: float) -> void:
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
-		var direction := Input.get_axis("MoveLeft", "MoveRight")
-		print(direction)
+		EventBus.player_launched.connect(change_direction)
+		
 		var directionCorrection :Vector2
 		if(!direction or launched):
 			keepMoveDir = false
@@ -82,30 +82,8 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity-componentInUpDir
 	#
 
-
-func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
-	if(dir.is_equal_approx(Vector2.ZERO)):
-		return
-	if(stuck):
-		launchVel = JUMP_VELOCITY*dir
-		#stuck = false
-		checkUnstick = true
-		launched = true
-	%SlingShotParticles.emitting = false
-	EventBus.emit_signal("player_launched", -1)
-	pass # Replace with function body.
-
-
-func _on_mouse_vector_sling_shot_update(dir:Vector2) -> void:
-	if(stuck): # set particle params to show jump
-		%SlingShotParticles.emitting = true
-		%SlingShotParticles.process_material.set("direction",dir)
-		%SlingShotParticles.process_material.set("gravity",get_gravity())
-		var speed = JUMP_VELOCITY*dir.length()
-		%SlingShotParticles.process_material.set("initial_velocity_max",speed)
-		%SlingShotParticles.process_material.set("initial_velocity_min",speed)
-	pass 
-
+func change_direction(change):
+	direction=direction*change
 
 var checkUnstick = false
 func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:

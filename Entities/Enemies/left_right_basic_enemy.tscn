@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://0wung64iiiqs"]
+
+[ext_resource type="Script" uid="uid://6vyivxdjh3ow" path="res://Entities/Enemies/left_right_basic_enemy.gd" id="1_sxqf1"]
+[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_ofe1u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj3j7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ofe1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BasicBinaryMovementEnemy" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_sxqf1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wj3j7")
+
+[node name="right_collision" type="RayCast2D" parent="."]
+scale = Vector2(1, 10)
+target_position = Vector2(72, 0)
+
+[node name="left_collision" type="RayCast2D" parent="."]
+scale = Vector2(1, 10)
+target_position = Vector2(-72, -0.1)
+
+[node name="floor_detect_right" type="RayCast2D" parent="."]
+position = Vector2(80, 64)
+target_position = Vector2(20, 12)
+
+[node name="floor_detect_left" type="RayCast2D" parent="."]
+position = Vector2(-76, 68)
+target_position = Vector2(-20, 8)

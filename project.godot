@@ -17,6 +17,10 @@ boot_splash/image="uid://da33r58nq1uk7"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=2500
 
+[autoload]
+
+EventBus="*res://Scenes/event_bus.gd"
+
 [display]
 
 window/size/viewport_width=640
