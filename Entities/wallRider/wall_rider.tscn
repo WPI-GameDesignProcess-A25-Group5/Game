@@ -1,9 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://cab2ycw2q1u52"]
+[gd_scene load_steps=3 format=3 uid="uid://cab2ycw2q1u52"]
 
-[ext_resource type="Script" path="res://Entities/wallRider/wall_rider.gd" id="1_7qjl3"]
+[ext_resource type="Script" uid="uid://c0upn5r7ju3w2" path="res://Entities/wallRider/wall_rider.gd" id="1_7qjl3"]
+[ext_resource type="PackedScene" uid="uid://duk2j4uwqyhpn" path="res://Entities/wallRider/check_marker.tscn" id="2_pix1p"]
 
-[node name="WallRider" type="StaticBody2D"]
-collision_layer = 0
+[node name="WallRider" type="Node2D"]
+z_index = 4
 script = ExtResource("1_7qjl3")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="Right" parent="." instance=ExtResource("2_pix1p")]
+position = Vector2(16, 0)
+
+[node name="Left" parent="." instance=ExtResource("2_pix1p")]
+position = Vector2(-16, 0)
+
+[node name="BL" parent="." instance=ExtResource("2_pix1p")]
+position = Vector2(-16, 16)
+
+[node name="Bot" parent="." instance=ExtResource("2_pix1p")]
+position = Vector2(0, 16)
+
+[node name="BR" parent="." instance=ExtResource("2_pix1p")]
+position = Vector2(16, 16)
+
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]
+[connection signal="body_exited" from="Right" to="." method="_on_right_body_exited"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_exited" from="Left" to="." method="_on_left_body_exited"]
+[connection signal="body_entered" from="BL" to="." method="_on_bl_body_entered"]
+[connection signal="body_exited" from="BL" to="." method="_on_bl_body_exited"]
+[connection signal="body_entered" from="Bot" to="." method="_on_bot_body_entered"]
+[connection signal="body_exited" from="Bot" to="." method="_on_bot_body_exited"]
+[connection signal="body_entered" from="BR" to="." method="_on_br_body_entered"]
+[connection signal="body_exited" from="BR" to="." method="_on_br_body_exited"]
