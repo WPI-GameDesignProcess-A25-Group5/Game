@@ -15,6 +15,10 @@ var stuck := false
 
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
+
+func _ready():
+	EventBus.player_launched.connect(change_direction)
+
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
 	if not stuck:
@@ -27,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
-		EventBus.player_launched.connect(change_direction)
+		
 		
 		var directionCorrection :Vector2
 		if(!direction or launched):
