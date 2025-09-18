@@ -11,9 +11,10 @@ enum Sections {
 }
 var developersSection = preload("res://Scenes/Credits/Sections/Developers/section_credits.tscn")
 var attributionsSection = preload("res://Scenes/Credits/Sections/Attributions/section_attributions.tscn")
-
 var sectionSeperator = preload("res://Scenes/Credits/Sections/Seperators/Section_Seperator.tscn")
+
 var hasNotLeftYet = true
+
 func _ready():
 	hasNotLeftYet=true
 	ExitCreditsScene.connect(onExitCreditScene)

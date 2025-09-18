@@ -16,8 +16,10 @@ var whichButtonPressed = MOUSE_BUTTON_NONE
 
 func _unhandled_input(event: InputEvent) -> void:
 	if(event is InputEventMouseButton and event.is_pressed() and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index==MOUSE_BUTTON_RIGHT) ):
-		mousePos1.global_position = event.global_position-get_viewport_rect().size/2+get_viewport_rect().position
-		mousePos2.global_position = event.global_position-get_viewport_rect().size/2+get_viewport_rect().position
+		
+		mousePos1.global_position = event.global_position * get_canvas_transform()#+get_viewport_transform().get_origin()#+get_viewport_rect().position
+		mousePos1.visible = true
+		mousePos2.global_position = event.global_position* get_canvas_transform()#-get_viewport_rect().size/2+get_viewport_rect().position
 		whichButtonPressed = event.button_index
 	if(event is InputEventMouseMotion and whichButtonPressed):
 		mousePos2.global_position += event.relative
@@ -25,6 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		slingShotUpdate.emit(direction)
 	if(event is InputEventMouseButton and event.is_released() and event.button_index == whichButtonPressed):
 		whichButtonPressed=MOUSE_BUTTON_NONE
+		mousePos1.visible = false
 		direction = get_direction(mousePos1.global_position,mousePos2.global_position)
 
 		slingShotFire.emit(direction)
@@ -41,5 +44,7 @@ func get_direction(pos1:Vector2,pos2:Vector2) -> Vector2:
 	return l
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	if(whichButtonPressed):
+		slingShotUpdate.emit(direction)
 	pass

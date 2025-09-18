@@ -53,20 +53,23 @@ scale = Vector2(4, 4)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tekja")
 
-[node name="MouseVector" type="Node2D" parent="."]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MouseVector" type="Node2D" parent="CanvasLayer"]
 top_level = true
 script = ExtResource("3_lu8i8")
 
-[node name="MousePosition2" type="Marker2D" parent="MouseVector"]
+[node name="MousePosition2" type="Marker2D" parent="CanvasLayer/MouseVector"]
+visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="MouseVector/MousePosition2"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/MouseVector/MousePosition2"]
 scale = Vector2(0.328125, 0.046875)
 texture = ExtResource("1_mv1ah")
 
-[node name="MousePosition1" type="Marker2D" parent="MouseVector"]
+[node name="MousePosition1" type="Marker2D" parent="CanvasLayer/MouseVector"]
+visible = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="MouseVector/MousePosition1"]
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/MouseVector/MousePosition1"]
 scale = Vector2(0.0625, 0.234375)
 texture = ExtResource("1_mv1ah")
 
@@ -77,6 +80,8 @@ amount = 4
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_tekja")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
-[connection signal="slingShotFire" from="MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
-[connection signal="slingShotUpdate" from="MouseVector" to="." method="_on_mouse_vector_sling_shot_update"]
+[connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
+[connection signal="slingShotUpdate" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_update"]
