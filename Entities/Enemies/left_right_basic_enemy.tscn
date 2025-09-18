@@ -15,24 +15,22 @@ animations = [{
 }]
 
 [node name="BasicBinaryMovementEnemy" type="Node2D"]
-scale = Vector2(0.25, 0.25)
 script = ExtResource("1_sxqf1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_wj3j7")
 
 [node name="right_collision" type="RayCast2D" parent="."]
-scale = Vector2(1, 10)
-target_position = Vector2(72, 0)
+target_position = Vector2(18, 0)
 
 [node name="left_collision" type="RayCast2D" parent="."]
-scale = Vector2(1, 10)
-target_position = Vector2(-72, -0.1)
+target_position = Vector2(-18, 0)
 
 [node name="floor_detect_right" type="RayCast2D" parent="."]
-position = Vector2(80, 64)
-target_position = Vector2(20, 12)
+position = Vector2(20, 16)
+target_position = Vector2(5, 3)
 
 [node name="floor_detect_left" type="RayCast2D" parent="."]
-position = Vector2(-76, 68)
-target_position = Vector2(-20, 8)
+position = Vector2(-20, 16)
+target_position = Vector2(-5, 3)

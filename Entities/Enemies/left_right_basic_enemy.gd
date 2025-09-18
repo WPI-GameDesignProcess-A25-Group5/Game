@@ -11,6 +11,9 @@ const SPEED=60
 var direction=1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if(not floor_detect_left.is_colliding() and not floor_detect_right.is_colliding()):
+		global_position += SPEED*delta*Vector2.DOWN.rotated(rotation)
+	
 	if right_collision.is_colliding() or not floor_detect_right.is_colliding():
 		if direction==1:
 			direction=-1
@@ -20,5 +23,5 @@ func _process(delta: float) -> void:
 		if direction==-1:
 			direction=1
 			animated_sprite.flip_h=false
-	position.x+=direction*SPEED*delta
+	global_position+=direction*SPEED*delta*Vector2.RIGHT.rotated(rotation)
 	

@@ -53,8 +53,7 @@ offset_bottom = 22.3333
 position = Vector2(176, -114)
 
 [node name="BasicBinaryMovementEnemy2" parent="Enemies" instance=ExtResource("3_boajs")]
-position = Vector2(399, 87)
-scale = Vector2(0.125, 0.125)
+position = Vector2(358, 79)
 
 [node name="BasicBinaryMovementEnemy3" parent="Enemies" instance=ExtResource("3_boajs")]
 position = Vector2(-112, -338)
