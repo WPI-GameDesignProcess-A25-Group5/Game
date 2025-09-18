@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0q8hh4rxkmwj"
-path="res://.godot/imported/move_slime_run_R.png-6e2692e856e9057723751c0ade140f1c.ctex"
+uid="uid://deg728qjvn5ec"
+path="res://.godot/imported/move_slime_Basic- R-Sheet.png-483b0fcb9c586f7bfeb642d437b81090.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/move_slime_run_R.png"
-dest_files=["res://.godot/imported/move_slime_run_R.png-6e2692e856e9057723751c0ade140f1c.ctex"]
+source_file="res://Assets/Sprites/Slime Sprites/move_slime_Basic- R-Sheet.png"
+dest_files=["res://.godot/imported/move_slime_Basic- R-Sheet.png-483b0fcb9c586f7bfeb642d437b81090.ctex"]
 
 [params]
 
