@@ -5,7 +5,7 @@
 [sub_resource type="Gradient" id="Gradient_5g5d8"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.692953, 0.721476)
-colors = PackedColorArray(0.732248, 0, 0.227596, 1, 0, 0, 0, 0)
+colors = PackedColorArray(0.257983, 0.351611, 0.737602, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bx4bk"]
 gradient = SubResource("Gradient_5g5d8")
