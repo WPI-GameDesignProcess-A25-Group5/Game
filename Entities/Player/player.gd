@@ -24,6 +24,8 @@ var lastUpDir  := up_direction
 signal damaged (amount:int)
 signal dies (position:Vector2)
 
+@onready var animTree = $AnimatedSprite2D/AnimationTree
+
 func _ready() -> void:
 	health = MAX_HEALTH
 
@@ -34,13 +36,13 @@ func _physics_process(delta: float) -> void:
 		if (velocity.y>MAX_FALL_SPEED):
 			velocity.y=MAX_FALL_SPEED
 		 
-		
 	if stuck:
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 		var direction := Input.get_axis("MoveLeft", "MoveRight")
-		print(direction)
+		animTree.set("parameters/BlendSpace1D/blend_position",direction*chirality)
+		#print(direction)
 		var directionCorrection :Vector2
 		if(!direction or launched):
 			keepMoveDir = false
@@ -77,7 +79,7 @@ func _physics_process(delta: float) -> void:
 		launchVel = Vector2.ZERO		
 		launched = false;
 	var collisions := move_and_collide(velocity*delta)
-	$RayCast2D.target_position = velocity
+	#$RayCast2D.target_position = velocity
 	if(collisions):
 		var collider = collisions.get_collider()
 		#print(collider)
@@ -100,6 +102,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
+	%SlingShotParticles.emitting = false
 	if(dir.is_equal_approx(Vector2.ZERO)):
 		return
 	if(stuck):
@@ -107,7 +110,6 @@ func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 		#stuck = false
 		checkUnstick = true
 		launched = true
-	%SlingShotParticles.emitting = false
 	EventBus.emit_signal("player_launched", dir)
 	pass # Replace with function body.
 
