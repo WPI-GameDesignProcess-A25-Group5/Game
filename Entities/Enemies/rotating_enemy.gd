@@ -4,8 +4,6 @@ const SPEED = 100
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
-var walldirections := {}
-
 var keepMoveDir = false
 var chirality = 1
 var direction =-1
@@ -81,8 +79,8 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity-componentInUpDir
 	#
 
-func change_direction(change):
-	direction=direction*change
+func change_direction(_change:Vector2):
+	direction=direction*-1
 
 var checkUnstick = false
 func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:

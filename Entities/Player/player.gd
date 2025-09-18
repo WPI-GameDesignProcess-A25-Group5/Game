@@ -92,7 +92,7 @@ func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 		checkUnstick = true
 		launched = true
 	%SlingShotParticles.emitting = false
-	EventBus.emit_signal("player_launched", -1)
+	EventBus.emit_signal("player_launched", dir)
 	pass # Replace with function body.
 
 
