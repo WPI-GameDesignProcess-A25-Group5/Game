@@ -1,5 +1,4 @@
 extends CharacterBody2D
-const PLAYER = preload("res://Entities/Player/player.tscn")
 
 const SPEED = 100
 const JUMP_VELOCITY = 600
@@ -44,12 +43,8 @@ func _physics_process(delta: float) -> void:
 				chirality = 1
 			else:
 				chirality = -1
-				
-		#print(chirality, "l ", lastUpDir)
 		directionCorrection = up_direction.rotated(chirality* PI/2)
-			
-		if direction:
-			velocity = direction * SPEED *directionCorrection
+		velocity = direction * SPEED *directionCorrection
 		if(checkUnstick):
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
 			var movementTest = -up_direction*velocity.length() +  get_gravity().rotated(get_gravity().angle_to(-up_direction))
