@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhwaqfaj7vl72"]
+[gd_scene load_steps=5 format=3 uid="uid://b78xgv7p1mjhi"]
 
 [ext_resource type="PackedScene" uid="uid://c46lwckrjxj05" path="res://Blocks/baseBlock.tscn" id="2_aiw67"]
 
@@ -22,7 +22,7 @@ position = Vector2(1.66893e-06, 1.54972e-06)
 scale = Vector2(0.625, 0.625)
 texture = SubResource("GradientTexture2D_bx4bk")
 
-[node name="BaseBlock" parent="." instance=ExtResource("2_aiw67")]
+[node name="BaseBlock2" parent="." instance=ExtResource("2_aiw67")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBlock"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBlock2"]
 shape = SubResource("CircleShape2D_aiw67")
