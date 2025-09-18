@@ -20,13 +20,13 @@
 			"Jobs": [
 				"Audio",
 				"Art",
-				"Animation"
+				"Character Animation"
 			]
 		},
 		{
 			"Name": "Finn",
 			"Jobs": [
-				"Art",
+				"Environment Art",
 				"Animation"
 			]
 		}
