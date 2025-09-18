@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://bj5s6yc12mtlf"]
+[gd_scene load_steps=9 format=4 uid="uid://bj5s6yc12mtlf"]
 
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
 [ext_resource type="PackedScene" uid="uid://c46lwckrjxj05" path="res://Blocks/baseBlock.tscn" id="2_boajs"]
 [ext_resource type="PackedScene" uid="uid://cpc3ul4u2rxtt" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_boajs"]
-[ext_resource type="PackedScene" uid="uid://bu1ua1wf0317b" path="res://Entities/Enemies/right_wall_enemy.tscn" id="4_egy0e"]
-[ext_resource type="PackedScene" uid="uid://duabx3sxjtosw" path="res://Entities/Enemies/left_wall_enemy.tscn" id="5_wm1xt"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="6_wm1xt"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_w5fok"]
@@ -58,13 +56,13 @@ position = Vector2(358, 79)
 [node name="BasicBinaryMovementEnemy3" parent="Enemies" instance=ExtResource("3_boajs")]
 position = Vector2(-112, -338)
 
-[node name="right wall enemy" parent="Enemies" instance=ExtResource("4_egy0e")]
+[node name="BasicBinaryMovementEnemy4" parent="Enemies" instance=ExtResource("3_boajs")]
 position = Vector2(-307, -193)
-scale = Vector2(0.25, 0.25)
+rotation = -1.57079
 
-[node name="left wall enemy" parent="Enemies" instance=ExtResource("5_wm1xt")]
+[node name="BasicBinaryMovementEnemy5" parent="Enemies" instance=ExtResource("3_boajs")]
 position = Vector2(-14, -245)
-scale = Vector2(0.25, 0.25)
+rotation = -4.71238
 
 [node name="rotating enemy" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-193, -351)
