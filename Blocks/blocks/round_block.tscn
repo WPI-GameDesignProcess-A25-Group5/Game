@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b78xgv7p1mjhi"]
+
+[ext_resource type="PackedScene" uid="uid://c46lwckrjxj05" path="res://Blocks/baseBlock.tscn" id="2_aiw67"]
+
+[sub_resource type="Gradient" id="Gradient_5g5d8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.692953, 0.721476)
+colors = PackedColorArray(0.732248, 0, 0.227596, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bx4bk"]
+gradient = SubResource("Gradient_5g5d8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aiw67"]
+radius = 20.0998
+
+[node name="RoundBlock" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.66893e-06, 1.54972e-06)
+scale = Vector2(0.625, 0.625)
+texture = SubResource("GradientTexture2D_bx4bk")
+
+[node name="BaseBlock2" parent="." instance=ExtResource("2_aiw67")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBlock2"]
+shape = SubResource("CircleShape2D_aiw67")
