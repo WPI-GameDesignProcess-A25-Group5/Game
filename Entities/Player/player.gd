@@ -6,7 +6,6 @@ const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
 @export var MAX_HEALTH := 3
-var health:int
 
 
 
@@ -27,7 +26,8 @@ signal dies (position:Vector2)
 @onready var animTree = $AnimatedSprite2D/AnimationTree
 
 func _ready() -> void:
-	health = MAX_HEALTH
+	%Health.MAX_HEALTH = MAX_HEALTH
+	$Respawning.setRespawnPoint(self.global_position)
 
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
@@ -100,6 +100,13 @@ func _physics_process(delta: float) -> void:
 					velocity = velocity-componentInUpDir
 	#
 
+func hit(amount:float,byWho:Node2D):
+	%Health.hit(amount,byWho)
+	
+func respawn():
+	%Health.reset()
+	$Respawning.respawn(self)
+
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 	%SlingShotParticles.emitting = false
@@ -128,3 +135,24 @@ func _on_mouse_vector_sling_shot_update(dir:Vector2) -> void:
 var checkUnstick = false
 func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:
 	checkUnstick= !dirs
+
+
+func _on_enemy_collision_body_entered(body: Node2D) -> void:
+	%Health.hit(1,body)
+	pass # Replace with function body.
+
+
+func _on_health_damaged(amount: float, currenthealth: float, bywho: Node2D) -> void:
+	print("Owee")
+	pass # Replace with function body.
+
+
+func _on_health_death(amount: float, bywho: Node2D) -> void:
+	print("Dead")
+	dies.emit(global_position)
+	#respawn()
+	pass # Replace with function body.
+
+
+func _on_health_healed(amount: float, currenthealth: Variant, byWhat: Node2D) -> void:
+	pass # Replace with function body.

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7aieqypjaa0f" path="res://Entities/Enemies/rotating_enemy.gd" id="1_x7at0"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_e1k57"]
-[ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.tscn" id="3_tofdk"]
+[ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/components/block_interaction_grid/block_interaction_grid.tscn" id="3_tofdk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uyv8"]
 animations = [{

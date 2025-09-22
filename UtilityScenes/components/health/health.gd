@@ -8,6 +8,9 @@ signal damaged(amount:float,currenthealth:float,bywho:Node2D)
 signal healed (amount:float,currenthealth,byWhat:Node2D)
 
 
+func _ready() -> void:
+	reset()
+
 func hit(amount:float, bywho:Node2D):
 	health -= amount
 	if(health>0):
@@ -18,4 +21,7 @@ func hit(amount:float, bywho:Node2D):
 func heal(amount, byWhat):
 	health += amount
 	healed.emit(amount,health, byWhat)
+	
+func reset():
+	health = MAX_HEALTH
 	
