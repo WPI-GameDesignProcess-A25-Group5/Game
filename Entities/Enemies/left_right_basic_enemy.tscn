@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6vyivxdjh3ow" path="res://Entities/Enemies/left_right_basic_enemy.gd" id="1_sxqf1"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_ofe1u"]
-[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health/hitbox.gd" id="3_rlibp"]
+[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="3_rlibp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wj3j7"]
 animations = [{

@@ -19,6 +19,7 @@ var stuck := false
 
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
+@onready var timer: Timer = $Timer
 
 
 
@@ -35,7 +36,16 @@ func _on_damaged(amount, current_health, bywho):
 	
 func _on_death(amount, bywho):
 	print("Died from", bywho.name)
-	
+	Engine.time_scale=0.5
+	self.get_node("CollisionShape2D").queue_free()
+	self.get_node("HurtBox").queue_free()
+	stuck=false
+	checkUnstick = true
+	launched = true
+	timer.start()
+
+func _on_timer_timeout() -> void:
+	Engine.time_scale=1
 	get_tree().reload_current_scene()
 
 func _on_healed(amount, current_health, by_what):
