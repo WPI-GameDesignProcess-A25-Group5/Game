@@ -31,11 +31,12 @@ func _ready() -> void:
 	health.healed.connect(_on_healed)
 
 func _on_damaged(amount, current_health, bywho):
-	print("Took", amount, "damage from", bywho.name)
+	print("Took ", amount, " damage from ", bywho.name)
 	
 func _on_death(amount, bywho):
 	print("Died from", bywho.name)
-	queue_free()
+	
+	get_tree().reload_current_scene()
 
 func _on_healed(amount, current_health, by_what):
 	print("Healed", amount, "by", by_what.name)

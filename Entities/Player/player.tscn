@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=57 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.tscn" id="4_tekja"]
 [ext_resource type="Texture2D" uid="uid://deg728qjvn5ec" path="res://Assets/Sprites/Slime Sprites/move_slime_Basic- R-Sheet.png" id="5_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health/Health.tscn" id="9_lub02"]
+[ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health/hurtbox.gd" id="10_x1y6q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iplt1"]
 atlas = ExtResource("2_7a1se")
@@ -498,6 +499,14 @@ process_material = SubResource("ParticleProcessMaterial_tekja")
 visible = false
 
 [node name="Health" parent="." instance=ExtResource("9_lub02")]
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("10_x1y6q")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://bqushokibj7r"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_tekja")
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
