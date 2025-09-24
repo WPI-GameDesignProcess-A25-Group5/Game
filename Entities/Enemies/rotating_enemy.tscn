@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://qfco76hfhwe8"]
+[gd_scene load_steps=7 format=3 uid="uid://qfco76hfhwe8"]
 
 [ext_resource type="Script" uid="uid://7aieqypjaa0f" path="res://Entities/Enemies/rotating_enemy.gd" id="1_x7at0"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_e1k57"]
 [ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.tscn" id="3_tofdk"]
+[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="4_x7at0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uyv8"]
 animations = [{
@@ -32,6 +33,13 @@ sprite_frames = SubResource("SpriteFrames_3uyv8")
 scale = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tekja")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("4_x7at0")
+metadata/_custom_type_script = "uid://dsuulmpqm44j2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_tekja")
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]

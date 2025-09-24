@@ -1,4 +1,5 @@
-extends Node2D
+class_name Health
+extends Node
 
 @export var MAX_HEALTH:float=3
 var health := MAX_HEALTH
