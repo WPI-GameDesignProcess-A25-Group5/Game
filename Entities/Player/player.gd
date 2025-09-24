@@ -53,7 +53,6 @@ func _on_timer_timeout() -> void:
 func _on_healed(amount, _current_health, by_what):
 	print("Healed", amount, "by", by_what.name)
 
-var queueVelocity= Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	if not stuck:
 		velocity += get_gravity() * delta 
@@ -61,13 +60,13 @@ func _physics_process(delta: float) -> void:
 			velocity.y=MAX_FALL_SPEED
 		 
 	if stuck:
-		if(dead):
-			return
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
-		var direction := Input.get_axis("MoveLeft", "MoveRight")
-		animTree.set("parameters/BlendSpace1D/blend_position",direction*chirality)
+		var direction :=0
+		if(!dead):
+			direction = Input.get_axis("MoveLeft", "MoveRight")
+			animTree.set("parameters/BlendSpace1D/blend_position",direction*chirality)
 		#print(direction)
 		var directionCorrection :Vector2
 		if(!direction or launched):
@@ -102,8 +101,7 @@ func _physics_process(delta: float) -> void:
 				#pass
 			checkUnstick = false
 			pass
-		velocity += launchVel + queueVelocity
-		queueVelocity=Vector2.ZERO
+		velocity += launchVel 
 		launchVel = Vector2.ZERO		
 		launched = false;
 	var collisions := move_and_collide(velocity*delta)
@@ -141,7 +139,7 @@ func respawn():
 	$Respawning.respawn(self)
 	
 func death(amount:float,byWho:Node2D):
-	velocity = (position - byWho.position)*amount*20
+	#velocity = (position - byWho.position)*amount*20
 	$EnvironmentCollision.set_deferred("disabled",true)
 	$HurtBox.set_deferred("monitorable",false)
 	$HurtBox.set_deferred("monitoring",false)
