@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_boajs"]
 [ext_resource type="PackedScene" uid="uid://7mwb72srhm4a" path="res://UtilityScenes/Placeables/KillPlane/kill_plane.tscn" id="3_wm1xt"]
 [ext_resource type="PackedScene" uid="uid://b78xgv7p1mjhi" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
+[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="6_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="6_wm1xt"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_w5fok"]
@@ -16,6 +17,8 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 6
 sources/1 = SubResource("TileSetScenesCollectionSource_w5fok")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8xnil"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_dvv8h")
@@ -78,5 +81,11 @@ position = Vector2(133, -117)
 [node name="rotating enemy3" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-36, -19)
 
-[connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]
-[connection signal="dies" from="Player" to="." method="_on_player_dies"]
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, 256)
+script = ExtResource("6_dvv8h")
+damage = 3
+metadata/_custom_type_script = "uid://dsuulmpqm44j2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("WorldBoundaryShape2D_8xnil")
