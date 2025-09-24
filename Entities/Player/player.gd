@@ -5,8 +5,7 @@ const SPEED = 200.0
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
-@export var MAX_HEALTH := 3
-var health:int
+
 
 
 
@@ -21,13 +20,25 @@ var stuck := false
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
 
-signal damaged (amount:int)
-signal dies (position:Vector2)
+
 
 @onready var animTree = $AnimatedSprite2D/AnimationTree
 
 func _ready() -> void:
-	health = MAX_HEALTH
+	var health = $Health
+	health.damaged.connect(_on_damaged)
+	health.death.connect(_on_death)
+	health.healed.connect(_on_healed)
+
+func _on_damaged(amount, current_health, bywho):
+	print("Took", amount, "damage from", bywho.name)
+	
+func _on_death(amount, bywho):
+	print("Died from", bywho.name)
+	queue_free()
+
+func _on_healed(amount, current_health, by_what):
+	print("Healed", amount, "by", by_what.name)
 
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
