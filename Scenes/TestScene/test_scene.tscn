@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://bj5s6yc12mtlf"]
+[gd_scene load_steps=11 format=4 uid="uid://bj5s6yc12mtlf"]
 
 [ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
 [ext_resource type="PackedScene" uid="uid://ckajxxohgwtiv" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_boajs"]
-[ext_resource type="PackedScene" uid="uid://7mwb72srhm4a" path="res://UtilityScenes/Placeables/KillPlane/kill_plane.tscn" id="3_wm1xt"]
 [ext_resource type="PackedScene" uid="uid://b78xgv7p1mjhi" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="6_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="6_wm1xt"]
@@ -33,11 +32,16 @@ tile_set = SubResource("TileSet_boajs")
 position = Vector2(96, 48)
 scale = Vector2(1.1, 1.1)
 
-[node name="KillPlane" parent="World" instance=ExtResource("3_wm1xt")]
-position = Vector2(0, 311)
+[node name="HitBox" type="Area2D" parent="World"]
+position = Vector2(0, 256)
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("6_dvv8h")
+damage = 500
+metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
-[node name="PlayerRespawnTimer" type="Timer" parent="."]
-one_shot = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/HitBox"]
+shape = SubResource("WorldBoundaryShape2D_8xnil")
 
 [node name="Player" parent="." instance=ExtResource("2_4a7y3")]
 position = Vector2(16, 144)
@@ -80,12 +84,3 @@ position = Vector2(133, -117)
 
 [node name="rotating enemy3" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-36, -19)
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2(0, 256)
-script = ExtResource("6_dvv8h")
-damage = 3
-metadata/_custom_type_script = "uid://dsuulmpqm44j2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("WorldBoundaryShape2D_8xnil")

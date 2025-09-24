@@ -17,6 +17,7 @@ var chirality = 1
 
 var launched := false;
 var stuck := false
+var dead := false
 
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
@@ -29,39 +30,39 @@ var lastUpDir  := up_direction
 func _ready() -> void:
 	%Health.MAX_HEALTH = MAX_HEALTH
 	$Respawning.setRespawnPoint(self.global_position)
-	var health = $Health
+	var health = %Health
 	health.damaged.connect(_on_damaged)
 	health.death.connect(_on_death)
 	health.healed.connect(_on_healed)
 
-func _on_damaged(amount, current_health, bywho):
-	print("Took ", amount, " damage from ", bywho.name)
+func _on_damaged(amount, _current_health, bywho):
+	hit(amount,bywho)
 	
-func _on_death(amount, bywho):
+func _on_death(_amount, bywho):
 	print("Died from", bywho.name)
 	Engine.time_scale=0.5
-	self.get_node("CollisionShape2D").queue_free()
-	self.get_node("HurtBox").queue_free()
-	stuck=false
-	checkUnstick = true
-	launched = true
-	timer.start()
+	death(_amount, bywho)
+
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale=1
-	get_tree().reload_current_scene()
+	respawn()
+	
+	#get_tree().reload_current_scene()
 
-func _on_healed(amount, current_health, by_what):
+func _on_healed(amount, _current_health, by_what):
 	print("Healed", amount, "by", by_what.name)
 
+var queueVelocity= Vector2.ZERO
 func _physics_process(delta: float) -> void:
-	#var beforeVel = velocity
 	if not stuck:
 		velocity += get_gravity() * delta 
 		if (velocity.y>MAX_FALL_SPEED):
 			velocity.y=MAX_FALL_SPEED
 		 
 	if stuck:
+		if(dead):
+			return
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
@@ -84,7 +85,8 @@ func _physics_process(delta: float) -> void:
 		directionCorrection = up_direction.rotated(chirality* PI/2)
 			
 		if direction:
-			velocity = direction * SPEED *directionCorrection 
+			velocity = direction * SPEED *directionCorrection
+			
 		if(checkUnstick):
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
 			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
@@ -100,7 +102,8 @@ func _physics_process(delta: float) -> void:
 				#pass
 			checkUnstick = false
 			pass
-		velocity += launchVel
+		velocity += launchVel + queueVelocity
+		queueVelocity=Vector2.ZERO
 		launchVel = Vector2.ZERO		
 		launched = false;
 	var collisions := move_and_collide(velocity*delta)
@@ -126,11 +129,27 @@ func _physics_process(delta: float) -> void:
 	#
 
 func hit(amount:float,byWho:Node2D):
-	%Health.hit(amount,byWho)
+	pass
 	
 func respawn():
 	%Health.reset()
+	dead=false
+	velocity = Vector2.ZERO
+	$EnvironmentCollision.set_deferred("disabled",false)
+	$HurtBox.set_deferred("monitorable",true)
+	$HurtBox.set_deferred("monitoring",true)
 	$Respawning.respawn(self)
+	
+func death(amount:float,byWho:Node2D):
+	velocity = (position - byWho.position)*amount*20
+	$EnvironmentCollision.set_deferred("disabled",true)
+	$HurtBox.set_deferred("monitorable",false)
+	$HurtBox.set_deferred("monitoring",false)
+	stuck=false
+	checkUnstick = true
+	dead = true
+	launched = true
+	timer.start()
 
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
@@ -165,19 +184,4 @@ func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:
 func _on_enemy_collision_body_entered(body: Node2D) -> void:
 	%Health.hit(1,body)
 	pass # Replace with function body.
-
-
-func _on_health_damaged(amount: float, currenthealth: float, bywho: Node2D) -> void:
-	print("Owee")
-	pass # Replace with function body.
-
-
-func _on_health_death(amount: float, bywho: Node2D) -> void:
-	print("Dead")
-	dies.emit(global_position)
-	#respawn()
-	pass # Replace with function body.
-
-
-func _on_health_healed(amount: float, currenthealth: Variant, byWhat: Node2D) -> void:
-	pass # Replace with function body.
+#

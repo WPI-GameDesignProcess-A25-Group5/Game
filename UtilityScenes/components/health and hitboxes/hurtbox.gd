@@ -10,5 +10,6 @@ func _ready() -> void:
 
 func _on_area_entered(hitbox:HitBox)->void:
 	if hitbox!=null:
+		print("coool")
 		health.hit(hitbox.get_damage(), hitbox.get_parent())
 		received_damage.emit(hitbox.damage)
