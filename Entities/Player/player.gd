@@ -108,8 +108,9 @@ func _physics_process(delta: float) -> void:
 	#$RayCast2D.target_position = velocity
 	if(collisions):
 		var collider = collisions.get_collider()
+		print(collider)
 		#print(collider)
-		if(collider is BaseBlock or collider is StaticBody2D):
+		if(collider is BaseBlock or collider is StaticBody2D or collider is TileMapLayer):
 			#print("popo")
 			lastUpDir = up_direction
 			up_direction = collisions.get_normal()
