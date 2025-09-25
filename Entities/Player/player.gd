@@ -5,6 +5,7 @@ const SPEED = 200.0
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
+@export var MAX_HEALTH := 3
 
 
 
@@ -16,6 +17,7 @@ var chirality = 1
 
 var launched := false;
 var stuck := false
+var dead := false
 
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
@@ -26,33 +28,32 @@ var lastUpDir  := up_direction
 @onready var animTree = $AnimatedSprite2D/AnimationTree
 
 func _ready() -> void:
-	var health = $Health
+	%Health.MAX_HEALTH = MAX_HEALTH
+	$Respawning.setRespawnPoint(self.global_position)
+	var health = %Health
 	health.damaged.connect(_on_damaged)
 	health.death.connect(_on_death)
 	health.healed.connect(_on_healed)
 
-func _on_damaged(amount, current_health, bywho):
-	print("Took ", amount, " damage from ", bywho.name)
+func _on_damaged(amount, _current_health, bywho):
+	hit(amount,bywho)
 	
-func _on_death(amount, bywho):
+func _on_death(_amount, bywho):
 	print("Died from", bywho.name)
 	Engine.time_scale=0.5
-	self.get_node("CollisionShape2D").queue_free()
-	self.get_node("HurtBox").queue_free()
-	stuck=false
-	checkUnstick = true
-	launched = true
-	timer.start()
+	death(_amount, bywho)
+
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale=1
-	get_tree().reload_current_scene()
+	respawn()
+	
+	#get_tree().reload_current_scene()
 
-func _on_healed(amount, current_health, by_what):
+func _on_healed(amount, _current_health, by_what):
 	print("Healed", amount, "by", by_what.name)
 
 func _physics_process(delta: float) -> void:
-	#var beforeVel = velocity
 	if not stuck:
 		velocity += get_gravity() * delta 
 		if (velocity.y>MAX_FALL_SPEED):
@@ -62,8 +63,10 @@ func _physics_process(delta: float) -> void:
 		if(!launched): # to not slow down velocity if just launched
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
-		var direction := Input.get_axis("MoveLeft", "MoveRight")
-		animTree.set("parameters/BlendSpace1D/blend_position",direction*chirality)
+		var direction :=0
+		if(!dead):
+			direction = Input.get_axis("MoveLeft", "MoveRight")
+			animTree.set("parameters/BlendSpace1D/blend_position",direction*chirality)
 		#print(direction)
 		var directionCorrection :Vector2
 		if(!direction or launched):
@@ -81,7 +84,8 @@ func _physics_process(delta: float) -> void:
 		directionCorrection = up_direction.rotated(chirality* PI/2)
 			
 		if direction:
-			velocity = direction * SPEED *directionCorrection 
+			velocity = direction * SPEED *directionCorrection
+			
 		if(checkUnstick):
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
 			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
@@ -97,7 +101,7 @@ func _physics_process(delta: float) -> void:
 				#pass
 			checkUnstick = false
 			pass
-		velocity += launchVel
+		velocity += launchVel 
 		launchVel = Vector2.ZERO		
 		launched = false;
 	var collisions := move_and_collide(velocity*delta)
@@ -121,6 +125,29 @@ func _physics_process(delta: float) -> void:
 					stuck = true
 					velocity = velocity-componentInUpDir
 	#
+
+func hit(amount:float,byWho:Node2D):
+	pass
+	
+func respawn():
+	%Health.reset()
+	dead=false
+	velocity = Vector2.ZERO
+	$EnvironmentCollision.set_deferred("disabled",false)
+	$HurtBox.set_deferred("monitorable",true)
+	$HurtBox.set_deferred("monitoring",true)
+	$Respawning.respawn(self)
+	
+func death(amount:float,byWho:Node2D):
+	#velocity = (position - byWho.position)*amount*20
+	$EnvironmentCollision.set_deferred("disabled",true)
+	$HurtBox.set_deferred("monitorable",false)
+	$HurtBox.set_deferred("monitoring",false)
+	stuck=false
+	checkUnstick = true
+	dead = true
+	launched = true
+	timer.start()
 
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
@@ -150,3 +177,9 @@ func _on_mouse_vector_sling_shot_update(dir:Vector2) -> void:
 var checkUnstick = false
 func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:
 	checkUnstick= !dirs
+
+
+func _on_enemy_collision_body_entered(body: Node2D) -> void:
+	%Health.hit(1,body)
+	pass # Replace with function body.
+#

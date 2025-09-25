@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=58 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d0q8hh4rxkmwj" path="res://Assets/Sprites/Slime Sprites/move_slime_run_R.png" id="2_7a1se"]
 [ext_resource type="Script" uid="uid://cxcv77nyc8m3j" path="res://Entities/Player/mouse_vector.gd" id="3_lu8i8"]
 [ext_resource type="Texture2D" uid="uid://bjm3tfck8s6wr" path="res://Assets/Sprites/Slime Sprites/jump_slime-Sheet.png" id="4_lub02"]
-[ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/block_interaction_grid/block_interaction_grid.tscn" id="4_tekja"]
+[ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/components/block_interaction_grid/block_interaction_grid.tscn" id="4_tekja"]
 [ext_resource type="Texture2D" uid="uid://deg728qjvn5ec" path="res://Assets/Sprites/Slime Sprites/move_slime_Basic- R-Sheet.png" id="5_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health and hitboxes/Health.tscn" id="9_lub02"]
+[ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iplt1"]
@@ -444,7 +445,6 @@ color = Color(0.72128, 0.98, 0.5488, 1)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
 script = ExtResource("1_3uyv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -465,8 +465,15 @@ libraries = {
 
 [node name="BlockInteractionGrid" parent="AnimatedSprite2D" instance=ExtResource("4_tekja")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="EnvironmentCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tekja")
+
+[node name="SlingShotParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 4
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_tekja")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -488,19 +495,17 @@ visible = false
 scale = Vector2(0.0625, 0.234375)
 texture = ExtResource("1_mv1ah")
 
-[node name="SlingShotParticles" type="GPUParticles2D" parent="."]
-unique_name_in_owner = true
-emitting = false
-amount = 4
-lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_tekja")
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
 
+[node name="Respawning" parent="." instance=ExtResource("9_x1y6q")]
+
 [node name="Health" parent="." instance=ExtResource("9_lub02")]
+unique_name_in_owner = true
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("10_x1y6q")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://bqushokibj7r"
@@ -515,4 +520,7 @@ one_shot = true
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
 [connection signal="slingShotUpdate" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_update"]
+[connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
+[connection signal="death" from="Health" to="." method="_on_health_death"]
+[connection signal="healed" from="Health" to="." method="_on_health_healed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

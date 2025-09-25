@@ -40,6 +40,8 @@ position = Vector2(-20, 16)
 target_position = Vector2(-5, 3)
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("3_rlibp")
 damage = 3
 metadata/_custom_type_script = "uid://dsuulmpqm44j2"
