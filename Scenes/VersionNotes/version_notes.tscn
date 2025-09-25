@@ -42,6 +42,20 @@ text = "Verison 0.2
 - Has some sprites made
 - An initial test level"
 
+[node name="Label2" type="Label" parent="VScrollBar/Label"]
+layout_mode = 2
+offset_left = 295.0
+offset_right = 511.0
+offset_bottom = 199.333
+text = "Verison 0.3
+-Added damage and health
+-Added death and respawn
+- Added new tileset
+-Added Example scene with 
+new tile set
+- Player animations
+"
+
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
