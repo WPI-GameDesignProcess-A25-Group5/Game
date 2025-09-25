@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cff5ug4qfp4tb"]
+
+[ext_resource type="Script" uid="uid://dxqptj1lioyx2" path="res://UtilityScenes/components/respawning/respawning.gd" id="1_3mbxh"]
+
+[node name="Respawning" type="Node2D"]
+top_level = true
+script = ExtResource("1_3mbxh")
+
+[node name="SavePoint" type="Marker2D" parent="."]
