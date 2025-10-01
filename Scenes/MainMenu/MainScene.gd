@@ -5,7 +5,7 @@ var example_map=preload("res://Scenes/Map.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	PauseScreen.allowPausing = false
 	pass # Replace with function body.
 
 
