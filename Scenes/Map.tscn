@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://bof12bndqp38t"]
+[gd_scene load_steps=7 format=4 uid="uid://bof12bndqp38t"]
 
+[ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_qumfl"]
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_s486e"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_etk83"]
@@ -254,9 +255,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7yn8b")
 
 [node name="ExampleMap" type="Node2D"]
+script = ExtResource("1_qumfl")
 
 [node name="Player" parent="." instance=ExtResource("2_7yn8b")]
-position = Vector2(-149, -22)
+position = Vector2(180, 206)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
