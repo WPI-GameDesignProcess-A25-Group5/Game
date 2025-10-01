@@ -95,6 +95,7 @@ func _physics_process(delta: float) -> void:
 			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
 			var col:KinematicCollision2D= move_and_collide(movementTest*delta,true)
 			if(launched):
+				print("launch")
 				stuck = false
 				grounded = false
 				
@@ -104,9 +105,11 @@ func _physics_process(delta: float) -> void:
 				if(up_direction.dot(Vector2.UP)>0.9):
 					grounded = true
 			else:
+				print("groundded?")
 				velocity = movementTest
 				grounded = true
 			if(not stuck):
+				print("ungrounf")
 				grounded = false
 				#velocity +=
 				#pass
@@ -129,16 +132,19 @@ func _physics_process(delta: float) -> void:
 			up_direction = collisions.get_normal()
 			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
 			if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
+				print("stick--1")
 				stuck = true
 				grounded = true
 				
 			else:
 				var componentInUpDir = up_direction.dot(velocity)*up_direction.normalized()
 				if(componentInUpDir.length()>20):
+					print("unstickstick--1Bounces")
 					stuck = false
 					grounded = false
 					velocity = velocity-componentInUpDir*(1+.5) #bounce 1+coef of restitution
 				else:
+					print("stick--1splat")
 					stuck = true
 					grounded = true
 					velocity = velocity-componentInUpDir
