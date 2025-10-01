@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=59 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health and hitboxes/Health.tscn" id="9_lub02"]
 [ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
+[ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iplt1"]
 atlas = ExtResource("2_7a1se")
@@ -271,7 +272,6 @@ blend_point_2/pos = 0.1
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fe32i"]
-graph_offset = Vector2(-303.025, 43.1803)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_ap3xn")
 nodes/BlendSpace1D/position = Vector2(-220, 120)
 node_connections = [&"output", 0, &"BlendSpace1D"]
@@ -516,6 +516,20 @@ shape = SubResource("CircleShape2D_tekja")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1000
+limit_right = 1000
+limit_bottom = 256
+limit_smoothed = true
+drag_horizontal_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer2" instance=ExtResource("12_iplt1")]
+position = Vector2(72, 61)
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]

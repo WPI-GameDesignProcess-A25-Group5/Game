@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://bj5s6yc12mtlf"]
+[gd_scene load_steps=12 format=4 uid="uid://bj5s6yc12mtlf"]
 
-[ext_resource type="Script" path="res://Scenes/level.gd" id="1_dvv8h"]
+[ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
 [ext_resource type="PackedScene" uid="uid://ckajxxohgwtiv" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_boajs"]
 [ext_resource type="PackedScene" uid="uid://b78xgv7p1mjhi" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="6_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="6_wm1xt"]
+[ext_resource type="PackedScene" uid="uid://b8b1mwtor800m" path="res://UtilityScenes/components/health and hitboxes/Health_Pickup.tscn" id="9_rix1b"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_w5fok"]
 scenes/2/scene = ExtResource("2_w5fok")
@@ -46,15 +47,6 @@ shape = SubResource("WorldBoundaryShape2D_8xnil")
 [node name="Player" parent="." instance=ExtResource("2_4a7y3")]
 position = Vector2(16, 144)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = -1000
-limit_right = 1000
-limit_bottom = 256
-limit_smoothed = true
-drag_horizontal_enabled = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
-
 [node name="Enemies" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 22.3333
@@ -84,3 +76,6 @@ position = Vector2(133, -117)
 
 [node name="rotating enemy3" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-36, -19)
+
+[node name="Heal_Pickup" parent="." instance=ExtResource("9_rix1b")]
+position = Vector2(-143, 79)

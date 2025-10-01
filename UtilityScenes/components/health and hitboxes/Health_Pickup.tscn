@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8b1mwtor800m"]
+
+[ext_resource type="Script" uid="uid://d3104b2dcfiu" path="res://UtilityScenes/components/health and hitboxes/healbox.gd" id="1_818l6"]
+[ext_resource type="Script" uid="uid://23ba2f1hx68q" path="res://UtilityScenes/components/health and hitboxes/health_pickup.gd" id="1_ra36e"]
+[ext_resource type="Texture2D" uid="uid://bnjfbj7w83x3g" path="res://Assets/Sprites/UI Sprites/health_full_1-Sheet.png" id="2_3xc5e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loj76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3xc5e")
+}],
+"loop": true,
+"name": &"Full",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0a0o"]
+
+[node name="Heal_Pickup" type="Node2D"]
+script = ExtResource("1_ra36e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_loj76")
+animation = &"Full"
+
+[node name="HealBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_818l6")
+metadata/_custom_type_script = "uid://d3104b2dcfiu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealBox"]
+shape = SubResource("RectangleShape2D_f0a0o")
