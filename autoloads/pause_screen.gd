@@ -30,7 +30,7 @@ func unpause(mode:Input.MouseMode=-1):
 func _ready():
 	visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if(allowPausing and Input.is_action_just_pressed("pause")):
 		if(paused):
