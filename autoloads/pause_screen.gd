@@ -17,8 +17,11 @@ func pause():
 	visible = true
 	paused = true	
 	
-func unpause():
-	Input.mouse_mode = stack.pop_back()
+func unpause(mode:Input.MouseMode=-1):
+	if(mode == -1):
+		Input.mouse_mode = stack.pop_back()
+	else:
+		Input.mouse_mode = mode
 	get_tree().paused = false
 	visible = false
 	paused = false
@@ -45,6 +48,7 @@ func _on_resume_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
+	unpause(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_packed(titlescreenscne)
 	#get_tree().quit()
 	pass # Replace with function body.
