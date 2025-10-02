@@ -33,6 +33,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	#if(current==body):
 	changedMostOccupied.emit(false)
+	if(current==body):
+		current = null
 		

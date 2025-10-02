@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://qj8yg0bu0o5s"]
+
+[ext_resource type="Script" uid="uid://hwpj1ao74ylj" path="res://UtilityScenes/components/health and hitboxes/HealthUI.gd" id="1_8i07l"]
+[ext_resource type="Texture2D" uid="uid://cwitjup8snxf6" path="res://Assets/Sprites/UI Sprites/health_damaged_1-Sheet.png" id="2_jhkfy"]
+[ext_resource type="Texture2D" uid="uid://bnjfbj7w83x3g" path="res://Assets/Sprites/UI Sprites/health_full_1-Sheet.png" id="3_k86cn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhjjx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jhkfy")
+}],
+"loop": true,
+"name": &"Empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k86cn")
+}],
+"loop": true,
+"name": &"Full",
+"speed": 5.0
+}]
+
+[node name="HealthUI" type="Node2D"]
+script = ExtResource("1_8i07l")
+
+[node name="left_most" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uhjjx")
+animation = &"Empty"
+
+[node name="right_most" type="AnimatedSprite2D" parent="."]
+position = Vector2(56, 0)
+sprite_frames = SubResource("SpriteFrames_uhjjx")
+animation = &"Empty"
+
+[node name="middle" type="AnimatedSprite2D" parent="."]
+position = Vector2(28, 0)
+sprite_frames = SubResource("SpriteFrames_uhjjx")
+animation = &"Empty"

@@ -2,25 +2,25 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb1hiydwe2j1l"
-path="res://.godot/imported/idle_slime-Sheet.png-d9ce437c8c96c467284ada127ac6df69.ctex"
+uid="uid://bhxk7xvhho3ig"
+path="res://.godot/imported/Slime Tower Tilemap.png-7c4e22f6125bb0d2ab848b207f6f91dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Slime Sprites/idle_slime-Sheet.png"
-dest_files=["res://.godot/imported/idle_slime-Sheet.png-d9ce437c8c96c467284ada127ac6df69.ctex"]
+source_file="res://Assets/Tilemap/Slime Tower Tilemap.png"
+dest_files=["res://.godot/imported/Slime Tower Tilemap.png-7c4e22f6125bb0d2ab848b207f6f91dc.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_compression=0
+compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=1
+compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
