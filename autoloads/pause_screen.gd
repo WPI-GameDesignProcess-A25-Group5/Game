@@ -1,4 +1,5 @@
 extends CanvasLayer
+var titlescreenscne = preload("res://Scenes/MainMenu/start_screen.tscn")
 
 var paused:bool = false
 var allowPausing:bool = true :
@@ -23,7 +24,6 @@ func unpause():
 	paused = false
 	
 	
-	
 func _ready():
 	visible = false
 
@@ -37,3 +37,14 @@ func _process(delta: float) -> void:
 		pass
 	
 	pass
+
+
+func _on_resume_pressed() -> void:
+	unpause()
+	pass # Replace with function body.
+
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_packed(titlescreenscne)
+	#get_tree().quit()
+	pass # Replace with function body.
