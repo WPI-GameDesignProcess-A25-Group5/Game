@@ -55,6 +55,7 @@ func _on_timer_timeout() -> void:
 	#get_tree().reload_current_scene()
 
 func _on_healed(amount, _current_health, by_what):
+	
 	print("Healed", amount, "by", by_what.name)
 
 func _physics_process(delta: float) -> void:

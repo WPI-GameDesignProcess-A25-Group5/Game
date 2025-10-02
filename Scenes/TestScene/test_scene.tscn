@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b78xgv7p1mjhi" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="6_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="6_wm1xt"]
+[ext_resource type="PackedScene" uid="uid://b8b1mwtor800m" path="res://UtilityScenes/components/health and hitboxes/Health_Pickup.tscn" id="9_rix1b"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_w5fok"]
 scenes/1/scene = ExtResource("2_8xnil")
@@ -89,3 +90,6 @@ position = Vector2(133, -117)
 
 [node name="rotating enemy3" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-36, -19)
+
+[node name="Heal_Pickup" parent="." instance=ExtResource("9_rix1b")]
+position = Vector2(-143, 79)
