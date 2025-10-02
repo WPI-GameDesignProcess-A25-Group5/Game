@@ -85,7 +85,8 @@ text = "Verison 0.4
 - some blocks are now 
 non stickable
 - New enemy sprites
-- Health UI"
+- Health UI
+- Restored old Version Notes"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
