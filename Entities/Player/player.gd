@@ -121,7 +121,6 @@ func _physics_process(delta: float) -> void:
 	
 	if(collisions):
 		var isStick = isStickBlock(collisions)
-		var collider = collisions.get_collider()
 		
 		if(isStick):
 			up_direction = collisions.get_normal()

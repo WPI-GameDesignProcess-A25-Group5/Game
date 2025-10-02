@@ -55,7 +55,7 @@ func _on_reset():
 	middle.play("Full")
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#print(get_parent().get_parent().health)
 	
 	pass
