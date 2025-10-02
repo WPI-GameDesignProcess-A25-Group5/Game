@@ -79,7 +79,14 @@ new tile set
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-text = "Verison 0.4"
+text = "Verison 0.4
+- Pause Screen
+- Updated tileset
+- some blocks are now 
+non stickable
+- New enemy sprites
+- Health UI
+- Restored old Version Notes"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
