@@ -401,7 +401,7 @@ script = ExtResource("1_qumfl")
 [node name="Player" parent="." instance=ExtResource("2_7yn8b")]
 position = Vector2(180, 206)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-252, 236)
