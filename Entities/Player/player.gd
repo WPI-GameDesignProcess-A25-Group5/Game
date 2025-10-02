@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 		if(!dead):
 			direction = Input.get_axis("MoveLeft", "MoveRight")
 			animTree.set("parameters/BlendSpace1D/blend_position",direction*chirality)
-		#print(direction)
+			
 		var directionCorrection :Vector2
 		if(!direction or launched ):
 			keepMoveDir = false
@@ -83,34 +83,37 @@ func _physics_process(delta: float) -> void:
 				chirality = 1
 			else:
 				chirality = -1
-				
-		#print(chirality, "l ", lastUpDir)
 		directionCorrection = up_direction.rotated(chirality* PI/2)
 			
 		if direction:
 			velocity = direction * SPEED *directionCorrection
 			
-		if(checkUnstick):
+		if(checkUnstick or launched): #leaving bloc/tile or launching
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
 			var movementTest = -up_direction*velocity.length() + get_gravity().rotated(get_gravity().angle_to(-up_direction))
 			var col:KinematicCollision2D= move_and_collide(movementTest*delta,true)
-			if(launched):
+			if(launched): # if because launched
 				print("launch")
-				stuck = false
 				grounded = false
 				
-			elif(!col or !isStickBlock(col)): # try rotating around block, if can,Do it
+			elif(!isStickBlock(col)): # try rotating around block, if can,Do it
 				print("untsick")
 				stuck = false
-				if(up_direction.dot(Vector2.UP)>0.9):
-					grounded = true
+				grounded = false
+				#if(col and up_direction.dot(Vector2.UP)>0.9):
+					#print("hehe")
+					#grounded = true
+				#else:
+					#grounded = false
 			else:
-				print("groundded?")
+				print("rotate")
 				velocity = movementTest
 				grounded = true
-			if(not stuck):
+				
+			if(not grounded):
 				print("ungrounf")
-				grounded = false
+				#grounded = false
+				stuck = false
 				#velocity +=
 				#pass
 			checkUnstick = false
@@ -127,9 +130,8 @@ func _physics_process(delta: float) -> void:
 		#print(collider)
 		
 		if(isStick):
-			#print("popo")
-			lastUpDir = up_direction
 			up_direction = collisions.get_normal()
+			lastUpDir = up_direction
 			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
 			if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
 				print("stick--1")
@@ -199,20 +201,23 @@ func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 	if(grounded):
 		launchVel = JUMP_VELOCITY*dir
 		#stuck = false
-		checkUnstick = true
+		#checkUnstick = true
 		launched = true
 	EventBus.emit_signal("player_launched", dir)
 	pass # Replace with function body.
 
 func isStickBlock(col:KinematicCollision2D):
+	if(!col):
+		return false
+	
 	var collider = col.get_collider()
 	if(collider is BaseBlock or collider is StaticBody2D or collider is TileMapLayer):
 		#print("YOO")
 		if(collider is BaseBlock):
 			return collider.stickable
 		if(collider is TileMapLayer):
-			var sticky = true
-			var loc = collider.local_to_map(col.get_position())
+			var sticky = false
+			var loc = collider.local_to_map(collider.to_local(col.get_position()+(-col.get_normal())))
 			var td = collider.get_cell_tile_data(loc)
 			if(td):
 				sticky = td.get_custom_data("Stickable")

@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://bj5s6yc12mtlf"]
+[gd_scene load_steps=13 format=4 uid="uid://bj5s6yc12mtlf"]
 
 [ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_4a7y3"]
-[ext_resource type="PackedScene" uid="uid://cagn66ar8i3op" path="res://Blocks/blocks/noStickBlock.tscn" id="2_8xnil"]
+[ext_resource type="PackedScene" path="res://Blocks/blocks/noStickBlock.tscn" id="2_8xnil"]
 [ext_resource type="PackedScene" uid="uid://ckajxxohgwtiv" path="res://Blocks/blocks/testBlock.tscn" id="2_w5fok"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_boajs"]
 [ext_resource type="PackedScene" uid="uid://b78xgv7p1mjhi" path="res://Blocks/blocks/round_block.tscn" id="4_w5fok"]
+[ext_resource type="PackedScene" uid="uid://djyvu637uvmha" path="res://Entities/Player2/player2.tscn" id="6_6g6sg"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="6_dvv8h"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="6_wm1xt"]
 
@@ -44,6 +45,9 @@ metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/HitBox"]
 shape = SubResource("WorldBoundaryShape2D_8xnil")
+
+[node name="Player2" parent="." instance=ExtResource("6_6g6sg")]
+position = Vector2(394, 14)
 
 [node name="Player" parent="." instance=ExtResource("2_4a7y3")]
 position = Vector2(443, 14)

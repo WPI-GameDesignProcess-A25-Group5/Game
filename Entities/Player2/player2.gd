@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 600.0
+const SPEED = 200.0
 const JUMP_VELOCITY = 600
 const MAX_FALL_SPEED=1200
 
@@ -67,7 +67,6 @@ func _physics_process(delta: float) -> void:
 		grounded = true
 	else:
 		grounded = false
-		stuck = false
 		pass
 		
 	var coll = get_last_slide_collision()
@@ -104,10 +103,10 @@ func _physics_process(delta: float) -> void:
 		if(direction):
 			if(tryRot):
 				var rad = 14.5
-				var deg = SPEED/rad *direction
+				var deg = SPEED/(rad*2) *direction
 				var point = colpoint
 				var temp = global_position
-				velocity = (rotAround(global_position,point,deg)-temp)/delta
+				velocity = (rotAround(global_position+rad*up_direction,point,deg)-temp)
 				rotate(deg)
 				up_direction = Vector2.UP.rotated(rotation)
 				print(velocity.length())
