@@ -100,11 +100,6 @@ func _physics_process(delta: float) -> void:
 				print("untsick")
 				stuck = false
 				grounded = false
-				#if(col and up_direction.dot(Vector2.UP)>0.9):
-					#print("hehe")
-					#grounded = true
-				#else:
-					#grounded = false
 			else:
 				print("rotate")
 				velocity = movementTest
@@ -122,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		launchVel = Vector2.ZERO		
 		launched = false;
 	var collisions := move_and_collide(velocity*delta)
-	#$RayCast2D.target_position = velocity
+	
 	if(collisions):
 		var isStick = isStickBlock(collisions)
 		var collider = collisions.get_collider()
@@ -158,6 +153,7 @@ func _physics_process(delta: float) -> void:
 			var componentInUpDir = up_direction.dot(velocity)*up_direction.normalized()
 			if(componentInUpDir.length()>10):
 				velocity = velocity-componentInUpDir*(1+.5)
+			print("nonstickunstick")
 			stuck = false
 			if(grounded):
 				lastUpDir = temp
@@ -165,7 +161,9 @@ func _physics_process(delta: float) -> void:
 				$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
 				#grounded = false
 				pass
-			if(up_direction.dot(Vector2.UP)>0.9):
+			if(up_direction.dot(Vector2.UP)>0.7):
+				print("nonstickunstick-ground")
+				
 				grounded = true
 		
 	#
@@ -216,11 +214,13 @@ func isStickBlock(col:KinematicCollision2D):
 		if(collider is BaseBlock):
 			return collider.stickable
 		if(collider is TileMapLayer):
-			var sticky = false
-			var loc = collider.local_to_map(collider.to_local(col.get_position()+(-col.get_normal())))
+			var sticky = true
+			var loc = collider.local_to_map(collider.to_local(col.get_position()+(-col.get_normal()*3)))
 			var td = collider.get_cell_tile_data(loc)
 			if(td):
 				sticky = td.get_custom_data("Stickable")
+				if(!sticky):
+					print("td")
 			
 			return sticky
 	

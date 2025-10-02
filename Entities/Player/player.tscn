@@ -495,9 +495,6 @@ visible = false
 scale = Vector2(0.0625, 0.234375)
 texture = ExtResource("1_mv1ah")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-
 [node name="Respawning" parent="." instance=ExtResource("9_x1y6q")]
 
 [node name="Health" parent="." instance=ExtResource("9_lub02")]
