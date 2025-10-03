@@ -98,12 +98,13 @@ func _physics_process(delta: float) -> void:
 				grounded = false
 				
 			elif(!isStickBlock(col)): # try rotating around block, if can,Do it
-				# print("untsick")
+				#print("untsick")
 				stuck = false
 				grounded = false
+				#velocity +=velocity
 			else:
-				# print("rotate")
-				velocity = movementTest
+				#print("rotate")
+				velocity = movementTest + directionCorrection*20
 				grounded = true
 				
 			if(not grounded):
@@ -167,17 +168,19 @@ func _physics_process(delta: float) -> void:
 	#
 
 func hit(amount:float,byWho:Node2D):
-	hitJump(byWho)
+	hitJump(byWho,4)
 	pass
 	
 func respawn():
 	%Health.reset()
 	dead=false
 	velocity = Vector2.ZERO
+	launchVel = Vector2.ZERO
 	$EnvironmentCollision.set_deferred("disabled",false)
 	$HurtBox.set_deferred("monitorable",true)
 	$HurtBox.set_deferred("monitoring",true)
 	$Respawning.respawn(self)
+	#tween.tween_callback()
 	
 func death(amount:float,byWho:Node2D):
 	#velocity = (position - byWho.position)*amount*20
@@ -188,17 +191,26 @@ func death(amount:float,byWho:Node2D):
 	checkUnstick = true
 	dead = true
 	launched = true
-	hitJump(byWho)
+	hitJump(byWho,30)
+	_physics_process(1/Engine.physics_ticks_per_second)
 	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
 	timer.start()
 
-func hitJump(byWho):
-	grounded = false
+func hitJump(byWho, strength:float):
+	#grounded = false
 	stuck = false
 	launched = true
 	velocity = Vector2.ZERO
-	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*2000
-	launchVel =  up_direction*2000
+	launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
+	var tween1 = get_tree().create_tween()
+	tween1.tween_property($Camera2D, "rotation", deg_to_rad(strength), .01)
+	tween1.set_ease(Tween.EASE_OUT)
+	tween1.set_trans(Tween.TRANS_ELASTIC)
+	var tween2 =tween1.chain()
+	tween2.tween_property($Camera2D, "rotation", 0, .2)
+	tween2.set_ease(Tween.EASE_OUT)
+	tween2.set_trans(Tween.TRANS_ELASTIC)
+	#print(up_direction)
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 	%SlingShotParticles.emitting = false
@@ -227,8 +239,8 @@ func isStickBlock(col:KinematicCollision2D):
 			var td = collider.get_cell_tile_data(loc)
 			if(td):
 				sticky = td.get_custom_data("Stickable")
-				if(!sticky):
-					print("td")
+				#if(!sticky):
+					#print("td")
 			
 			return sticky
 	

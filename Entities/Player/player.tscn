@@ -636,10 +636,9 @@ wait_time = 0.6
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = -1000
-limit_right = 1000
-limit_bottom = 256
+ignore_rotation = false
 limit_smoothed = true
+position_smoothing_enabled = true
 drag_horizontal_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
