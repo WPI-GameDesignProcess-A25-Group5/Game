@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 var creditsScene = preload("res://Scenes/Credits/Credits.tscn")
 var testSence = preload("res://Scenes/TestScene/test_scene.tscn")
 var example_map=preload("res://Scenes/Map.tscn")
@@ -31,16 +31,16 @@ func _on_exit_button_pressed() -> void:
 	
 func _on_example_pressed() -> void:
 	$Buttons/Click.play()
-	buttonPressed = "example"
+	buttonPressed = "test"
 
 func _on_click_sound_finished() -> void:
 	match buttonPressed:
-		"start":
+		"test":
 			get_tree().change_scene_to_packed(testSence)
 			pass
 		"credits":
 			get_tree().change_scene_to_packed(creditsScene)
-		"example":
+		"start":
 			get_tree().change_scene_to_packed(example_map)
 		"exit":
 			get_tree().quit(0)
