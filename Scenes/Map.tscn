@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://bof12bndqp38t"]
+[gd_scene load_steps=9 format=4 uid="uid://bof12bndqp38t"]
 
 [ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_qumfl"]
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_s486e"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_etk83"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="5_r08cw"]
+[ext_resource type="PackedScene" uid="uid://bx75ednbn6s82" path="res://Entities/Enemies/flying_enemy.tscn" id="6_00287"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yn8b"]
 texture = ExtResource("1_s486e")
@@ -373,3 +374,6 @@ rotation = 1.5708
 
 [node name="rotating enemy2" parent="Enemies" instance=ExtResource("5_r08cw")]
 position = Vector2(127, -243)
+
+[node name="FlyingEnemy" parent="." instance=ExtResource("6_00287")]
+position = Vector2(117, -48)
