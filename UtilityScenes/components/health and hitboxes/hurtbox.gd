@@ -7,17 +7,18 @@ signal received_damage(damage:int)
 
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)
-	connect("area_entered", _on_area_entered_heal)
+	#connect("area_entered", _on_area_entered_heal)
 
-func _on_area_entered(hitbox:HitBox)->void:
-	if hitbox!=null:
+func _on_area_entered(hitbox:Node2D)->void:
+	
+	if hitbox is HealBox:
+		print("healed")
+		health.heal(hitbox.get_heal(), hitbox.get_parent())
+	
+	if hitbox is HitBox:
 		print("coool")
 		health.hit(hitbox.get_damage(), hitbox.get_parent())
 		received_damage.emit(hitbox.damage)
+
 		
-func _on_area_entered_heal(healbox:HealBox)->void:
-	print("healed")
-	if healbox!=null:
-		
-		health.heal(healbox.get_heal(), healbox.get_parent())
 		#received_damage.emit(hitbox.damage)
