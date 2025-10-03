@@ -204,7 +204,7 @@ func prematureEndDash():
 	print("STOP")
 
 func hit(amount:float,byWho:Node2D):
-	hitJump(byWho,2)
+	hitJump(byWho,3)
 	pass
 	
 func respawn():
