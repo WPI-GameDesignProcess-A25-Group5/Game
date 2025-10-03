@@ -1,14 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://0wung64iiiqs"]
+[gd_scene load_steps=13 format=3 uid="uid://0wung64iiiqs"]
 
 [ext_resource type="Script" uid="uid://6vyivxdjh3ow" path="res://Entities/Enemies/left_right_basic_enemy.gd" id="1_sxqf1"]
-[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_ofe1u"]
+[ext_resource type="Texture2D" uid="uid://cp3tijal6uvmr" path="res://Assets/Sprites/Character/Enemy/Snail Blue.png" id="2_rlibp"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="3_rlibp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wj3j7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_00287"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t7yc"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngcqm"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws1hi"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xicox"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjq7f"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7adt"]
+atlas = ExtResource("2_rlibp")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n670y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ofe1u")
+"texture": SubResource("AtlasTexture_00287")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t7yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngcqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws1hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xicox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjq7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7adt")
 }],
 "loop": true,
 "name": &"default",
@@ -21,9 +67,9 @@ size = Vector2(30, 30)
 [node name="BasicBinaryMovementEnemy" type="Node2D"]
 script = ExtResource("1_sxqf1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_wj3j7")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n670y")
+autoplay = "default"
 
 [node name="right_collision" type="RayCast2D" parent="."]
 target_position = Vector2(18, 0)
