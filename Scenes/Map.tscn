@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://bof12bndqp38t"]
+[gd_scene load_steps=8 format=4 uid="uid://bof12bndqp38t"]
 
 [ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_qumfl"]
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_s486e"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_etk83"]
+[ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="5_r08cw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yn8b"]
 texture = ExtResource("1_s486e")
@@ -343,11 +344,6 @@ script = ExtResource("1_qumfl")
 [node name="Player" parent="." instance=ExtResource("2_7yn8b")]
 position = Vector2(180, 206)
 
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-
-[node name="BasicBinaryMovementEnemy" parent="." instance=ExtResource("3_etk83")]
-position = Vector2(-252, 236)
-
 [node name="World" type="Node2D" parent="."]
 
 [node name="WorldLayer" type="TileMapLayer" parent="World"]
@@ -360,3 +356,18 @@ tile_set = SubResource("TileSet_etk83")
 visible = false
 position = Vector2(-11, 0)
 tile_set = SubResource("TileSet_etk83")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="rotating enemy" parent="Enemies" instance=ExtResource("5_r08cw")]
+position = Vector2(-227, 3)
+
+[node name="BasicBinaryMovementEnemy" parent="Enemies" instance=ExtResource("3_etk83")]
+position = Vector2(-252, 236)
+
+[node name="BasicBinaryMovementEnemy2" parent="Enemies" instance=ExtResource("3_etk83")]
+position = Vector2(7, 63)
+rotation = 1.5708
+
+[node name="rotating enemy2" parent="Enemies" instance=ExtResource("5_r08cw")]
+position = Vector2(127, -243)
