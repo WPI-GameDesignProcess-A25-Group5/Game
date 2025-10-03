@@ -21,6 +21,7 @@ func unpause(mode:Input.MouseMode=-1):
 	if(mode == -1):
 		Input.mouse_mode = stack.pop_back()
 	else:
+		stack.pop_back()
 		Input.mouse_mode = mode
 	get_tree().paused = false
 	visible = false
