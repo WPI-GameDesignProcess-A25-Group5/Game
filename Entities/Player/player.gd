@@ -269,3 +269,13 @@ func _on_enemy_collision_body_entered(body: Node2D) -> void:
 	%Health.hit(1,body)
 	pass # Replace with function body.
 #
+
+
+func _on_hurt_box_incivible(t: bool) -> void:
+	if(t):
+		$AnimatedSprite2D/AnimationPlayer.play("cantBeHit")
+		pass
+	else:
+		$AnimatedSprite2D/AnimationPlayer.play("RESET")
+		pass
+	pass # Replace with function body.

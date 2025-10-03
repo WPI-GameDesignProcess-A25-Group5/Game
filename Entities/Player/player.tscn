@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=78 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -541,6 +541,44 @@ _data = {
 &"Walk_Right": SubResource("Animation_7a1se")
 }
 
+[sub_resource type="Animation" id="Animation_xr8lj"]
+resource_name = "cantBeHit"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.580392)]
+}
+
+[sub_resource type="Animation" id="Animation_r8fok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nhbkt"]
+_data = {
+&"RESET": SubResource("Animation_r8fok"),
+&"cantBeHit": SubResource("Animation_xr8lj")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_tekja"]
 radius = 14.5
 
@@ -585,6 +623,11 @@ libraries = {
 
 [node name="BlockInteractionGrid" parent="AnimatedSprite2D" instance=ExtResource("4_tekja")]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_nhbkt")
+}
+
 [node name="EnvironmentCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tekja")
 
@@ -628,6 +671,10 @@ script = ExtResource("10_x1y6q")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://bqushokibj7r"
 
+[node name="InvinceTimer" type="Timer" parent="HurtBox"]
+wait_time = 0.5
+one_shot = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_tekja")
 
@@ -654,4 +701,5 @@ position = Vector2(72, 61)
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="healed" from="Health" to="." method="_on_health_healed"]
+[connection signal="incivible" from="HurtBox" to="." method="_on_hurt_box_incivible"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
