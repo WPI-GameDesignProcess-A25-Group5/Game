@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 var buttonPressed = ""
 func _on_start_button_pressed() -> void:
 	$Buttons/Click.play()
-	buttonPressed = "start"
+	buttonPressed = "test"
 	
 
 func _on_credits_button_pressed() -> void:

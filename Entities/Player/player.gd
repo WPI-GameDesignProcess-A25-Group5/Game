@@ -167,6 +167,7 @@ func _physics_process(delta: float) -> void:
 	#
 
 func hit(amount:float,byWho:Node2D):
+	hitJump(byWho)
 	pass
 	
 func respawn():
@@ -187,8 +188,17 @@ func death(amount:float,byWho:Node2D):
 	checkUnstick = true
 	dead = true
 	launched = true
+	hitJump(byWho)
+	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
 	timer.start()
 
+func hitJump(byWho):
+	grounded = false
+	stuck = false
+	launched = true
+	velocity = Vector2.ZERO
+	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*2000
+	launchVel =  up_direction*2000
 
 func _on_mouse_vector_sling_shot_fire(dir:Vector2) -> void:
 	%SlingShotParticles.emitting = false
