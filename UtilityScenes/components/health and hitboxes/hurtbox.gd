@@ -5,7 +5,14 @@ signal received_damage(damage:int)
 
 @export var health:Health
 
+signal incivible (t:bool)
+
+var invince = false
 func _ready() -> void:
+	$InvinceTimer.connect("timeout",func(): 
+		invince = false
+		incivible.emit(invince)
+	)
 	connect("area_entered", _on_area_entered)
 	#connect("area_entered", _on_area_entered_heal)
 
@@ -16,9 +23,14 @@ func _on_area_entered(hitbox:Node2D)->void:
 		health.heal(hitbox.get_heal(), hitbox.get_parent())
 	
 	if hitbox is HitBox:
-		print("coool")
-		health.hit(hitbox.get_damage(), hitbox.get_parent())
-		received_damage.emit(hitbox.damage)
+		#print("coool")
+		if(!invince):
+			health.hit(hitbox.get_damage(), hitbox.get_parent())
+			received_damage.emit(hitbox.damage)
+			invince = true
+			incivible.emit(invince)
+			$InvinceTimer.start()
+		
 
 		
 		#received_damage.emit(hitbox.damage)
