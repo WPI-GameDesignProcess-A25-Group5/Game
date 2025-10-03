@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bx50sn6ikapfx"]
+[gd_scene load_steps=44 format=3 uid="uid://bx50sn6ikapfx"]
 
 [ext_resource type="Script" uid="uid://dmharch1gfqkk" path="res://Scenes/MainMenu/MainScene.gd" id="1_5a7ho"]
 [ext_resource type="AudioStream" uid="uid://dq6auged6r37y" path="res://Assets/audio/arcade-blitz-neon-rhythms-by-sascha-ende-from-filmmusic-io.mp3" id="2_akot6"]
@@ -235,6 +235,17 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_lukw8"]
+offsets = PackedFloat32Array(0, 0.665493, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.476196, 0.704543, 7.70092e-07, 1, 0.386662, 0.497435, 4.81307e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_evbfs"]
+gradient = SubResource("Gradient_lukw8")
+width = 26
+height = 14
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Start Screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -330,6 +341,29 @@ ignore_texture_size = true
 stretch_mode = 3
 recenter = Vector2(-3, -4)
 
+[node name="TestButton" parent="Buttons/VBoxContainer" instance=ExtResource("7_lukw8")]
+clip_contents = true
+custom_minimum_size = Vector2(26, 14)
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_evbfs")
+ignore_texture_size = true
+stretch_mode = 3
+recenter = Vector2(-3, -4)
+
+[node name="Label" type="Label" parent="Buttons/VBoxContainer/TestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 38.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.405, 0.405)
+text = "TestLVL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="versionNotesButton" type="LinkButton" parent="Buttons"]
 layout_mode = 0
 offset_left = 48.0
@@ -343,4 +377,5 @@ underline = 1
 [connection signal="pressed" from="Buttons/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/TestButton" to="." method="_on_example_pressed"]
 [connection signal="pressed" from="Buttons/versionNotesButton" to="." method="_on_version_notes_button_pressed"]
