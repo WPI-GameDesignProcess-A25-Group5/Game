@@ -168,7 +168,7 @@ func _physics_process(delta: float) -> void:
 	#
 
 func hit(amount:float,byWho:Node2D):
-	hitJump(byWho,4)
+	hitJump(byWho,2)
 	pass
 	
 func respawn():
@@ -191,19 +191,20 @@ func death(amount:float,byWho:Node2D):
 	checkUnstick = true
 	dead = true
 	launched = true
-	hitJump(byWho,30)
-	_physics_process(1/Engine.physics_ticks_per_second)
+	hitJump(byWho,20)
+	#_physics_process(1/Engine.physics_ticks_per_second)
 	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
 	timer.start()
 
 func hitJump(byWho, strength:float):
-	#grounded = false
+	grounded = false
 	stuck = false
 	launched = true
 	velocity = Vector2.ZERO
-	launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
+	velocity = (global_position - byWho.global_position).normalized()*100 + up_direction*200
+	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
 	var tween1 = get_tree().create_tween()
-	tween1.tween_property($Camera2D, "rotation", deg_to_rad(strength), .01)
+	tween1.tween_property($Camera2D, "rotation", deg_to_rad(sign((global_position-byWho.global_position).angle_to(up_direction))*strength), .01)
 	tween1.set_ease(Tween.EASE_OUT)
 	tween1.set_trans(Tween.TRANS_ELASTIC)
 	var tween2 =tween1.chain()

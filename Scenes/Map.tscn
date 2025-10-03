@@ -342,6 +342,7 @@ sources/0 = SubResource("TileSetAtlasSource_7yn8b")
 script = ExtResource("1_qumfl")
 
 [node name="Player" parent="." instance=ExtResource("2_7yn8b")]
+z_index = 3
 position = Vector2(180, 206)
 
 [node name="World" type="Node2D" parent="."]
@@ -357,13 +358,14 @@ visible = false
 position = Vector2(-11, 0)
 tile_set = SubResource("TileSet_etk83")
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
+z_index = 1
 
 [node name="rotating enemy" parent="Enemies" instance=ExtResource("5_r08cw")]
 position = Vector2(-227, 3)
 
 [node name="BasicBinaryMovementEnemy" parent="Enemies" instance=ExtResource("3_etk83")]
-position = Vector2(-252, 236)
+position = Vector2(-251, 234)
 
 [node name="BasicBinaryMovementEnemy2" parent="Enemies" instance=ExtResource("3_etk83")]
 position = Vector2(7, 63)

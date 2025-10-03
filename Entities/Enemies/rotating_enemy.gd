@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		lastUpDir = up_direction
 		up_direction = collisions.get_normal()
 		$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
-		if(collisions.get_angle(velocity.normalized())>PI/2+PI/8):
+		if(is_zero_approx(velocity.length()) or collisions.get_angle(velocity.normalized())>PI/2+PI/8):
 			stuck = true
 			
 		else:
