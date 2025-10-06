@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=80 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
+[ext_resource type="Script" uid="uid://bomeppudggafa" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0fwy"]
 atlas = ExtResource("2_owvpp")
@@ -600,6 +601,11 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_5c2io")
 color = Color(0.72128, 0.98, 0.5488, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8fok"]
+bg_color = Color(0, 0, 0, 0.396078)
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3uyv8")
@@ -694,6 +700,16 @@ editor_draw_drag_margin = true
 
 [node name="HealthUI" parent="CanvasLayer2" instance=ExtResource("12_iplt1")]
 position = Vector2(72, 61)
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+offset_left = 498.0
+offset_top = 45.0
+offset_right = 602.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxFlat_r8fok")
+text = "00:00:00.00"
+script = ExtResource("15_r8fok")
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
