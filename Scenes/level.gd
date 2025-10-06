@@ -3,6 +3,7 @@ class_name Level
 
 var coffee_collected = false
 var coffees = []
+signal coffeesGotten
 
 func _ready() -> void:
 	PauseScreen.allowPausing = true
@@ -21,6 +22,7 @@ func collecte_coffee(cofee):
 			break
 	if(coffees.size()==0):
 		coffee_collected = true
+		coffeesGotten.emit()
 	else:
 		coffee_collected = false
 	
