@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://bof12bndqp38t"]
+[gd_scene load_steps=12 format=4 uid="uid://bof12bndqp38t"]
 
 [ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_qumfl"]
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_s486e"]
 [ext_resource type="PackedScene" uid="uid://dq0xkdl80qp3j" path="res://Entities/Player/player.tscn" id="2_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_etk83"]
-[ext_resource type="PackedScene" uid="uid://bx75ednbn6s82" path="res://Entities/Enemies/flying_enemy.tscn" id="6_00287"]
 [ext_resource type="PackedScene" uid="uid://qfco76hfhwe8" path="res://Entities/Enemies/rotating_enemy.tscn" id="5_00287"]
 [ext_resource type="Texture2D" uid="uid://d0ls0tncbdc0k" path="res://Assets/Tilemap/Slime Tower Tilemap 3.png" id="5_r08cw"]
+[ext_resource type="PackedScene" path="res://Entities/Enemies/flying_enemy.tscn" id="6_00287"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7yn8b"]
 texture = ExtResource("1_s486e")
@@ -119,7 +119,7 @@ texture_region_size = Vector2i(32, 32)
 13:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -4, -16, 4, 16, -8, 16)
 13:3/0/custom_data_0 = true
 14:3/0 = 0
-14:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 4, -16, -2, 16, 10, 16)
+14:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, 4, -16, -4, 16, 8, 16)
 14:3/0/custom_data_0 = true
 0:4/0 = 0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 4, 16, 16, -16, 16, -8, 4)
