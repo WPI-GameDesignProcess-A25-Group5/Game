@@ -556,10 +556,9 @@ tile_map_data = PackedByteArray("AADr/wcAAQAAAA8AAADs/wcAAQAAAA8AAADt/wcAAQAAAA8
 tile_set = SubResource("TileSet_5t7yc")
 collision_enabled = false
 
-[node name="Coffee" parent="." node_paths=PackedStringArray("scene") instance=ExtResource("5_5t7yc")]
+[node name="Coffee" parent="." instance=ExtResource("5_5t7yc")]
 position = Vector2(-319, -582)
 pickupType = &"Coffee"
-scene = NodePath("..")
 
 [node name="Enemies" type="Node2D" parent="."]
 z_index = 1
