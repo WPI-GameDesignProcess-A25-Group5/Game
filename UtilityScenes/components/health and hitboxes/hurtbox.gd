@@ -21,6 +21,7 @@ func _on_area_entered(hitbox:Node2D)->void:
 	if hitbox is HealBox:
 		print("healed")
 		health.heal(hitbox.get_heal(), hitbox.get_parent())
+		
 	
 	if hitbox is HitBox:
 		#print("coool")
@@ -31,6 +32,8 @@ func _on_area_entered(hitbox:Node2D)->void:
 			incivible.emit(invince)
 			$InvinceTimer.start()
 		
-
-		
 		#received_damage.emit(hitbox.damage)
+func make_invincible(duration: float = 0.2):
+	invince = true
+	incivible.emit(true)
+	$InvinceTimer.start(duration)
