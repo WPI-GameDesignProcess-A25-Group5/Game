@@ -23,6 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 	fadouttween.set_ease(Tween.EASE_OUT)
 	fadouttween.tween_property($Sprite2D2,"modulate",Color.TRANSPARENT,0.2)
 	$Sprite2D.visible = false
+	monitoring = false
+	monitorable = false
 	$AudioStreamPlayer2D.connect("finished",queue_free)
 	$AudioStreamPlayer2D.play()
 	pass # Replace with function body.

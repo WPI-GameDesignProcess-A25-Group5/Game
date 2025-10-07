@@ -581,7 +581,6 @@ z_index = 1
 
 [node name="rotating enemy2" parent="Enemies" instance=ExtResource("5_00287")]
 position = Vector2(-227, 3)
-collision_layer = 4
 
 [node name="BasicBinaryMovementEnemy" parent="Enemies" instance=ExtResource("3_etk83")]
 position = Vector2(-251, 234)
@@ -592,7 +591,6 @@ rotation = 1.5708
 
 [node name="rotating enemy" parent="Enemies" instance=ExtResource("5_00287")]
 position = Vector2(127, -243)
-collision_layer = 4
 
 [node name="FlyingEnemy" parent="." instance=ExtResource("6_00287")]
 position = Vector2(117, -48)
