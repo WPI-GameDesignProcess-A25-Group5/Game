@@ -49,7 +49,10 @@ func _on_resume_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
-	unpause(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_packed(titlescreenscne)
+	Transition.startTransition()
+	Transition.connect("readyTotransition",func(tree):
+		unpause(Input.MOUSE_MODE_VISIBLE)
+		tree.change_scene_to_packed(titlescreenscne)
+	)
 	#get_tree().quit()
 	pass # Replace with function body.

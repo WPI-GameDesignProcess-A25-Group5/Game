@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="15_r8fok"]
+[ext_resource type="Script" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0fwy"]
 atlas = ExtResource("2_owvpp")
@@ -603,6 +604,10 @@ color = Color(0.72128, 0.98, 0.5488, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhbkt"]
 radius = 15.0333
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8fok"]
+bg_color = Color(0, 0, 0, 0.396078)
+expand_margin_left = 3.0
+expand_margin_right = 3.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -711,6 +716,15 @@ metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
 [node name="hitboxShape" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_nhbkt")
+[node name="Label" type="Label" parent="CanvasLayer2"]
+offset_left = 498.0
+offset_top = 45.0
+offset_right = 602.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxFlat_r8fok")
+text = "00:00:00.00"
+script = ExtResource("15_r8fok")
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]

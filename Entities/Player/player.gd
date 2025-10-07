@@ -319,3 +319,11 @@ func _on_hurt_box_incivible(t: bool) -> void:
 		$AnimatedSprite2D/AnimationPlayer.play("RESET")
 		pass
 	pass # Replace with function body.
+	
+func stopSpeedrunTimer():
+	$CanvasLayer2/Label.finish()
+
+func startSpeedrunTimer():
+	$CanvasLayer2/Label.reset()
+	$CanvasLayer2/Label.start()
+	
