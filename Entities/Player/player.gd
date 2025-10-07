@@ -146,6 +146,7 @@ func _physics_process(delta: float) -> void:
 		if(dashing):
 			prematureEndDash()
 		if(isStick):
+			$slime_explosion.emitting=true
 			up_direction = collisions.get_normal()
 			lastUpDir = up_direction
 			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)

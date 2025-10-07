@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=85 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -610,6 +610,31 @@ expand_margin_right = 3.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhbkt"]
 radius = 15.0333
 
+[sub_resource type="Gradient" id="Gradient_nhbkt"]
+colors = PackedColorArray(0, 0.988235, 0.0352941, 1, 0, 0.807843, 0.0509804, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vskfa"]
+gradient = SubResource("Gradient_nhbkt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pjcup"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+color = Color(8.66354e-07, 0.852386, 0.0571748, 1)
+color_ramp = SubResource("GradientTexture1D_vskfa")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3uyv8")
@@ -727,6 +752,16 @@ metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
 [node name="hitboxShape" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_nhbkt")
+
+[node name="slime_explosion" type="GPUParticles2D" parent="."]
+position = Vector2(0, 3)
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_pjcup")
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
