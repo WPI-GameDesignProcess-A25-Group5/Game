@@ -7,10 +7,11 @@ signal coffeesGotten
 
 func _ready() -> void:
 	PauseScreen.allowPausing = true
+	Transition.endTransition()
 
 func _exit_tree() -> void:
-	PauseScreen.allowPausing = false
-	
+	PauseScreen.allowPausing = false	
+
 func add_coffee(coffee):
 	coffees.push_back(coffee)
 
