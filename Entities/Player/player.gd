@@ -19,6 +19,7 @@ var launched := false;
 var stuck := false
 var dead := false
 var grounded = false
+var dashing = false
 
 var launchVel := Vector2.ZERO
 var lastUpDir  := up_direction
@@ -30,7 +31,12 @@ var lastUpDir  := up_direction
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	$DashTimer.connect("timeout",func():
+		dashing=false
+		velocity = -up_direction*10	
+		stuck =true
+		grounded = true
+	)
 	
 	%Health.MAX_HEALTH = MAX_HEALTH
 	$Respawning.setRespawnPoint(self.global_position)
@@ -58,11 +64,16 @@ func _on_healed(amount, _current_health, by_what):
 	
 	print("Healed", amount, "by", by_what.name)
 
+var lastDir = Vector2.RIGHT
+
 func _physics_process(delta: float) -> void:
 	if not grounded:
 		velocity += get_gravity() * delta 
 		if (velocity.y>MAX_FALL_SPEED):
 			velocity.y=MAX_FALL_SPEED
+	
+	if(dashing):
+		dash()
 		 
 	if grounded:
 		if(!launched): # to not slow down velocity if just launched
@@ -85,9 +96,14 @@ func _physics_process(delta: float) -> void:
 			else:
 				chirality = -1
 		directionCorrection = up_direction.rotated(chirality* PI/2)
-			
+		#print(lastDir)
+		
 		if direction:
+			lastDir = directionCorrection*direction
 			velocity = direction * SPEED *directionCorrection
+		if(Input.is_action_just_pressed("Dash") and not dashing):
+			startDash()
+			
 			
 		if(checkUnstick or launched): #leaving bloc/tile or launching
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
@@ -118,11 +134,14 @@ func _physics_process(delta: float) -> void:
 		velocity += launchVel 
 		launchVel = Vector2.ZERO		
 		launched = false;
+
+	
 	var collisions := move_and_collide(velocity*delta)
 	
 	if(collisions):
 		var isStick = isStickBlock(collisions)
-		
+		if(dashing):
+			prematureEndDash()
 		if(isStick):
 			up_direction = collisions.get_normal()
 			lastUpDir = up_direction
@@ -167,8 +186,25 @@ func _physics_process(delta: float) -> void:
 		
 	#
 
+func startDash():
+	dashing = true
+	dash()
+	$DashTimer.start()
+	pass
+func dash():
+	
+	launched = true
+	grounded = false
+	stuck = false
+	velocity = lastDir *500
+	pass
+func prematureEndDash():
+	$DashTimer.stop()
+	dashing = false
+	print("STOP")
+
 func hit(amount:float,byWho:Node2D):
-	hitJump(byWho,2)
+	hitJump(byWho,5)
 	pass
 	
 func respawn():

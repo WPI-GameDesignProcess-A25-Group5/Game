@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx75ednbn6s82"]
+
+[ext_resource type="Script" uid="uid://bcgl1qdkwg2c1" path="res://Entities/Enemies/flying_enemy.gd" id="1_4rqxl"]
+[ext_resource type="Texture2D" uid="uid://bt3fmflvslljm" path="res://Assets/Sprites/Character/Enemy/Fly enemy.png" id="2_lk87l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ewv7"]
+atlas = ExtResource("2_lk87l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oocrq"]
+atlas = ExtResource("2_lk87l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8wu3"]
+atlas = ExtResource("2_lk87l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2c1g"]
+atlas = ExtResource("2_lk87l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cejyf"]
+atlas = ExtResource("2_lk87l")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyue4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ewv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oocrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8wu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2c1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cejyf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rqxl"]
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6k0l8"]
+radius = 146.997
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+z_index = 2
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_4rqxl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nyue4")
+autoplay = "default"
+frame_progress = 0.791872
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4rqxl")
+
+[node name="DetectRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRange"]
+shape = SubResource("CircleShape2D_6k0l8")
+
+[node name="ToFarTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="DecisionTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="DetectRange" to="." method="_on_detect_range_body_entered"]
+[connection signal="body_exited" from="DetectRange" to="." method="_on_detect_range_body_exited"]
+[connection signal="timeout" from="ToFarTimer" to="." method="_on_to_far_timer_timeout"]
+[connection signal="timeout" from="DecisionTimer" to="." method="_on_decision_timer_timeout"]

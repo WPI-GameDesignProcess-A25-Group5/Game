@@ -682,6 +682,10 @@ shape = SubResource("CircleShape2D_tekja")
 wait_time = 0.6
 one_shot = true
 
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
 limit_smoothed = true
