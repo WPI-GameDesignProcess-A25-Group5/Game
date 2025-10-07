@@ -19,20 +19,24 @@ func _process(_delta: float) -> void:
 var buttonPressed = ""
 func _on_start_button_pressed() -> void:
 	$Buttons/Click.play()
+	$Buttons/VBoxContainer/StartButton.disabled = true
 	buttonPressed = "start"
 	
 
 func _on_credits_button_pressed() -> void:
 	$Buttons/Click.play()
+	$Buttons/VBoxContainer/CreditsButton.disabled = true
 	buttonPressed = "credits"
 
 
 func _on_exit_button_pressed() -> void:
 	$Buttons/Click.play()
+	$Buttons/VBoxContainer/ExitButton.disabled= true
 	buttonPressed = "exit"
 	
 func _on_example_pressed() -> void:
 	$Buttons/Click.play()
+	$Buttons/VBoxContainer/TestButton.disabled = true
 	buttonPressed = "test"
 
 func _on_click_sound_finished() -> void:
