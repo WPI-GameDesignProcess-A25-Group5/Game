@@ -20,6 +20,7 @@ boot_splash/minimum_display_time=2500
 [autoload]
 
 EventBus="*res://Scenes/event_bus.gd"
+GlobalScript="*res://global_script.gd"
 
 [display]
 
