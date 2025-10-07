@@ -1,10 +1,11 @@
-[gd_scene load_steps=78 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=83 format=3 uid="uid://dq0xkdl80qp3j"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
 [ext_resource type="Texture2D" uid="uid://bb1hiydwe2j1l" path="res://Assets/Sprites/Slime Sprites/idle_slime-Sheet.png" id="2_5c2io"]
 [ext_resource type="Texture2D" uid="uid://d0q8hh4rxkmwj" path="res://Assets/Sprites/Slime Sprites/move_slime_run_R.png" id="2_7a1se"]
 [ext_resource type="Texture2D" uid="uid://dfryp1hpwx1ye" path="res://Assets/Sprites/Slime Sprites/damage_need_white_flash-Sheet.png" id="2_owvpp"]
+[ext_resource type="Shader" uid="uid://c1pfqni6jw8ae" path="res://Entities/Player/hitflash.tres" id="2_r8fok"]
 [ext_resource type="Script" uid="uid://cxcv77nyc8m3j" path="res://Entities/Player/mouse_vector.gd" id="3_lu8i8"]
 [ext_resource type="Texture2D" uid="uid://bjm3tfck8s6wr" path="res://Assets/Sprites/Slime Sprites/jump_slime-Sheet.png" id="4_lub02"]
 [ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/components/block_interaction_grid/block_interaction_grid.tscn" id="4_tekja"]
@@ -14,6 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhbkt"]
+shader = ExtResource("2_r8fok")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0fwy"]
 atlas = ExtResource("2_owvpp")
@@ -600,15 +606,52 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_5c2io")
 color = Color(0.72128, 0.98, 0.5488, 1)
 
+[sub_resource type="Animation" id="Animation_vskfa"]
+resource_name = "hitflash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_pjcup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0poeq"]
+_data = {
+&"RESET": SubResource("Animation_pjcup"),
+&"hitflash": SubResource("Animation_vskfa")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3uyv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0, 0.772549, 0.207843, 1)
+material = SubResource("ShaderMaterial_nhbkt")
 sprite_frames = SubResource("SpriteFrames_3uyv8")
 animation = &"Idle"
-frame_progress = 0.0488679
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimatedSprite2D"]
 root_node = NodePath(".")
@@ -698,6 +741,12 @@ editor_draw_drag_margin = true
 
 [node name="HealthUI" parent="CanvasLayer2" instance=ExtResource("12_iplt1")]
 position = Vector2(72, 61)
+
+[node name="hitflash_ani" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D/AnimationTree/AnimationPlayer")
+libraries = {
+&"": SubResource("AnimationLibrary_0poeq")
+}
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]
 [connection signal="slingShotFire" from="CanvasLayer/MouseVector" to="." method="_on_mouse_vector_sling_shot_fire"]
