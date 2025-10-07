@@ -234,12 +234,15 @@ rotation = -4.71238
 
 [node name="rotating enemy" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-193, -351)
+collision_layer = 4
 
 [node name="rotating enemy2" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(133, -117)
+collision_layer = 4
 
 [node name="rotating enemy3" parent="Enemies" instance=ExtResource("6_wm1xt")]
 position = Vector2(-36, -19)
+collision_layer = 4
 
 [node name="Heal_Pickup" parent="." instance=ExtResource("9_rix1b")]
 position = Vector2(-143, 79)
