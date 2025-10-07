@@ -13,6 +13,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _update_sprite() -> void:
 	if $Marker2D.global_position == GlobalScript.checkpoint_pos:
-		"StartupCheckpoint"
+		play("StartupCheckpoint")
+		play("ActiveCheckpoint")
 	else:
-		frame = 0
+		play("IdleCheckpoint")
