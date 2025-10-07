@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
-[ext_resource type="Script" uid="uid://bomeppudggafa" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
+[ext_resource type="Script" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0fwy"]
 atlas = ExtResource("2_owvpp")
