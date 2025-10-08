@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_qumfl"]
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_s486e"]
-[ext_resource type="PackedScene" uid="uid://d17phx2vt4ygd" path="res://Entities/Player/player.tscn" id="2_7yn8b"]
+[ext_resource type="PackedScene" uid="uid://b2ldng44ublxu" path="res://Entities/Player/player.tscn" id="2_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://0wung64iiiqs" path="res://Entities/Enemies/left_right_basic_enemy.tscn" id="3_etk83"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="3_ngcqm"]
 [ext_resource type="PackedScene" uid="uid://dga4acxe01so3" path="res://UtilityScenes/pickups/coffee/coffee.tscn" id="5_5t7yc"]
