@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://dq0xkdl80qp3j"]
+[gd_scene load_steps=83 format=3 uid="uid://d17phx2vt4ygd"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -604,7 +604,22 @@ gravity = Vector3(0, 98, 0)
 scale_min = 4.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_5c2io")
-color = Color(0.72128, 0.98, 0.5488, 1)
+color = Color(0.441, 0.704389, 0.230315, 1)
+
+[sub_resource type="Animation" id="Animation_pjcup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vskfa"]
 resource_name = "hitflash"
@@ -622,21 +637,6 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_pjcup"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../..:material:shader_parameter/enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0poeq"]
 _data = {
 &"RESET": SubResource("Animation_pjcup"),
@@ -644,6 +644,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
 collision_layer = 2
 script = ExtResource("1_3uyv8")
 
@@ -676,6 +677,7 @@ shape = SubResource("CircleShape2D_tekja")
 
 [node name="SlingShotParticles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
+z_index = 4
 emitting = false
 amount = 4
 lifetime = 0.5

@@ -55,6 +55,7 @@ func _on_death(_amount, bywho):
 	print("Died from", bywho.name)
 	Engine.time_scale=0.5
 	death(_amount, bywho)
+	hitflash_ani.play("hitflash")
 	animated_sprite_2d.play("Death")
 	
 
