@@ -22,6 +22,7 @@ boot_splash/minimum_display_time=2500
 EventBus="*res://autoloads/event_bus.gd"
 PauseScreen="*res://autoloads/PauseScreen.tscn"
 Transition="*res://autoloads/Transition.tscn"
+GlobalScript="*res://autoloads/global_script.gd"
 
 [display]
 

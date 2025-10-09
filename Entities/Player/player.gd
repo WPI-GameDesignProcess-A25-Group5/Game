@@ -32,6 +32,10 @@ var lastUpDir  := up_direction
 
 @onready var animTree = $AnimatedSprite2D/AnimationTree
 
+func setRespawn(pos:Vector2):
+	#$Respawning.setRespawnPoint(self.global_position)
+	$Respawning.setRespawnPoint(pos)
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$DashTimer.connect("timeout",func():
