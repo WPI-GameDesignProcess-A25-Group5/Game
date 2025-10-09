@@ -6,7 +6,7 @@ const SPEED=60
 
 @onready var left_collision: RayCast2D = $left_collision
 @onready var right_collision: RayCast2D = $right_collision
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D2
 
 var direction=1
 # Called every frame. 'delta' is the elapsed time since the previous frame.

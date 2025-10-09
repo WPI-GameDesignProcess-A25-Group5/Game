@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bx50sn6ikapfx"]
+[gd_scene load_steps=44 format=3 uid="uid://bx50sn6ikapfx"]
 
 [ext_resource type="Script" uid="uid://dmharch1gfqkk" path="res://Scenes/MainMenu/MainScene.gd" id="1_5a7ho"]
 [ext_resource type="AudioStream" uid="uid://dq6auged6r37y" path="res://Assets/audio/arcade-blitz-neon-rhythms-by-sascha-ende-from-filmmusic-io.mp3" id="2_akot6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgolk5v2ir68j" path="res://Assets/Sprites/Buttons/CreditsSlimetower.png" id="6_64bn7"]
 [ext_resource type="AudioStream" uid="uid://dksy27878me50" path="res://Assets/audio/Buttonclick.wav" id="6_rjuq2"]
 [ext_resource type="Texture2D" uid="uid://5kih18n6sh04" path="res://Assets/Sprites/Buttons/ExitSlimetower.png" id="7_357se"]
+[ext_resource type="PackedScene" uid="uid://dx4lrjeg5tblo" path="res://UtilityScenes/Button/menuButton.tscn" id="7_lukw8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtxnb"]
 atlas = ExtResource("2_ssogg")
@@ -234,7 +235,26 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Start Screen" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_lukw8"]
+offsets = PackedFloat32Array(0, 0.665493, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.476196, 0.704543, 7.70092e-07, 1, 0.386662, 0.497435, 4.81307e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_evbfs"]
+gradient = SubResource("Gradient_lukw8")
+width = 26
+height = 14
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Start Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_5a7ho")
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="."]
@@ -244,84 +264,118 @@ autoplay = true
 bus = &"Music"
 parameters/looping = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Visuals" type="Node" parent="."]
+[node name="Visuals" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 240.0
+offset_right = 320.0
+offset_bottom = 240.0
+scale = Vector2(10, 10)
+size_flags_horizontal = 4
 
-[node name="Background" type="AnimatedSprite2D" parent="Visuals"]
+[node name="Background" type="AnimatedSprite2D" parent="CanvasLayer/Visuals"]
 sprite_frames = SubResource("SpriteFrames_vtnyj")
 animation = &"new_animation"
 autoplay = "new_animation"
 frame_progress = 0.220913
 
-[node name="Slime" type="AnimatedSprite2D" parent="Visuals"]
+[node name="Slime" type="AnimatedSprite2D" parent="CanvasLayer/Visuals"]
 position = Vector2(6, 2)
 scale = Vector2(0.5, 0.472222)
 sprite_frames = SubResource("SpriteFrames_lgv7g")
 autoplay = "default"
 frame_progress = 0.395316
 
-[node name="Logo" type="Sprite2D" parent="Visuals"]
+[node name="Logo" type="Sprite2D" parent="CanvasLayer/Visuals"]
 position = Vector2(-13, -9)
 rotation = -0.0523599
 scale = Vector2(0.28125, 0.270833)
 texture = ExtResource("4_rjuq2")
 
-[node name="Buttons" type="Node" parent="."]
+[node name="Buttons" type="Control" parent="."]
+z_index = 1
+anchors_preset = 0
+offset_left = 480.0
+offset_right = 480.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Click" type="AudioStreamPlayer" parent="Buttons"]
 stream = ExtResource("6_rjuq2")
 volume_db = 12.115
 bus = &"SFX"
 
-[node name="Start" type="Sprite2D" parent="Buttons"]
-position = Vector2(19, -17.75)
-scale = Vector2(0.4375, 0.4375)
-texture = ExtResource("5_c1457")
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 1
+offset_top = 27.0
+offset_right = 28.0
+offset_bottom = 75.0
+scale = Vector2(4, 4)
+theme_override_constants/separation = 3
 
-[node name="StartButton" type="Button" parent="Buttons/Start"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -13.0
-offset_top = -7.0
-offset_right = 13.0
-offset_bottom = 7.0
+[node name="StartButton" parent="Buttons/VBoxContainer" instance=ExtResource("7_lukw8")]
+custom_minimum_size = Vector2(26, 14)
+layout_mode = 2
+texture_normal = ExtResource("5_c1457")
+ignore_texture_size = true
+stretch_mode = 3
+recenter = Vector2(-3, -4)
 
-[node name="Credits" type="Sprite2D" parent="Buttons"]
-position = Vector2(19, -10)
-scale = Vector2(0.410156, 0.463542)
-texture = ExtResource("6_64bn7")
+[node name="CreditsButton" parent="Buttons/VBoxContainer" instance=ExtResource("7_lukw8")]
+custom_minimum_size = Vector2(28, 14)
+layout_mode = 2
+texture_normal = ExtResource("6_64bn7")
+ignore_texture_size = true
+stretch_mode = 3
+recenter = Vector2(-3, -4)
 
-[node name="CreditsButton" type="Button" parent="Buttons/Credits"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -14.6286
-offset_top = -6.47191
-offset_right = 15.3714
-offset_bottom = 7.52809
+[node name="ExitButton" parent="Buttons/VBoxContainer" instance=ExtResource("7_lukw8")]
+custom_minimum_size = Vector2(26, 14)
+layout_mode = 2
+texture_normal = ExtResource("7_357se")
+ignore_texture_size = true
+stretch_mode = 3
+recenter = Vector2(-3, -4)
 
-[node name="Exit" type="Sprite2D" parent="Buttons"]
-position = Vector2(19, -2)
-scale = Vector2(0.453125, 0.479167)
-texture = ExtResource("7_357se")
+[node name="TestButton" parent="Buttons/VBoxContainer" instance=ExtResource("7_lukw8")]
+clip_contents = true
+custom_minimum_size = Vector2(26, 14)
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_evbfs")
+ignore_texture_size = true
+stretch_mode = 3
+recenter = Vector2(-3, -4)
 
-[node name="ExitButton" type="Button" parent="Buttons/Exit"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -13.0
-offset_top = -6.0
-offset_right = 13.0
-offset_bottom = 8.0
+[node name="Label" type="Label" parent="Buttons/VBoxContainer/TestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 38.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.405, 0.405)
+text = "TestLVL"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="versionNotesButton" type="LinkButton" parent="Buttons"]
-offset_left = 24.0
-offset_top = 22.0
-offset_right = 133.0
-offset_bottom = 45.0
-scale = Vector2(0.055, 0.055)
+layout_mode = 0
+offset_left = 48.0
+offset_top = 454.0
+offset_right = 157.0
+offset_bottom = 477.0
 text = "Version Notes"
 underline = 1
 
 [connection signal="finished" from="Buttons/Click" to="." method="_on_click_sound_finished"]
-[connection signal="pressed" from="Buttons/Start/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Buttons/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Buttons/Exit/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/TestButton" to="." method="_on_example_pressed"]
 [connection signal="pressed" from="Buttons/versionNotesButton" to="." method="_on_version_notes_button_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckajxxohgwtiv"]
 
-[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_1xpax"]
+[ext_resource type="Texture2D" uid="uid://bttarl4h01xwe" path="res://Assets/Sprites/Tilemap/Slime_Tower_Tilemap-Sheet.png" id="1_1xpax"]
 [ext_resource type="PackedScene" uid="uid://c46lwckrjxj05" path="res://Blocks/baseBlock.tscn" id="2_clq1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0181v"]
@@ -9,8 +9,9 @@ size = Vector2(32, 32)
 [node name="TestBlock" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_1xpax")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
 
 [node name="BaseBlock" parent="." instance=ExtResource("2_clq1d")]
 

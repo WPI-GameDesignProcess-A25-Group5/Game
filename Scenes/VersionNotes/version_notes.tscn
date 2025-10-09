@@ -34,13 +34,59 @@ offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VScrollBar"]
+[node name="HBoxContainer" type="GridContainer" parent="VScrollBar"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+columns = 2
+
+[node name="Label1" type="Label" parent="VScrollBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Verison 0.1
+- Music and Sound Effects
+- WPI Splash Screen
+- Credits
+- Main Menu
+- Version Notes Page
+"
+
+[node name="Label2" type="Label" parent="VScrollBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 text = "Verison 0.2
 - Basic Enemies
 - Player and basic movement
 - Has some sprites made
 - An initial test level"
+
+[node name="Label3" type="Label" parent="VScrollBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Verison 0.3
+-Added damage and health
+-Added death and respawn
+- Added new tileset
+-Added Example scene with 
+new tile set
+- Player animations
+"
+
+[node name="Label4" type="Label" parent="VScrollBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Verison 0.4
+- Pause Screen
+- Updated tileset
+- some blocks are now 
+non stickable
+- New enemy sprites
+- Health UI
+- Restored old Version Notes"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
