@@ -104,7 +104,6 @@ func _on_time_till_hit_timeout() -> void:
 		hit2.queue_free()
 		returning=true
 		hit2=null
-		print("howdy")
 	)
 	
 	pass # Replace with function body.
