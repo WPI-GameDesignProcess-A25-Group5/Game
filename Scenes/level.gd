@@ -1,7 +1,7 @@
 extends Node
 class_name Level
 
-var bossRoom = load("res://Scenes/Boss Room.tscn")
+
 
 var coffee_collected = false
 var coffees = []
@@ -42,8 +42,10 @@ func collecte_coffee(cofee):
 
 
 func _on_goal_body_entered(body: Node2D) -> void:
+	#var bossRoom = load("res://Scenes/Boss Room.tscn")
 	Transition.startTransition()
 	var temp = func(tree):
-		tree.change_scene_to_packed(bossRoom)
+		tree.change_scene_to_file("res://Scenes/Boss Room.tscn")
+		#tree.change_scene_to_packed(bossRoom)
 	Transition.connect("readyTotransition",temp)
 	pass # Replace with function body.

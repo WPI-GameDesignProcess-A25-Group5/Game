@@ -538,13 +538,13 @@ sources/1 = SubResource("TileSetScenesCollectionSource_7o6r1")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7vofs"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_ib45y")
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="Goal" type="Area2D" parent="World"]
-position = Vector2(0, 32)
+position = Vector2(0, 123)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Goal"]

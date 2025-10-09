@@ -1,7 +1,165 @@
-[gd_scene load_steps=7 format=4 uid="uid://ckq5flrgl7ken"]
+[gd_scene load_steps=18 format=4 uid="uid://ckq5flrgl7ken"]
 
 [ext_resource type="Texture2D" uid="uid://c4wgae2hg5vf6" path="res://Assets/Tilemap/Boss room tiles.png" id="1_bd513"]
-[ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_bqga4"]
+[ext_resource type="Script" uid="uid://458ujxmrxg0f" path="res://Scenes/bossRoom.gd" id="1_eafis"]
+[ext_resource type="Texture2D" uid="uid://ickmvng5w1k2" path="res://Assets/Sprites/Character/Boss_frog/Boss_froggooo-Sheet.png" id="2_eafis"]
+
+[sub_resource type="Animation" id="Animation_eafis"]
+resource_name = "coffee"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/niceJob:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_4qkbt"]
+resource_name = "nocoffee"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/fired/Label2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 3.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/fired/Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 2.46667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/fired:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_x6iau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/niceJob:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/fired/Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/fired/Label:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/fired:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2dp8"]
+_data = {
+&"RESET": SubResource("Animation_x6iau"),
+&"coffee": SubResource("Animation_eafis"),
+&"nocoffee": SubResource("Animation_4qkbt")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qkbt"]
+atlas = ExtResource("2_eafis")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6iau"]
+atlas = ExtResource("2_eafis")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2dp8"]
+atlas = ExtResource("2_eafis")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8kc6"]
+atlas = ExtResource("2_eafis")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o826a"]
+atlas = ExtResource("2_eafis")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8cwdd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qkbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6iau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2dp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8kc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o826a")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 5.0
+}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ibiap"]
 texture = ExtResource("1_bd513")
@@ -73,7 +231,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_lyoro")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_bqga4")
+script = ExtResource("1_eafis")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -133,8 +291,17 @@ text = "Good Job"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_k2dp8")
+}
 
 [node name="World" type="Node2D" parent="."]
+
+[node name="Boss" type="AnimatedSprite2D" parent="World"]
+position = Vector2(33, 23)
+sprite_frames = SubResource("SpriteFrames_8cwdd")
+animation = &"Talk"
+autoplay = "Talk"
 
 [node name="WorldLayer" type="TileMapLayer" parent="World"]
 use_parent_material = true
@@ -154,3 +321,5 @@ collision_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.275, 3.275)
+
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
