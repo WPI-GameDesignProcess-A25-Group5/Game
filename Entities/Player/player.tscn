@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bb1hiydwe2j1l" path="res://Assets/Sprites/Slime Sprites/idle_slime-Sheet.png" id="2_5c2io"]
 [ext_resource type="Texture2D" uid="uid://d0q8hh4rxkmwj" path="res://Assets/Sprites/Slime Sprites/move_slime_run_R.png" id="2_7a1se"]
 [ext_resource type="Texture2D" uid="uid://dfryp1hpwx1ye" path="res://Assets/Sprites/Slime Sprites/damage_need_white_flash-Sheet.png" id="2_owvpp"]
-[ext_resource type="Shader" uid="uid://c1pfqni6jw8ae" path="res://Entities/Player/hitflash.tres" id="2_r8fok"]
+[ext_resource type="Shader" uid="uid://3v8oi8vco4f5" path="res://Entities/Player/hitflash.tres" id="2_r8fok"]
 [ext_resource type="Script" uid="uid://cxcv77nyc8m3j" path="res://Entities/Player/mouse_vector.gd" id="3_lu8i8"]
 [ext_resource type="Texture2D" uid="uid://bjm3tfck8s6wr" path="res://Assets/Sprites/Slime Sprites/jump_slime-Sheet.png" id="4_lub02"]
 [ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/components/block_interaction_grid/block_interaction_grid.tscn" id="4_tekja"]
@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health and hitboxes/Health.tscn" id="9_lub02"]
 [ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
-[ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
-[ext_resource type="Script" uid="uid://bomeppudggafa" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
+[ext_resource type="PackedScene" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
+[ext_resource type="Script" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="17_vskfa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nhbkt"]
@@ -631,9 +631,13 @@ angle_min = 1.07288e-05
 angle_max = 1.07288e-05
 direction = Vector3(0, -1, 0)
 spread = 180.0
-initial_velocity_min = 50.0
-initial_velocity_max = 60.0
+initial_velocity_min = 140.48
+initial_velocity_max = 150.48
 gravity = Vector3(0, 0, 0)
+linear_accel_min = -79.21
+linear_accel_max = -79.21
+damping_min = 200.0
+damping_max = 200.0
 scale_min = 3.0
 scale_max = 3.0
 color = Color(8.66354e-07, 0.852386, 0.0571748, 1)
