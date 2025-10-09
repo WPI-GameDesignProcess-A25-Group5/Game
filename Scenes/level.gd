@@ -1,6 +1,8 @@
 extends Node
 class_name Level
 
+
+
 var coffee_collected = false
 var coffees = []
 signal coffeesGotten
@@ -26,6 +28,8 @@ func collecte_coffee(cofee):
 		coffeesGotten.emit()
 	else:
 		coffee_collected = false
+		
+	EventBus.coffeecollected = coffee_collected
 	
 #func _on_player_dies(_position: Vector2) -> void:
 	#$PlayerRespawnTimer.start()
@@ -35,3 +39,14 @@ func collecte_coffee(cofee):
 #func _on_player_respawn_timer_timeout() -> void:
 	#$Player.respawn()
 	#pass # Replace with function body.
+
+
+func _on_goal_body_entered(body: Node2D) -> void:
+	$Player.stopSpeedrunTimer()
+	#var bossRoom = load("res://Scenes/Boss Room.tscn")
+	Transition.startTransition()
+	var temp = func(tree):
+		tree.change_scene_to_file("res://Scenes/Boss Room.tscn")
+		#tree.change_scene_to_packed(bossRoom)
+	Transition.connect("readyTotransition",temp)
+	pass # Replace with function body.

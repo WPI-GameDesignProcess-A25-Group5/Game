@@ -1,17 +1,63 @@
-[gd_scene load_steps=10 format=3 uid="uid://qfco76hfhwe8"]
+[gd_scene load_steps=17 format=3 uid="uid://qfco76hfhwe8"]
 
 [ext_resource type="Script" uid="uid://7aieqypjaa0f" path="res://Entities/Enemies/rotating_enemy.gd" id="1_x7at0"]
-[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_e1k57"]
+[ext_resource type="Texture2D" uid="uid://bdodjdl4mq33b" path="res://Assets/Sprites/Character/Enemy/Snail Red.png" id="2_tofdk"]
 [ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/components/block_interaction_grid/block_interaction_grid.tscn" id="3_tofdk"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="4_x7at0"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="5_e1k57"]
 [ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health and hitboxes/Health.tscn" id="5_tofdk"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw376"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbaug"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_453tp"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ij8s"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnbn6"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbeo2"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e58dl"]
+atlas = ExtResource("2_tofdk")
+region = Rect2(192, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uyv8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_e1k57")
+"texture": SubResource("AtlasTexture_fw376")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbaug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_453tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ij8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnbn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbeo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e58dl")
 }],
 "loop": true,
 "name": &"default",
@@ -29,12 +75,9 @@ collision_layer = 4
 script = ExtResource("1_x7at0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(1, 0.3, 0.3, 1)
-scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_3uyv8")
 
 [node name="BlockInteractionGrid" parent="AnimatedSprite2D" instance=ExtResource("3_tofdk")]
-scale = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tekja")
