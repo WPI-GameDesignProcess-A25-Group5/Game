@@ -12,7 +12,7 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ws1hi"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ngcqm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ws1hi"]
 texture = ExtResource("5_r08cw")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -199,7 +199,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_5t7yc"]
 tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_ngcqm")
+sources/1 = SubResource("TileSetAtlasSource_ws1hi")
 
 [node name="ExampleMap" type="Node2D"]
 script = ExtResource("1_qumfl")
@@ -252,6 +252,7 @@ position = Vector2(117, -48)
 
 [node name="rotating enemy2" parent="Enemies" instance=ExtResource("5_00287")]
 position = Vector2(-227, 3)
+collision_layer = 2
 
 [node name="BasicBinaryMovementEnemy" parent="Enemies" instance=ExtResource("3_etk83")]
 position = Vector2(-251, 234)
@@ -261,4 +262,4 @@ position = Vector2(7, 63)
 rotation = 1.5708
 
 [node name="rotating enemy" parent="Enemies" instance=ExtResource("5_00287")]
-position = Vector2(127, -243)
+position = Vector2(127, -250)

@@ -28,25 +28,25 @@ func randVec():
 func _physics_process(_delta: float) -> void:
 	
 	if(!returning):
-		if((global_position-spawnPoint).length()>30):
+		if((global_position-spawnPoint).length()>toFarDist):
 			if($ToFarTimer.is_stopped()):
 				$ToFarTimer.start()
 		if(!target):
 			velocity = direction*idleSpeed
 		else:
-			velocity = ((target.position - position).normalized())*chaseSpeed 
+			velocity = ((target.global_position - global_position).normalized())*chaseSpeed 
 	else:
 		$HitBox/TimeTillHit.stop()
 		velocity = ((spawnPoint - global_position).normalized())*idleSpeed
 		if((spawnPoint-global_position).length()<toFarDist/2):
 			returning = false
+			
 	if(velocity.dot(Vector2.RIGHT)>0):
 		$AnimatedSprite2D.flip_h = false
 	else:
 		$AnimatedSprite2D.flip_h = true
 		
 	move_and_slide()
-	
 	pass
 
 func onhitPlayer():
@@ -60,6 +60,7 @@ func _on_decision_timer_timeout() -> void:
 
 func _on_to_far_timer_timeout() -> void:
 	returning = true
+	print("ret")
 	pass # Replace with function body.
 
 
@@ -69,6 +70,7 @@ func _on_detect_range_body_entered(body: Node2D) -> void:
 
 
 func _on_detect_range_body_exited(_body: Node2D) -> void:
+	
 	target =null
 	pass # Replace with function body.
 func _on_death(_amount, bywho):

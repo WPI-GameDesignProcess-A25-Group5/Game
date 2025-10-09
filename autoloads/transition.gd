@@ -11,7 +11,6 @@ func startTransition():
 	if(!transitionWaiting):
 		$ColorRect.modulate = Color.TRANSPARENT
 		visible = true
-		print("pin")
 		create_tween().tween_property($ColorRect,"modulate",Color.WHITE,0.3).finished.connect(func():transitionWaiting=true; readyTotransition.emit(get_tree()))
 
 func endTransition():

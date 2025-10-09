@@ -54,6 +54,8 @@ func _physics_process(delta: float) -> void:
 			elif(!test_move(self.transform,movementTest*delta)): # try rotating around block, if can,Do it
 				#print("untsick")
 				stuck = false
+				velocity = movementTest
+				#pass
 			else:
 				velocity = movementTest
 				#velocity +=
@@ -63,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		velocity += launchVel
 		launchVel = Vector2.ZERO		
 		launched = false;
-	
+	$AnimatedSprite2D.flip_h = direction<0
 	var collisions := move_and_collide(velocity*delta)
 	if(collisions):
 		lastUpDir = up_direction

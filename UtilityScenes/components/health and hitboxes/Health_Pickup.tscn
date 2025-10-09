@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8b1mwtor800m"]
+[gd_scene load_steps=6 format=3 uid="uid://dy8dc1712doro"]
 
-[ext_resource type="Script" uid="uid://d3104b2dcfiu" path="res://UtilityScenes/components/health and hitboxes/healbox.gd" id="1_818l6"]
-[ext_resource type="Script" uid="uid://23ba2f1hx68q" path="res://UtilityScenes/components/health and hitboxes/health_pickup.gd" id="1_ra36e"]
+[ext_resource type="Script" path="res://UtilityScenes/components/health and hitboxes/healbox.gd" id="1_818l6"]
+[ext_resource type="Script" path="res://UtilityScenes/components/health and hitboxes/health_pickup.gd" id="1_ra36e"]
 [ext_resource type="Texture2D" uid="uid://bnjfbj7w83x3g" path="res://Assets/Sprites/UI Sprites/health_full_1-Sheet.png" id="2_3xc5e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_loj76"]

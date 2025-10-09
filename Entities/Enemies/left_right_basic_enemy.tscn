@@ -94,7 +94,7 @@ target_position = Vector2(-5, 3)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_rlibp")
-damage = 3
+damage = 2
 metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]

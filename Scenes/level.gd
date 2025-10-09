@@ -42,6 +42,7 @@ func collecte_coffee(cofee):
 
 
 func _on_goal_body_entered(body: Node2D) -> void:
+	$Player.stopSpeedrunTimer()
 	#var bossRoom = load("res://Scenes/Boss Room.tscn")
 	Transition.startTransition()
 	var temp = func(tree):

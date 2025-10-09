@@ -1,11 +1,11 @@
 [gd_resource type="TileSet" load_steps=6 format=3 uid="uid://bbsdkg1j8wfv"]
 
-[ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_2vbdc"]
+[ext_resource type="Texture2D" uid="uid://d0ls0tncbdc0k" path="res://Assets/Tilemap/Slime Tower Tilemap 3.png" id="1_s6r43"]
 [ext_resource type="PackedScene" uid="uid://bhgtxfbl7yh0u" path="res://UtilityScenes/checkpoint/Checkpoint 2.tscn" id="2_p08uq"]
 [ext_resource type="PackedScene" uid="uid://dga4acxe01so3" path="res://UtilityScenes/pickups/coffee/coffee.tscn" id="3_s6r43"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5t7yc"]
-texture = ExtResource("1_2vbdc")
+texture = ExtResource("1_s6r43")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -328,6 +328,37 @@ texture_region_size = Vector2i(32, 32)
 8:3/0 = 0
 9:3/0 = 0
 9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -8, -16, -8, -16, -16, 16, -16)
+6:0/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_s6r43"]
 scenes/1/scene = ExtResource("2_p08uq")
@@ -336,6 +367,7 @@ scenes/2/scene = ExtResource("3_s6r43")
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 custom_data_layer_0/name = "Stickable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_5t7yc")
