@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://ckq5flrgl7ken"]
+[gd_scene load_steps=7 format=4 uid="uid://ckq5flrgl7ken"]
 
 [ext_resource type="Texture2D" uid="uid://c4wgae2hg5vf6" path="res://Assets/Tilemap/Boss room tiles.png" id="1_bd513"]
+[ext_resource type="Script" uid="uid://brtok3hej58ha" path="res://Scenes/level.gd" id="1_bqga4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ibiap"]
 texture = ExtResource("1_bd513")
@@ -72,6 +73,66 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_lyoro")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_bqga4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fired" type="VBoxContainer" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -187.5
+offset_top = -137.0
+offset_right = 187.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/fired"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Wheres My Coffee..."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/fired"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Your FIRED!!"
+horizontal_alignment = 1
+
+[node name="niceJob" type="VBoxContainer" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -187.5
+offset_top = -137.0
+offset_right = 187.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/niceJob"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Good Job"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 
 [node name="World" type="Node2D" parent="."]
 
@@ -90,3 +151,6 @@ z_index = -70
 tile_map_data = PackedByteArray("AAD6//r/AAAAAAIAAAAGAPr/AAADAAIAAAD6/wEAAAAAAAQAAAAGAAEAAAADAAQAAAD7/wEAAAABAAMAAAD8/wEAAAABAAMAAAD9/wEAAAABAAMAAAD+/wEAAAABAAMAAAD//wEAAAABAAMAAAAAAAEAAAABAAMAAAABAAEAAAABAAMAAAACAAEAAAABAAMAAAADAAEAAAABAAMAAAAEAAEAAAABAAMAAAAFAAEAAAABAAMAAAD7//r/AAABAAIAAAD8//r/AAACAAIAAAD9//r/AAABAAIAAAD+//r/AAABAAIAAAD///r/AAABAAIAAAAAAPr/AAACAAIAAAABAPr/AAABAAIAAAACAPr/AAABAAIAAAADAPr/AAABAAIAAAAEAPr/AAACAAIAAAAFAPr/AAABAAIAAAAGAPv/AAADAAMAAAAGAPz/AAADAAMAAAAGAP7/AAADAAMAAAAGAP//AAADAAMAAAAGAAAAAAADAAMAAAD6//v/AAAAAAMAAAD6//z/AAAAAAMAAAD6//3/AAAAAAMAAAD6//7/AAAAAAMAAAD6////AAAAAAMAAAD6/wAAAAAAAAMAAAAGAP3/AAADAAMAAAD7//z/AAABAAMAAAD7//3/AAABAAMAAAD7//7/AAABAAMAAAD8//z/AAABAAMAAAD8//3/AAAEAAIAAAD8//7/AAAGAAIAAAD9//z/AAABAAMAAAD9//3/AAABAAMAAAD9//7/AAABAAMAAAD+//z/AAABAAMAAAD+//3/AAABAAMAAAD+//7/AAABAAMAAAD+////AAACAAMAAAD+/wAAAAAEAAIAAAD///z/AAABAAMAAAD///3/AAAEAAMAAAD///7/AAABAAMAAAD/////AAABAAMAAAD//wAAAAABAAMAAAAAAPz/AAABAAMAAAAAAP3/AAAFAAIAAAAAAP7/AAAFAAMAAAAAAP//AAABAAMAAAAAAAAAAAABAAMAAAABAPz/AAABAAMAAAABAP3/AAAEAAMAAAABAP7/AAABAAMAAAABAP//AAABAAMAAAABAAAAAAABAAMAAAACAPz/AAABAAMAAAACAP3/AAABAAMAAAACAP7/AAABAAMAAAACAP//AAACAAMAAAACAAAAAAAEAAIAAAADAPz/AAABAAMAAAADAP3/AAABAAMAAAADAP7/AAABAAMAAAAEAPz/AAABAAMAAAAEAP3/AAAEAAIAAAAEAP7/AAAGAAIAAAAFAPz/AAABAAMAAAAFAP3/AAABAAMAAAAFAP7/AAABAAMAAAD7//v/AAABAAMAAAD8//v/AAABAAMAAAD9//v/AAABAAMAAAD+//v/AAABAAMAAAD///v/AAABAAMAAAAAAPv/AAABAAMAAAABAPv/AAABAAMAAAACAPv/AAABAAMAAAADAPv/AAABAAMAAAAEAPv/AAABAAMAAAAFAPv/AAABAAMAAAD7////AAAEAAMAAAD8////AAAFAAMAAAD9////AAAEAAMAAAADAP//AAAEAAMAAAAEAP//AAAGAAMAAAAFAP//AAAEAAMAAAD7/wAAAAABAAMAAAD8/wAAAAABAAMAAAD9/wAAAAABAAMAAAADAAAAAAABAAMAAAAEAAAAAAABAAMAAAAFAAAAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_mdnkp")
 collision_enabled = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.275, 3.275)

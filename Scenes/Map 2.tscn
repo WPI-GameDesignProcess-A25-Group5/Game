@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bc83kx6hwbxi8"]
+[gd_scene load_steps=15 format=4 uid="uid://bc83kx6hwbxi8"]
 
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_ebg6u"]
 [ext_resource type="TileSet" uid="uid://bbsdkg1j8wfv" path="res://Assets/Tilemap/MapTileSet.tres" id="1_exr1p"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bhgtxfbl7yh0u" path="res://UtilityScenes/checkpoint/Checkpoint 2.tscn" id="2_exr1p"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="6_lbjt7"]
 [ext_resource type="PackedScene" uid="uid://b2ldng44ublxu" path="res://Entities/Player/player.tscn" id="7_ea4gu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lbjt7"]
+normal = Vector2(0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wuo06"]
 texture = ExtResource("2_cg2s1")
@@ -540,6 +543,13 @@ script = ExtResource("1_ib45y")
 
 [node name="World" type="Node2D" parent="."]
 
+[node name="Goal" type="Area2D" parent="World"]
+position = Vector2(0, 32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Goal"]
+shape = SubResource("WorldBoundaryShape2D_lbjt7")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="World"]
 z_index = -70
 position = Vector2(-11, 2)
@@ -572,3 +582,5 @@ shape = SubResource("WorldBoundaryShape2D_7vofs")
 [node name="Player" parent="." instance=ExtResource("7_ea4gu")]
 z_index = 3
 position = Vector2(180, 206)
+
+[connection signal="body_entered" from="World/Goal" to="." method="_on_goal_body_entered"]

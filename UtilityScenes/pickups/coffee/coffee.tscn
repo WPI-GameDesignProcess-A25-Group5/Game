@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dga4acxe01so3"]
 
 [ext_resource type="Script" uid="uid://b3sf04s6hijuc" path="res://UtilityScenes/pickups/coffee/pickup.gd" id="1_4rte2"]
-[ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_xab1v"]
+[ext_resource type="Texture2D" uid="uid://dhmtrs5xqh5ox" path="res://Assets/Sprites/Other/Coffee.png" id="2_61d47"]
 [ext_resource type="AudioStream" uid="uid://ce5lk712bx2v3" path="res://Assets/audio/PowerUp.wav" id="3_61d47"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vy6ko"]
@@ -28,8 +28,8 @@ modulate = Color(1, 0.972549, 0.478431, 1)
 texture = SubResource("GradientTexture2D_owup7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_xab1v")
+position = Vector2(0, -6)
+texture = ExtResource("2_61d47")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_61d47")
