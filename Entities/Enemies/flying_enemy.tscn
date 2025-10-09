@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bx75ednbn6s82"]
+[gd_scene load_steps=16 format=3 uid="uid://bx75ednbn6s82"]
 
 [ext_resource type="Script" uid="uid://bcgl1qdkwg2c1" path="res://Entities/Enemies/flying_enemy.gd" id="1_4rqxl"]
 [ext_resource type="Texture2D" uid="uid://bt3fmflvslljm" path="res://Assets/Sprites/Character/Enemy/Fly enemy.png" id="2_lk87l"]
+[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="3_0ewv7"]
+[ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="4_oocrq"]
+[ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health and hitboxes/Health.tscn" id="5_m8wu3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ewv7"]
 atlas = ExtResource("2_lk87l")
@@ -52,6 +55,12 @@ radius = 12.0416
 [sub_resource type="CircleShape2D" id="CircleShape2D_6k0l8"]
 radius = 146.997
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2c1g"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cejyf"]
+radius = 15.0333
+
 [node name="FlyingEnemy" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 4
@@ -81,7 +90,40 @@ one_shot = true
 wait_time = 0.2
 autostart = true
 
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("3_0ewv7")
+metadata/_custom_type_script = "uid://dsuulmpqm44j2"
+
+[node name="TimeTillHit" type="Timer" parent="HitBox"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_d2c1g")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_oocrq")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://bqushokibj7r"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_cejyf")
+
+[node name="InvinceTimer" type="Timer" parent="HurtBox"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Health" parent="." instance=ExtResource("5_m8wu3")]
+MAX_HEALTH = 1.0
+
 [connection signal="body_entered" from="DetectRange" to="." method="_on_detect_range_body_entered"]
 [connection signal="body_exited" from="DetectRange" to="." method="_on_detect_range_body_exited"]
 [connection signal="timeout" from="ToFarTimer" to="." method="_on_to_far_timer_timeout"]
 [connection signal="timeout" from="DecisionTimer" to="." method="_on_decision_timer_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
+[connection signal="timeout" from="HitBox/TimeTillHit" to="." method="_on_time_till_hit_timeout"]
