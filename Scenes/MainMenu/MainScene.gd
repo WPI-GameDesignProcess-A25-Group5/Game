@@ -1,7 +1,7 @@
 extends Control
 var creditsScene = preload("res://Scenes/Credits/Credits.tscn")
 var testSence = preload("res://Scenes/TestScene/test_scene.tscn")
-var example_map=preload("res://Scenes/Map.tscn")
+var example_map=preload("res://Scenes/Map 2.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
