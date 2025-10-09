@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bbsdkg1j8wfv"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://bbsdkg1j8wfv"]
 
 [ext_resource type="Texture2D" uid="uid://bhxk7xvhho3ig" path="res://Assets/Tilemap/Slime Tower Tilemap.png" id="1_2vbdc"]
 [ext_resource type="PackedScene" uid="uid://bhgtxfbl7yh0u" path="res://UtilityScenes/checkpoint/Checkpoint 2.tscn" id="2_p08uq"]
+[ext_resource type="PackedScene" uid="uid://dga4acxe01so3" path="res://UtilityScenes/pickups/coffee/coffee.tscn" id="3_s6r43"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5t7yc"]
 texture = ExtResource("1_2vbdc")
@@ -330,6 +331,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_s6r43"]
 scenes/1/scene = ExtResource("2_p08uq")
+scenes/2/scene = ExtResource("3_s6r43")
 
 [resource]
 tile_size = Vector2i(32, 32)
