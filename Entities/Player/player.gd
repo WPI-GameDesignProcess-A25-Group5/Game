@@ -9,7 +9,8 @@ const MAX_FALL_SPEED=1200
 
 @export var MAX_HEALTH := 3
 
-
+@onready var hitflash_ani: AnimationPlayer = $hitflash_ani
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 var walldirections := {}
@@ -49,11 +50,16 @@ func _ready() -> void:
 
 func _on_damaged(amount, _current_health, bywho):
 	hit(amount,bywho)
+	hitflash_ani.play("hitflash")
+	
 	
 func _on_death(_amount, bywho):
 	print("Died from", bywho.name)
 	Engine.time_scale=0.5
 	death(_amount, bywho)
+	hitflash_ani.play("hitflash")
+	animated_sprite_2d.play("Death")
+	
 
 
 func _on_timer_timeout() -> void:
