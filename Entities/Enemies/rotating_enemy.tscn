@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://qfco76hfhwe8"]
+[gd_scene load_steps=10 format=3 uid="uid://qfco76hfhwe8"]
 
 [ext_resource type="Script" uid="uid://7aieqypjaa0f" path="res://Entities/Enemies/rotating_enemy.gd" id="1_x7at0"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="2_e1k57"]
 [ext_resource type="PackedScene" uid="uid://cgafglulk3bou" path="res://UtilityScenes/components/block_interaction_grid/block_interaction_grid.tscn" id="3_tofdk"]
 [ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="4_x7at0"]
+[ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="5_e1k57"]
+[ext_resource type="PackedScene" uid="uid://xyl71gxd0v42" path="res://UtilityScenes/components/health and hitboxes/Health.tscn" id="5_tofdk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3uyv8"]
 animations = [{
@@ -18,6 +20,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tekja"]
 radius = 14.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fw376"]
+radius = 15.0333
 
 [node name="rotating enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -42,5 +47,22 @@ metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_tekja")
+
+[node name="Health" parent="." instance=ExtResource("5_tofdk")]
+MAX_HEALTH = 1.0
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("5_e1k57")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://bqushokibj7r"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_fw376")
+
+[node name="InvinceTimer" type="Timer" parent="HurtBox"]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="changedMostOccupied" from="AnimatedSprite2D/BlockInteractionGrid" to="." method="_on_block_interaction_grid_changed_most_occupied"]

@@ -1,5 +1,7 @@
 extends CharacterBody2D
-
+@onready var hurtbox_shape: CollisionShape2D = $HurtBox/hurtboxShape
+@onready var hitbox_shape: CollisionShape2D = $HitBox/hitboxShape
+@onready var invince_timer: Timer = $HurtBox/InvinceTimer
 
 const SPEED = 200.0
 const JUMP_VELOCITY = 600
@@ -109,7 +111,8 @@ func _physics_process(delta: float) -> void:
 			velocity = direction * SPEED *directionCorrection
 		if(Input.is_action_just_pressed("Dash") and not dashing):
 			startDash()
-			
+		if(not dashing):
+			hitbox_shape.disabled=true
 			
 		if(checkUnstick or launched): #leaving bloc/tile or launching
 			#var movementTest = velocity-up_direction*velocity.length() -velocity
@@ -149,6 +152,8 @@ func _physics_process(delta: float) -> void:
 		if(dashing):
 			prematureEndDash()
 		if(isStick):
+			if(!stuck):
+				$slime_explosion.emitting=true
 			up_direction = collisions.get_normal()
 			lastUpDir = up_direction
 			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
@@ -166,6 +171,7 @@ func _physics_process(delta: float) -> void:
 					velocity = velocity-componentInUpDir*(1+.5) #bounce 1+coef of restitution
 				else:
 					# print("stick--1splat")
+					
 					stuck = true
 					grounded = true
 					velocity = velocity-componentInUpDir
@@ -194,11 +200,12 @@ func _physics_process(delta: float) -> void:
 
 func startDash():
 	dashing = true
+	$HurtBox.make_invincible(0.2)
+	hitbox_shape.disabled=false
 	dash()
 	$DashTimer.start()
 	pass
 func dash():
-	
 	launched = true
 	grounded = false
 	stuck = false

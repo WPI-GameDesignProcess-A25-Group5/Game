@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var health: Health = $Health
 
 const SPEED = 100
 const JUMP_VELOCITY = 600
@@ -15,6 +16,7 @@ var lastUpDir  := up_direction
 
 func _ready():
 	EventBus.player_launched.connect(change_direction)
+	health.death.connect(_on_death)
 
 func _physics_process(delta: float) -> void:
 	#var beforeVel = velocity
@@ -81,6 +83,20 @@ func _physics_process(delta: float) -> void:
 
 func change_direction(_change:Vector2):
 	direction=direction*-1
+
+func _on_death(_amount, bywho):
+	print("Died from", bywho.name)
+	death(_amount, bywho)
+	
+func death(amount:float,byWho:Node2D):
+	#velocity = (position - byWho.position)*amount*20
+	stuck=false
+	checkUnstick = true
+	launched = true
+	queue_free()
+	
+	#_physics_process(1/Engine.physics_ticks_per_second)
+	#launchVel = (global_position - byWho.global_position).normalized()*100 + up_direction*200
 
 var checkUnstick = false
 func _on_block_interaction_grid_changed_most_occupied(dirs: bool) -> void:

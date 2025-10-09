@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://b2ldng44ublxu"]
+[gd_scene load_steps=90 format=3 uid="uid://b2ldng44ublxu"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
 [ext_resource type="Script" uid="uid://bomeppudggafa" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
+[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="17_vskfa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nhbkt"]
 shader = ExtResource("2_r8fok")
@@ -612,6 +613,35 @@ bg_color = Color(0, 0, 0, 0.396078)
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhbkt"]
+radius = 15.0333
+
+[sub_resource type="Gradient" id="Gradient_nhbkt"]
+colors = PackedColorArray(0, 0.988235, 0.0352941, 1, 0, 0.807843, 0.0509804, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vskfa"]
+gradient = SubResource("Gradient_nhbkt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pjcup"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+color = Color(8.66354e-07, 0.852386, 0.0571748, 1)
+color_ramp = SubResource("GradientTexture1D_vskfa")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
 [sub_resource type="Animation" id="Animation_pjcup"]
 length = 0.001
 tracks/0/type = "value"
@@ -726,7 +756,7 @@ metadata/_custom_type_script = "uid://bqushokibj7r"
 wait_time = 0.5
 one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="hurtboxShape" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_tekja")
 
 [node name="Timer" type="Timer" parent="."]
@@ -759,6 +789,25 @@ theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_r8fok")
 text = "00:00:00.00"
 script = ExtResource("15_r8fok")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("17_vskfa")
+metadata/_custom_type_script = "uid://dsuulmpqm44j2"
+
+[node name="hitboxShape" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_nhbkt")
+
+[node name="slime_explosion" type="GPUParticles2D" parent="."]
+position = Vector2(0, 3)
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_pjcup")
 
 [node name="hitflash_ani" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D/AnimationTree/AnimationPlayer")
