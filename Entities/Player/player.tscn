@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://b2ldng44ublxu"]
+[gd_scene load_steps=90 format=3 uid="uid://b2ldng44ublxu"]
 
 [ext_resource type="Script" uid="uid://3btuifeccg3m" path="res://Entities/Player/player.gd" id="1_3uyv8"]
 [ext_resource type="Texture2D" uid="uid://v8f7aemv4dit" path="res://icon.svg" id="1_mv1ah"]
@@ -15,9 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cff5ug4qfp4tb" path="res://UtilityScenes/components/respawning/respawning.tscn" id="9_x1y6q"]
 [ext_resource type="Script" uid="uid://bqushokibj7r" path="res://UtilityScenes/components/health and hitboxes/hurtbox.gd" id="10_x1y6q"]
 [ext_resource type="PackedScene" uid="uid://qj8yg0bu0o5s" path="res://UtilityScenes/components/health and hitboxes/health_ui.tscn" id="12_iplt1"]
-[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="15_r8fok"]
-[ext_resource type="Script" path="res://Entities/Player/timerScript.gd" id="16_r8fok"]
 [ext_resource type="Script" uid="uid://bomeppudggafa" path="res://Entities/Player/timerScript.gd" id="15_r8fok"]
+[ext_resource type="Script" uid="uid://dsuulmpqm44j2" path="res://UtilityScenes/components/health and hitboxes/hitbox.gd" id="17_vskfa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nhbkt"]
 shader = ExtResource("2_r8fok")
@@ -624,6 +623,7 @@ colors = PackedColorArray(0, 0.988235, 0.0352941, 1, 0, 0.807843, 0.0509804, 0)
 gradient = SubResource("Gradient_nhbkt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pjcup"]
+resource_local_to_scene = true
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -641,6 +641,7 @@ color_ramp = SubResource("GradientTexture1D_vskfa")
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
+
 [sub_resource type="Animation" id="Animation_pjcup"]
 length = 0.001
 tracks/0/type = "value"
@@ -787,12 +788,12 @@ offset_bottom = 72.0
 theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_r8fok")
 text = "00:00:00.00"
-script = ExtResource("16_r8fok")
+script = ExtResource("15_r8fok")
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 16
-script = ExtResource("15_r8fok")
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("17_vskfa")
 metadata/_custom_type_script = "uid://dsuulmpqm44j2"
 
 [node name="hitboxShape" type="CollisionShape2D" parent="HitBox"]

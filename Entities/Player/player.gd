@@ -152,7 +152,8 @@ func _physics_process(delta: float) -> void:
 		if(dashing):
 			prematureEndDash()
 		if(isStick):
-			$slime_explosion.emitting=true
+			if(!stuck):
+				$slime_explosion.emitting=true
 			up_direction = collisions.get_normal()
 			lastUpDir = up_direction
 			$AnimatedSprite2D.rotation = -up_direction.angle_to(Vector2.UP)
@@ -170,6 +171,7 @@ func _physics_process(delta: float) -> void:
 					velocity = velocity-componentInUpDir*(1+.5) #bounce 1+coef of restitution
 				else:
 					# print("stick--1splat")
+					
 					stuck = true
 					grounded = true
 					velocity = velocity-componentInUpDir
